@@ -1,5 +1,4 @@
-using System.ComponentModel;
-using Unity.Collections;
+using System;
 using UnityEngine;
 
 public abstract class ValueBase : MonoBehaviour
@@ -15,7 +14,7 @@ public abstract class ValueBase : MonoBehaviour
     public float MaxValue => maxValue;
     public float CurrentValue => currentValue;
 
-    public System.Action<float, float> OnValueChanged;
+    public Action<float, float> OnValueChanged;
 
     protected virtual void Awake()
     {
