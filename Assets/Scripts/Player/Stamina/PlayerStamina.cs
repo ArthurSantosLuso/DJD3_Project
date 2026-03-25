@@ -2,13 +2,8 @@ using UnityEngine;
 
 public class PlayerStamina : ValueBase
 {
-    public override void ReduceValue(int valueToReduce)
+    private void Start()
     {
-        base.ReduceValue(valueToReduce);
-
-        if (_currentValue <= 0)
-        {
-            return;
-        }
+        UIManager.Instance.RegisterStamina(this);
     }
 }

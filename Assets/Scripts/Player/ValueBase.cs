@@ -1,21 +1,60 @@
+using System.ComponentModel;
+using Unity.Collections;
 using UnityEngine;
 
-public class ValueBase : MonoBehaviour
+public abstract class ValueBase : MonoBehaviour
 {
     // Script base for systems that the main objective is to use a value for something.
     // Example: Health and Stamina
 
-    protected int _maxValue;
-    protected int _currentValue;
-    
-    public virtual void ReduceValue(int valueToReduce) 
+    [SerializeField]
+    protected float maxValue = 100;
+    [SerializeField]
+    protected float currentValue = 100;
+
+    public float MaxValue => maxValue;
+    public float CurrentValue => currentValue;
+
+    public System.Action<float, float> OnValueChanged;
+
+    protected virtual void Awake()
     {
-        _currentValue -= valueToReduce;
+        currentValue = maxValue;
     }
 
-    public virtual void ReduceMaximumValue(int valueToReduce)
+    protected virtual void ReduceValue(float amount)
     {
-        _maxValue = valueToReduce;
+        currentValue -= amount;
+        currentValue = Mathf.Clamp(currentValue, 0, maxValue);
+
+        OnValueChanged?.Invoke(currentValue, maxValue);
+    }
+
+    protected virtual void IncreaseValue(float amount)
+    {
+        currentValue += amount;
+        currentValue = Mathf.Clamp(currentValue, 0, maxValue);
+
+        OnValueChanged?.Invoke(currentValue, maxValue);
+    }
+
+    public void ModifyValue(float amount)
+    {
+        currentValue = Mathf.Clamp(currentValue + amount, 0, maxValue);
+        OnValueChanged?.Invoke(currentValue, maxValue);
+    }
+
+    protected virtual void ReduceMaximumValue(float amount)
+    {
+        maxValue -= amount;
+        maxValue = Mathf.Max(0, maxValue);
+        currentValue = Mathf.Clamp(currentValue, 0, maxValue);
+    }
+
+    protected virtual void IncreaseMaximumValue(float amount)
+    {
+        maxValue += amount;
     }
 
 }
+
