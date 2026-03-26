@@ -14,7 +14,7 @@ public abstract class ValueBase : MonoBehaviour
     public float MaxValue => maxValue;
     public float CurrentValue => currentValue;
 
-    public Action<float, float> OnValueChanged;
+    public Action<int, float, float> OnValueChanged;
 
     protected virtual void Awake()
     {
@@ -25,22 +25,17 @@ public abstract class ValueBase : MonoBehaviour
     {
         currentValue -= amount;
         currentValue = Mathf.Clamp(currentValue, 0, maxValue);
-
-        OnValueChanged?.Invoke(currentValue, maxValue);
     }
 
     protected virtual void IncreaseValue(float amount)
     {
         currentValue += amount;
         currentValue = Mathf.Clamp(currentValue, 0, maxValue);
-
-        OnValueChanged?.Invoke(currentValue, maxValue);
     }
 
     public void ModifyValue(float amount)
     {
         currentValue = Mathf.Clamp(currentValue + amount, 0, maxValue);
-        OnValueChanged?.Invoke(currentValue, maxValue);
     }
 
     protected virtual void ReduceMaximumValue(float amount)

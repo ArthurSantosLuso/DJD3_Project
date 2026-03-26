@@ -8,13 +8,14 @@ public class PlayerHealth : ValueBase
 {
     private void Start()
     {
-        UIManager.Instance.RegisterHealth(this);
+        AddHP(maxValue);
     }
 
     // Reduce player hp
     public void TakeDamage(float hpToReduce)
     {
         base.ReduceValue(hpToReduce);
+        OnValueChanged?.Invoke(0, currentValue, maxValue);
         VerifyLife();
     }
 
@@ -36,6 +37,7 @@ public class PlayerHealth : ValueBase
     public void AddHP(float value)
     {
         base.IncreaseValue(value);
+        OnValueChanged?.Invoke(0, currentValue, maxValue);
     }
 
     public void a(InputAction.CallbackContext context)
@@ -43,6 +45,7 @@ public class PlayerHealth : ValueBase
         if (context.phase == InputActionPhase.Started)
         {
             base.ReduceValue(10);
+            OnValueChanged?.Invoke(0, currentValue, maxValue);
             VerifyLife();
         }
     }
