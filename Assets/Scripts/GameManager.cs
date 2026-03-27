@@ -42,9 +42,13 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerStamina>().OnValueChanged += uiHandler.SetBarValue;
     }
 
-
     public void ChangeUIBarValue(int barIdx, float currentValue, float maxValue)
     {
         uiHandler.SetBarValue(barIdx, currentValue, maxValue);
+    }
+
+    public void DisplayDeathScreen()
+    {
+        uiHandler.ShowDeathScreen();
     }
 }

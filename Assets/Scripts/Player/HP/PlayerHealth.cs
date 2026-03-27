@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.UIElements.Experimental;
 
-public class PlayerHealth : ValueBase
+public class PlayerHealth : ValueBase, IDamageable
 {
     private void Start()
     {
@@ -12,9 +12,9 @@ public class PlayerHealth : ValueBase
     }
 
     // Reduce player hp
-    public void TakeDamage(float hpToReduce)
+    public void Damage(float damageValue)
     {
-        base.ReduceValue(hpToReduce);
+        base.ReduceValue(damageValue);
         OnValueChanged?.Invoke(0, currentValue, maxValue);
         VerifyLife();
     }
@@ -32,6 +32,7 @@ public class PlayerHealth : ValueBase
     private void KillPlayer()
     {
         // Death logic
+        GameManager.Instance.DisplayDeathScreen();
     }
 
     public void AddHP(float value)
@@ -40,13 +41,10 @@ public class PlayerHealth : ValueBase
         OnValueChanged?.Invoke(0, currentValue, maxValue);
     }
 
-    public void a(InputAction.CallbackContext context)
+    public bool CanDamage()
     {
-        if (context.phase == InputActionPhase.Started)
-        {
-            base.ReduceValue(10);
-            OnValueChanged?.Invoke(0, currentValue, maxValue);
-            VerifyLife();
-        }
+        return currentValue > 0;
     }
+
+
 }
