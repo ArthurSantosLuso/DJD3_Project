@@ -14,10 +14,14 @@ public class PlayerStamina : ValueBase
 
     private float lastUsageTime;
     private StaminaUsage staminaUsage;
+    private float currentCostPerSecond;
 
     private void Start()
     {
         staminaUsage = StaminaUsage.NotUsing;
+        /// The way the system is now, the stamina UI value is just shown when the UI is notified that something changed.
+        /// So in order to initialize the UI, I call this method to use 0.01 stamina.
+        UseStamina(0.01f);
     }
 
     private void Update()
@@ -28,14 +32,10 @@ public class PlayerStamina : ValueBase
 
     private void HandleConsumption()
     {
-        // if is current being used, do not regen
-        if (staminaUsage == StaminaUsage.InUse)
+        if (staminaUsage == StaminaUsage.NotUsing)
             return;
 
-        // implementar lógica de quanto stamina deve ser consumida
-        float costPerSecond = 20f;
-
-        base.ReduceValue(costPerSecond * Time.deltaTime);
+        base.ReduceValue(currentCostPerSecond * Time.deltaTime);
         OnValueChanged?.Invoke(1, currentValue, maxValue);
 
         lastUsageTime = Time.time;
@@ -52,8 +52,8 @@ public class PlayerStamina : ValueBase
         if (staminaUsage == StaminaUsage.InUse)
             return;
 
-        if (Time.time < lastUsageTime + regenDelay)
-            return;
+        //if (Time.time < lastUsageTime + regenDelay)
+        //    return;
 
         if (currentValue < maxValue)
         {
@@ -62,14 +62,16 @@ public class PlayerStamina : ValueBase
         }
     }
 
-    //Chamado por outros sistemas (movimento, combate, etc.)
-    public void StartConsuming()
+    
+    public void StartConsuming(int staminaToUsePerSecond)
     {
+        currentCostPerSecond = staminaToUsePerSecond;
         staminaUsage = StaminaUsage.InUse;
     }
 
     public void StopConsuming()
     {
+        currentCostPerSecond = 0;
         staminaUsage = StaminaUsage.NotUsing;
         lastUsageTime = Time.time;
     }
@@ -84,7 +86,6 @@ public class PlayerStamina : ValueBase
         OnValueChanged?.Invoke(1, currentValue, maxValue);
 
         lastUsageTime = Time.time;
- 
     }
 
     public bool HasStamina(float amount)

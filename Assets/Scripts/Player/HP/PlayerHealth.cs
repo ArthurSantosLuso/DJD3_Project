@@ -8,6 +8,8 @@ public class PlayerHealth : ValueBase, IDamageable
 {
     private void Start()
     {
+        /// The way the system is now, the health UI value is just shown when the UI is notified that something changed.
+        /// So in order to initialize the UI, I call this method add the health to the player.
         AddHP(maxValue);
     }
 

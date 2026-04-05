@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerStamina>().OnValueChanged += uiHandler.SetBarValue;
     }
 
+    // Not in use. 
     public void ChangeUIBarValue(int barIdx, float currentValue, float maxValue)
     {
         uiHandler.SetBarValue(barIdx, currentValue, maxValue);

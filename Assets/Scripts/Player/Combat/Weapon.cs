@@ -1,10 +1,13 @@
+using System.Collections.Generic;
+using System.Security;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public abstract class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     [SerializeField]
-    protected int damage;
-    [SerializeField]
-    protected int staminaUsage;
+    private List<Ability> abilities;
 
+    public List<Ability> Abilities { get { return abilities; } }
 }
