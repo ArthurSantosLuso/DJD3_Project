@@ -4,6 +4,7 @@ using UnityEngine.Rendering;
 
 public abstract class Ability : MonoBehaviour
 {
+    protected Character owner;
 
     public abstract float AbilityRange { get; }
 

@@ -14,6 +14,13 @@ public class Character : MonoBehaviour
     private Animator            animator;
     private int                 currentWeapon;
 
+    public enum State
+    {
+        Normal,
+        Attacking,
+    }
+
+    public State CharacterState { get; private set; }
 
     private void Start()
     {
@@ -50,5 +57,10 @@ public class Character : MonoBehaviour
     public void PlayAnimation(string triggerName)
     {
         animator.SetTrigger(triggerName);
+    }
+
+    public void ChangeState(State state)
+    {
+        CharacterState = state;
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerStamina : ValueBase
 {
-    private enum StaminaUsage { InUse, NotUsing, Recovering}
+    private enum StaminaUsage { InUse, NotUsing, Recovering }
 
     [Header("Stamina Settings")]
     [Tooltip("Stamina amout to restore per second")]
@@ -52,8 +52,8 @@ public class PlayerStamina : ValueBase
         if (staminaUsage == StaminaUsage.InUse)
             return;
 
-        //if (Time.time < lastUsageTime + regenDelay)
-        //    return;
+        if (Time.time < lastUsageTime + regenDelay)
+            return;
 
         if (currentValue < maxValue)
         {
@@ -62,7 +62,7 @@ public class PlayerStamina : ValueBase
         }
     }
 
-    
+
     public void StartConsuming(int staminaToUsePerSecond)
     {
         currentCostPerSecond = staminaToUsePerSecond;
