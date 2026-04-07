@@ -4,15 +4,15 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [SerializeField]
-    private List<Weapon>        weapons;
+    private List<Weapon> weapons;
     [SerializeField]
-    private List<ValueBase>        valuesBase;
+    private List<ValueBase> valuesBase;
 
     public List<ValueBase> ValueBases => valuesBase;
 
-    private List<Ability>       currentAbilities;
-    private Animator            animator;
-    private int                 currentWeapon;
+    private List<Ability> currentAbilities;
+    private Animator animator;
+    private int currentWeapon;
 
     public enum State
     {
@@ -51,7 +51,7 @@ public class Character : MonoBehaviour
     public void UseAbility(int abilityIdx)
     {
         // Perform the ability if it is not null
-        currentAbilities[abilityIdx]?.Perform(this);
+        currentAbilities[abilityIdx]?.Perform();
     }
 
     public void PlayAnimation(string triggerName)

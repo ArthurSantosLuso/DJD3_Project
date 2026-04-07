@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class PlayerLightMeleeAttack : Ability
 {
@@ -7,6 +8,9 @@ public class PlayerLightMeleeAttack : Ability
 
     private float lastAttackTime;
     private Animator anim;
+    private PlayerStamina playerStamina;
+
+    public override float AbilityRange => throw new System.NotImplementedException();
 
     private void Start()
     {
@@ -29,23 +33,29 @@ public class PlayerLightMeleeAttack : Ability
         else
         {
             anim = owner.GetComponent<Animator>();
+
+            foreach (ValueBase valBase in owner.ValueBases)
+            {
+                if (valBase is PlayerStamina)
+                {
+                    playerStamina = valBase as PlayerStamina;
+                }
+            }
         }
 
     }
 
-    public override float AbilityRange => throw new System.NotImplementedException();
 
-    protected override bool CanAttack(Character character)
+    protected override bool CanAttack()
     {
-        foreach (ValueBase valBase in character.ValueBases)
-        {
-            if (valBase is PlayerStamina)
-            {
-                if ((valBase as PlayerStamina).HasStamina(staminaCost))
-                    return true;
-            }
-        }
-        return false;
+        // Check if player current state is different from normal
+        if (owner.CharacterState != Character.State.Normal && owner.CharacterState != Character.State.Attacking)
+            return false;
+
+        // Check if player has enough stamina to attack
+        if (playerStamina.HasStamina(staminaCost))
+            return true;
+        else return false;
     }
 
     protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit)
@@ -53,19 +63,16 @@ public class PlayerLightMeleeAttack : Ability
         throw new System.NotImplementedException();
     }
 
-    public override void Perform(Character whoAttacked)
+    /// <summary>
+    /// Perform the ability
+    /// </summary>
+    public override void Perform()
     {
-        if (!CanAttack(whoAttacked))
+        // Check if can attack
+        if (!CanAttack())
             return;
 
-        foreach (ValueBase valBase in whoAttacked.ValueBases)
-        {
-            if (valBase is PlayerStamina)
-            {
-                (valBase as PlayerStamina).UseStamina(staminaCost);
-            }
-        }
-
+        // Check if it's the first attack
         if (owner.CharacterState == Character.State.Normal)
         {
             anim.SetBool("ComboSuccess", true);
@@ -74,9 +81,10 @@ public class PlayerLightMeleeAttack : Ability
         }
         else
         {
+            // Store the time between the current time and the time of the last attack
             float timeSinceLastAttack = Time.time - lastAttackTime;
 
-            // Check if it should reset the combo based on time
+            // Check if it should reset the combo based on combo window time
             if (timeSinceLastAttack > comboResetTime)
             {
                 anim.SetBool("ComboSuccess", false);
@@ -89,17 +97,26 @@ public class PlayerLightMeleeAttack : Ability
         }
 
         anim.SetTrigger("Attack");
+        // Store the time of the last attack
         lastAttackTime = Time.time;
     }
 
+    /// <summary>
+    /// Reset the combo logic state 
+    /// </summary>
     public void ResetComboState()
     {
         owner.ChangeState(Character.State.Normal);
     }
 
+    /// <summary>
+    /// Start the combo logic state
+    /// </summary>
     public void StartComboState()
     {
         owner.ChangeState(Character.State.Attacking);
+        // Use the stamina
+        playerStamina.UseStamina(staminaCost);
         anim.SetBool("ComboSuccess", false);
     }
 }
