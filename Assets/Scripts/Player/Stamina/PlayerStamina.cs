@@ -62,8 +62,8 @@ public class PlayerStamina : ValueBase
         }
     }
 
-
-    public void StartConsuming(int staminaToUsePerSecond)
+    // Start to consume stamina over the time
+    public void StartConsuming(float staminaToUsePerSecond)
     {
         currentCostPerSecond = staminaToUsePerSecond;
         staminaUsage = StaminaUsage.InUse;
