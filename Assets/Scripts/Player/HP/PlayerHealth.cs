@@ -1,10 +1,4 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
-using UnityEngine.UIElements.Experimental;
-
-public class PlayerHealth : ValueBase, IDamageable
+public class PlayerHealth : ValueBase, IDamageable, IHealable
 {
     private void Start()
     {
@@ -48,5 +42,10 @@ public class PlayerHealth : ValueBase, IDamageable
         return currentValue > 0;
     }
 
+    public void Heal(float amount)
+    {
+        AddHP(amount);
+    }
 
+    public bool NeedsHealing() => currentValue < maxValue;
 }

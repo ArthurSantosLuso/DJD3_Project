@@ -1,14 +1,18 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField]
+    private bool shouldConsiderInteractable;
     [SerializeField]
     private List<Weapon> weapons;
     [SerializeField]
     private List<ValueBase> valuesBase;
 
     public List<ValueBase> ValueBases => valuesBase;
+    public bool ShouldConsiderInteractable => shouldConsiderInteractable;
 
     private List<Ability> currentAbilities;
     private Animator animator;

@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    public UIHandler UIHandler => uiHandler;
+
+
+
     private void Start()
     {
         player.GetComponent<PlayerHealth>().OnValueChanged += uiHandler.SetBarValue;

@@ -10,6 +10,8 @@ public class UIHandler : MonoBehaviour
 
     [Space]
     [SerializeField]
+    private GameObject interactionPanel;
+    [SerializeField]
     private GameObject deathScreen;
 
     public void SetBarValue(int barIdx, float currentValue, float maxValue)
@@ -20,5 +22,10 @@ public class UIHandler : MonoBehaviour
     public void ShowDeathScreen()
     {
         deathScreen.SetActive(true);
+    }
+
+    public void ShowInteractionPanel()
+    {
+        interactionPanel.SetActive(true);
     }
 }
