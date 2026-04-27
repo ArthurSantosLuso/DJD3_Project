@@ -8,8 +8,10 @@ public abstract class ValueBase : MonoBehaviour
 
     [SerializeField]
     protected float maxValue = 100;
-    [SerializeField]
-    protected float currentValue = 100;
+    [SerializeField, Range(1, 100)]
+    private int startsWith = 1;
+
+    protected float currentValue;
 
     public float MaxValue => maxValue;
     public float CurrentValue => currentValue;
@@ -18,7 +20,7 @@ public abstract class ValueBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        currentValue = maxValue;
+        currentValue = startsWith;
     }
 
     protected virtual void ReduceValue(float amount)
