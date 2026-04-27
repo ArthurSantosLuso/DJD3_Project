@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &175708141
+--- !u!1 &71515388
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,24 +127,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 175708145}
-  - component: {fileID: 175708144}
-  - component: {fileID: 175708143}
-  - component: {fileID: 175708142}
-  m_Layer: 6
-  m_Name: Plane
+  - component: {fileID: 71515392}
+  - component: {fileID: 71515391}
+  - component: {fileID: 71515390}
+  - component: {fileID: 71515389}
+  m_Layer: 0
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &175708142
-MeshCollider:
+--- !u!65 &71515389
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175708141}
+  m_GameObject: {fileID: 71515388}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -154,19 +154,18 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &175708143
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &71515390
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175708141}
+  m_GameObject: {fileID: 71515388}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -209,25 +208,25 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &175708144
+--- !u!33 &71515391
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175708141}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &175708145
+  m_GameObject: {fileID: 71515388}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &71515392
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175708141}
+  m_GameObject: {fileID: 71515388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 0, z: 1}
-  m_LocalScale: {x: 1.7071, y: 1.7071, z: 1.7071}
+  m_LocalPosition: {x: -19.98, y: 0, z: 0}
+  m_LocalScale: {x: 59.773525, y: 0.32, z: 47.09917}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1312,6 +1311,7 @@ MonoBehaviour:
   bars:
   - {fileID: 1611595877}
   - {fileID: 1031425971}
+  interactionPanel: {fileID: 0}
   deathScreen: {fileID: 654254350}
 --- !u!1001 &1269446879
 PrefabInstance:
@@ -5846,6 +5846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cb0d2d58358c24bbade7a2cd154d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
+  shouldConsiderInteractable: 0
   weapons:
   - {fileID: 1552931145}
   valuesBase:
@@ -6004,7 +6005,7 @@ SceneRoots:
   - {fileID: 1136517467}
   - {fileID: 2899126533053029987}
   - {fileID: 1677205485}
-  - {fileID: 175708145}
+  - {fileID: 71515392}
   - {fileID: 2099776973}
   - {fileID: 2589796104261205663}
   - {fileID: 812440943}
