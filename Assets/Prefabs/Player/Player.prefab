@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 8249822233432821354}
   - component: {fileID: 6181130040606992120}
   - component: {fileID: 8637629617618799150}
+  - component: {fileID: 7195864548980130181}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -692,6 +693,9 @@ MonoBehaviour:
   gravity: -9.81
   jumpHeight: 1.5
   cameraTransform: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5701763977847484198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +768,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aad265299d1cb14a995cb6fc023155a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
+--- !u!114 &7195864548980130181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174534206603503521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1ef80d8d9970e418fc3debcb6ca080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RotateToFaceMouse
+  mainCamera: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  renderImage: {fileID: 0}
 --- !u!1 &1249652234464927463
 GameObject:
   m_ObjectHideFlags: 0

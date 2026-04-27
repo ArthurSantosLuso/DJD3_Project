@@ -7,7 +7,6 @@ public class PlayerLightMeleeAttack : Ability
     [SerializeField] private float comboResetTime = 1.0f; // Time allowed between clicks
 
     private float lastAttackTime;
-    private Animator anim;
     private PlayerStamina playerStamina;
 
     public override float AbilityRange => throw new System.NotImplementedException();
@@ -32,7 +31,7 @@ public class PlayerLightMeleeAttack : Ability
         }
         else
         {
-            anim = owner.GetComponent<Animator>();
+            animator = owner.GetComponent<Animator>();
 
             foreach (ValueBase valBase in owner.ValueBases)
             {
@@ -75,7 +74,7 @@ public class PlayerLightMeleeAttack : Ability
         // Check if it's the first attack
         if (owner.CharacterState == Character.State.Normal)
         {
-            anim.SetBool("ComboSuccess", true);
+            animator.SetBool("ComboSuccess", true);
             lastAttackTime = Time.time;
             owner.ChangeState(Character.State.Attacking);
         }
@@ -87,16 +86,16 @@ public class PlayerLightMeleeAttack : Ability
             // Check if it should reset the combo based on combo window time
             if (timeSinceLastAttack > comboResetTime)
             {
-                anim.SetBool("ComboSuccess", false);
+                animator.SetBool("ComboSuccess", false);
                 return;
             }
             else
             {
-                anim.SetBool("ComboSuccess", true);
+                animator.SetBool("ComboSuccess", true);
             }
         }
 
-        anim.SetTrigger("Attack");
+        animator.SetTrigger("Attack");
         // Store the time of the last attack
         lastAttackTime = Time.time;
     }
@@ -117,6 +116,6 @@ public class PlayerLightMeleeAttack : Ability
         owner.ChangeState(Character.State.Attacking);
         // Use the stamina
         playerStamina.UseStamina(staminaCost);
-        anim.SetBool("ComboSuccess", false);
+        animator.SetBool("ComboSuccess", false);
     }
 }

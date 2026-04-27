@@ -5,7 +5,7 @@ public class MeleeEnemyAI : EnemyBaseAI
 {
     protected override void Attack()
     {
-        if (isAttacking)
+        if (isAttackState)
         {
             timer += Time.deltaTime;
 

@@ -17,7 +17,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
     protected NavMeshAgent agent;
     protected StateMachine stateMachine;
     protected float timer;
-    protected bool isAttacking = false;
+    protected bool isAttackState = false;
 
     private GameObject target;
 
@@ -77,7 +77,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
         }
     }
 
-    private void StopChasing()
+    protected virtual void StopChasing()
     {
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
@@ -91,14 +91,15 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     private void StartAttacking()
     {
-        isAttacking = true;
+        isAttackState = true;
     }
 
     protected abstract void Attack();
 
     private void StopAttacking()
     {
-        isAttacking = false;
+        isAttackState = false;
+        timer = 0f;
     }
 
     // ==== Verifications =================================

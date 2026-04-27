@@ -35,7 +35,7 @@ public class RotateToFaceMouse : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0f, lookRotation.eulerAngles.y, 0f);
                 }
             }
-            Debug.Log(uv);
+            //Debug.Log(uv);
         }
     }
 }

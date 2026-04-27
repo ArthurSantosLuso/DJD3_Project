@@ -212,3 +212,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
   moveSpeed: 1.2
   attackRange: 1.8
+  timeToAttack: 0.1

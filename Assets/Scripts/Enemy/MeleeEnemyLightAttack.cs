@@ -7,6 +7,7 @@ public class MeleeEnemyLightAttack : Ability
 
     public override void Perform()
     {
+        animator.SetTrigger("Attack");
         Debug.Log($"{this.name} attacked the player.");
     }
 
