@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     private Character character;
+    public Vector2 moveInput;
+    public bool sprintHeld;
 
     private void Start()
     {
@@ -40,5 +42,18 @@ public class PlayerInput : MonoBehaviour
         {
             character.UseAbility(2);
         }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            sprintHeld = true;
+        else if (context.phase == InputActionPhase.Canceled)
+            sprintHeld = false;
     }
 }
