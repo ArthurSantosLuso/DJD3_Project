@@ -43,8 +43,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player.GetComponent<PlayerHealth>().OnValueChanged += uiHandler.SetBarValue;
-        player.GetComponent<PlayerStamina>().OnValueChanged += uiHandler.SetBarValue;
+        PlayerHealth health = player.GetComponent<PlayerHealth>();
+        PlayerStamina stamina = player.GetComponent<PlayerStamina>();
+
+        health.OnValueChanged += uiHandler.SetBarValue;
+        stamina.OnValueChanged += uiHandler.SetBarValue;
+
+        uiHandler.SetBarValue(0, health.CurrentValue, health.MaxValue);
+        uiHandler.SetBarValue(1, stamina.CurrentValue, stamina.MaxValue);
     }
 
     // Not in use. 

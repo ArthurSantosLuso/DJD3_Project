@@ -16,14 +16,6 @@ public class PlayerStamina : ValueBase
     private StaminaUsage staminaUsage;
     private float currentCostPerSecond;
 
-    private void Start()
-    {
-        staminaUsage = StaminaUsage.NotUsing;
-        /// The way the system is now, the stamina UI value is just shown when the UI is notified that something changed.
-        /// So in order to initialize the UI, I call this method to use 0.01 stamina.
-        UseStamina(0.01f);
-    }
-
     private void Update()
     {
         HandleConsumption();
