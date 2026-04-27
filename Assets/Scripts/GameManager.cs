@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
 
     public UIHandler UIHandler => uiHandler;
+    public GameObject Player => player;
 
 
 
