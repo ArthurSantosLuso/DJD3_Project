@@ -2,6 +2,7 @@ using LibGameAI.FSMs;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class EnemyBaseAI : MonoBehaviour
@@ -10,9 +11,13 @@ public abstract class EnemyBaseAI : MonoBehaviour
     protected float moveSpeed = 1.0f;
     [SerializeField, Min(0.1f)]
     protected float attackRange = 1.0f;
+    [SerializeField, Min(0.1f)]
+    protected float timeToAttack = 0.1f;
 
     protected NavMeshAgent agent;
     protected StateMachine stateMachine;
+    protected float timer;
+    protected bool isAttacking = false;
 
     private GameObject target;
 
@@ -81,18 +86,24 @@ public abstract class EnemyBaseAI : MonoBehaviour
     // ==== Attack =================================
     protected virtual State CreateAttackState()
     {
-        return new State("Attack", null, Attack, null);
+        return new State("Attack", StartAttacking, Attack, StopAttacking);
+    }
+
+    private void StartAttacking()
+    {
+        isAttacking = true;
     }
 
     protected abstract void Attack();
 
+    private void StopAttacking()
+    {
+        isAttacking = false;
+    }
+
     // ==== Verifications =================================
     private bool IsInRange()
     {
-        /*Vector3 toTarget = target.transform.position - transform.position;
-        toTarget.y = 0.0f;*/
-
-
         float distance = Vector3.Distance(target.transform.position, transform.position);
 
         Debug.DrawLine(target.transform.position, transform.position, Color.magenta, 0.2f);
@@ -100,6 +111,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
         return distance <= attackRange;
     }
 
+    // ==== Debug =================================
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0.2f, 0.2f, 0.4f);
