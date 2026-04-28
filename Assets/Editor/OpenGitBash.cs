@@ -5,7 +5,7 @@ using System.IO;
 
 public class OpenGitBash
 {
-    [MenuItem("Tools/Open Git Bash Here")]
+    [MenuItem("Tools/Open Git Bash")]
     public static void OpenBash()
     {
         string projectPath = Directory.GetParent(Application.dataPath).FullName;
