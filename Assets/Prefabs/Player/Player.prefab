@@ -756,6 +756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64feee344361ca84cb8fec7609685a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
+  moveInput: {x: 0, y: 0}
+  sprintHeld: 0
 --- !u!114 &8637629617618799150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2792,6 +2794,12 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7164615791745548991, guid: 1422238493a875c469d0b1b352e0a63c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3098865754067750302}
+    - targetCorrespondingSourceObject: {fileID: 7164615791745548991, guid: 1422238493a875c469d0b1b352e0a63c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3475065850602637905}
+    - targetCorrespondingSourceObject: {fileID: 7164615791745548991, guid: 1422238493a875c469d0b1b352e0a63c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3902108724188315614}
     - targetCorrespondingSourceObject: {fileID: 7164615791745548991, guid: 1422238493a875c469d0b1b352e0a63c, type: 3}
       insertIndex: -1
@@ -2807,6 +2815,54 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7164615791745548991, guid: 1422238493a875c469d0b1b352e0a63c, type: 3}
   m_PrefabInstance: {fileID: 379256809730946709}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &3098865754067750302
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363016046339224618}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3475065850602637905
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363016046339224618}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.9470786, z: 0.2474763}
+  m_Center: {x: 0.000000030427152, y: 0.272989, z: 0.00018552698}
 --- !u!114 &3902108724188315614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,4 +2892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLightMeleeAttack
   staminaCost: 10
+  bloodEffectPrefab: {fileID: 6663110841838267354, guid: 1b0980a4036fa6e469fead13990fd339, type: 3}
   comboResetTime: 1
+  damageAmout: 50
