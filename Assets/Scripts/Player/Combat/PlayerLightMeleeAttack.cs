@@ -13,8 +13,6 @@ public class PlayerLightMeleeAttack : Ability
 
     public override float AbilityRange => throw new System.NotImplementedException();
 
-
-
     private void Start()
     {
         owner = GetComponentInParent<Character>()

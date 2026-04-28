@@ -580,7 +580,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6181130040606992120}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -689,9 +701,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 3
+  sprintMultiplier: 0
   rotationSpeed: 4
-  gravity: -9.81
-  jumpHeight: 1.5
   cameraTransform: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -709,7 +720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxValue: 100
-  startsWith: 100
+  startsWith: 85
 --- !u!114 &7643620200896936718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,8 +733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99a1a6963413fa46af851b7dcb32381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
-  maxValue: 50
-  startsWith: 50
+  maxValue: 100
+  startsWith: 100
   regenRate: 10
   regenDelay: 2
 --- !u!114 &8249822233432821354
@@ -2894,4 +2905,4 @@ MonoBehaviour:
   staminaCost: 10
   bloodEffectPrefab: {fileID: 6663110841838267354, guid: 1b0980a4036fa6e469fead13990fd339, type: 3}
   comboResetTime: 1
-  damageAmout: 50
+  damageAmout: 20

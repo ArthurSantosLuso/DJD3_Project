@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerStamina : ValueBase
 {
@@ -13,7 +12,7 @@ public class PlayerStamina : ValueBase
     [SerializeField] private float regenDelay = .5f;
 
     private float lastUsageTime;
-    private StaminaUsage staminaUsage;
+    private StaminaUsage staminaUsage = StaminaUsage.NotUsing;
     private float currentCostPerSecond;
 
     private void Update()

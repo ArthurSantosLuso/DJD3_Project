@@ -4,23 +4,22 @@ using UnityEngine;
 public class ThirdPersonController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 6f;
-    public float rotationSpeed = 15f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 1.5f;
+    [SerializeField] private float moveSpeed = 6f;
+    [SerializeField] private float sprintMultiplier;
+    [SerializeField] private float rotationSpeed = 15f;
 
     [Header("References")]
-    public Transform cameraTransform;
-    public LayerMask groundLayer;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private LayerMask groundLayer;
 
     private CharacterController controller;
-    private Vector3 velocity;
-    private bool isGrounded;
+    private Character character;
     private Animator animator;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        character = GetComponent<Character>();
         controller = GetComponent<CharacterController>();
 
         if (cameraTransform == null)
@@ -29,6 +28,9 @@ public class ThirdPersonController : MonoBehaviour
 
     void Update()
     {
+        if (!CanMove())
+            return;
+
         HandleRotationToMouse();
         HandleMovement();
     }
@@ -55,9 +57,6 @@ public class ThirdPersonController : MonoBehaviour
 
     void HandleMovement()
     {
-        isGrounded = controller.isGrounded;
-        if (isGrounded && velocity.y < 0) velocity.y = -2f;
-
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -80,14 +79,13 @@ public class ThirdPersonController : MonoBehaviour
         animator.SetFloat("VelocityX", localMove.x, 0.1f, Time.deltaTime);
         animator.SetFloat("VelocityZ", localMove.z, 0.1f, Time.deltaTime);
         animator.SetFloat("MoveMagnitude", moveDirection.magnitude);
+    }
 
-        // Pulo e Gravidade
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+    private bool CanMove()
+    {
+        if (character.CharacterState == Character.State.Attacking)
+            return false;
 
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        return true;
     }
 }
