@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     private List<Ability> currentAbilities;
     private Animator animator;
     private int currentWeapon;
+    private int currentAbilityInUseIdx = -1;
 
     public enum State
     {
@@ -55,6 +56,7 @@ public class Character : MonoBehaviour
     public void UseAbility(int abilityIdx)
     {
         // Perform the ability if it is not null
+        currentAbilityInUseIdx = abilityIdx;
         currentAbilities[abilityIdx]?.Perform();
     }
 
@@ -66,5 +68,15 @@ public class Character : MonoBehaviour
     public void ChangeState(State state)
     {
         CharacterState = state;
+    }
+
+    public void EnableHitbox()
+    {
+        currentAbilities[currentAbilityInUseIdx].EnableHitbox();
+    }
+
+    public void DisableHitbox()
+    {
+        currentAbilities[currentAbilityInUseIdx].DisableHitbox();
     }
 }
