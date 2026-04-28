@@ -226,7 +226,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19.98, y: 0, z: 0}
-  m_LocalScale: {x: 59.773525, y: 0.32, z: 47.09917}
+  m_LocalScale: {x: 36.938034, y: 0.32, z: 31.41656}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2826,6 +2826,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859076756}
   m_CullTransparentMesh: 1
+--- !u!1001 &1901971571
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22.741858
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6599998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.05048362
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2059f1f6854c32c4d9dfacf81ddfb109, type: 2}
+    - target: {fileID: 919132149155446097, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
+      propertyPath: m_Name
+      value: blockout_wooden_crate1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9af8e591ec235c447bd8c043ebbd328f, type: 3}
 --- !u!1001 &1949849119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2935,6 +2996,9 @@ MonoBehaviour:
   gravity: -9.81
   jumpHeight: 1.5
   cameraTransform: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!143 &2035238146
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5817,7 +5881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
   maxValue: 50
-  currentValue: 0
+  startsWith: 1
   regenRate: 10
   regenDelay: 2
 --- !u!114 &9141155970011153436
@@ -5833,7 +5897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxValue: 100
-  currentValue: 0
+  startsWith: 1
 --- !u!114 &9141155970011153437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5864,6 +5928,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64feee344361ca84cb8fec7609685a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
+  moveInput: {x: 0, y: 0}
+  sprintHeld: 0
 --- !u!137 &9187251911974825387
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -6021,3 +6087,4 @@ SceneRoots:
   - {fileID: 1610532753}
   - {fileID: 1807612476}
   - {fileID: 1949849119}
+  - {fileID: 1901971571}
