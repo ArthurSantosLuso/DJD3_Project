@@ -1033,6 +1033,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5011410252824304821, guid: fad66405f20f5334784924e878717ca1, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8002801
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011410252824304821, guid: fad66405f20f5334784924e878717ca1, type: 3}
+      propertyPath: m_Center.x
+      value: -0.00000017142598
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011410252824304821, guid: fad66405f20f5334784924e878717ca1, type: 3}
+      propertyPath: m_Center.y
+      value: -0.09985853
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011410252824304821, guid: fad66405f20f5334784924e878717ca1, type: 3}
+      propertyPath: m_Center.z
+      value: -0.000000105191745
+      objectReference: {fileID: 0}
     - target: {fileID: 8396910694073422802, guid: fad66405f20f5334784924e878717ca1, type: 3}
       propertyPath: m_Name
       value: Lower Skinwalker (1)
