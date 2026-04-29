@@ -1,15 +1,51 @@
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Hierarchy;
 using UnityEngine;
 
 public class PlayerLightMeleeAttack : Ability
 {
+
+    [Header("Blood FX")]
     [SerializeField] private GameObject bloodEffectPrefab;
-    [SerializeField] private float comboResetTime = 1.0f; // Time allowed between clicks
-    [SerializeField] private float damageAmout = 10f;
+
+    [Header("Combo Settings")]
+    [SerializeField] private float comboResetTime = 1.0f;
+    [SerializeField] private float damageAmount = 10f;
+
+    [Header("Lunge Settings")]
+    [Tooltip("Area where enemy is considered close range. trigger Normal attack")]
+    [SerializeField] private float meleeRadius = 1.8f;
+
+    [Tooltip("Area where the enemy is considered far. Triggers the lunge.")]
+    [SerializeField] private float lungeRadius = 5f;
+
+    [Tooltip("How long the lunge travel takes.")]
+    [SerializeField] private float lungeDuration = 0.28f;
+
+    [Tooltip("How high the player goes up during the lunge (Y units)")]
+    [SerializeField] private float lungeArcHeight = 0.4f;
+
+    [Tooltip("How far from the target the player stops.")]
+    [SerializeField] private float lungeStopDistance = 0.9f;
+
+    [Header("Enemy Scoring Weights")]
+    [Tooltip("How much facing direction influences target selection.")]
+    [SerializeField, Range(0f, 1f)] private float angleWeight = 0.65f;
+
+    [Tooltip("How much proximity influences target selection. Should sum to 1 with angleWeight.")]
+    [SerializeField, Range(0f, 1f)] private float distanceWeight = 0.35f;
+
+    [Header("Enemy Detection")]
+    [Tooltip("Layer(s) that contain enemies. Set this in the Inspector.")]
+    [SerializeField] private LayerMask enemyLayer;
+
 
     private float lastAttackTime;
     private PlayerStamina playerStamina;
     private Collider hitboxCollider;
+    private CharacterController characterController;
+    private bool isLunging;
 
     public override float AbilityRange => throw new System.NotImplementedException();
 
@@ -21,27 +57,25 @@ public class PlayerLightMeleeAttack : Ability
 
         if (owner == null)
         {
-            Debug.Log($"Could not find owner for {this.name}");
+            Debug.LogError($"[PlayerLightMeleeAttack] Could not find Character owner on {name}.");
             return;
         }
 
         animator = owner.GetComponent<Animator>();
+        characterController = owner.GetComponent<CharacterController>();
 
         foreach (ValueBase valBase in owner.ValueBases)
         {
-            if (valBase is PlayerStamina)
+            if (valBase is PlayerStamina stamina)
             {
-                playerStamina = valBase as PlayerStamina;
+                playerStamina = stamina;
                 break;
             }
         }
 
         hitboxCollider = GetComponent<Collider>();
-        // Avoid unnecessary collision detection
         hitboxCollider.enabled = false;
-
     }
-
 
     public override void EnableHitbox()
     {
@@ -57,77 +91,143 @@ public class PlayerLightMeleeAttack : Ability
 
     protected override bool CanAttack()
     {
-        // Check if player current state is different from normal
         if (owner.CharacterState != Character.State.Normal &&
             owner.CharacterState != Character.State.Attacking)
             return false;
 
-        // Check if player has enough stamina to attack
-        if (playerStamina.HasStamina(staminaCost))
-            return true;
-        else return false;
+        return playerStamina.HasStamina(staminaCost);
     }
 
-    protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    /// <summary>
-    /// Perform the ability
-    /// </summary>
     public override void Perform()
     {
-        // Check if can attack
-        if (!CanAttack())
+        if (!CanAttack()) return;
+
+        if (owner.CharacterState == Character.State.Attacking)
+        {
+            HandleComboInput();
             return;
-
-        // Check if it's the first attack
-        if (owner.CharacterState == Character.State.Normal)
-        {
-            animator.SetBool("ComboSuccess", true);
-            lastAttackTime = Time.time;
-            owner.ChangeState(Character.State.Attacking);
         }
+
+        Transform lungeTarget = FindBestLungeTarget();
+
+        if (lungeTarget != null)
+            StartCoroutine(LungeRoutine(lungeTarget));
         else
-        {
-            // Store the time between the current time and the time of the last attack
-            float timeSinceLastAttack = Time.time - lastAttackTime;
+            StartNormalAttack();
+    }
 
-            // Check if it should reset the combo based on combo window time
-            if (timeSinceLastAttack > comboResetTime)
-            {
-                animator.SetBool("ComboSuccess", false);
-                return;
-            }
-            else
-            {
-                animator.SetBool("ComboSuccess", true);
-            }
+
+    private void StartNormalAttack()
+    {
+        animator.SetBool("ComboSuccess", true);
+        animator.SetTrigger("Attack");
+        lastAttackTime = Time.time;
+        owner.ChangeState(Character.State.Attacking);
+    }
+
+    private void HandleComboInput()
+    {
+        float timeSinceLastAttack = Time.time - lastAttackTime;
+
+        if (timeSinceLastAttack > comboResetTime)
+        {
+            animator.SetBool("ComboSuccess", false);
+            return;
         }
 
+        animator.SetBool("ComboSuccess", true);
         animator.SetTrigger("Attack");
-        // Store the time of the last attack
         lastAttackTime = Time.time;
     }
 
-    /// <summary>
-    /// Start the combo logic state
-    /// </summary>
-    public void StartComboState()
+    private Transform FindBestLungeTarget()
     {
-        owner.ChangeState(Character.State.Attacking);
-        // Use the stamina
-        playerStamina.UseStamina(staminaCost);
-        animator.SetBool("ComboSuccess", false);
+        Collider[] hits = Physics.OverlapSphere(
+            owner.transform.position, lungeRadius, enemyLayer);
+
+        if (hits.Length == 0) 
+        {
+            return null;
+        }
+
+        Transform bestTarget = null;
+        float bestScore = -1f;
+
+        foreach (Collider hit in hits)
+        {
+            if (hit.GetComponent<IDamageable>() == null) continue;
+
+            float distance = Vector3.Distance(owner.transform.position, hit.transform.position);
+
+            if (distance <= meleeRadius)
+            {
+                return null;
+            }
+
+            float score = ScoreTarget(hit.transform, distance);
+
+            if (score > bestScore)
+            {
+                bestScore = score;
+                bestTarget = hit.transform;
+            }
+        }
+
+        return bestTarget;
     }
 
-    /// <summary>
-    /// Reset the combo logic state 
-    /// </summary>
-    public void ResetComboState()
+    private float ScoreTarget(Transform target, float distance)
     {
+        Vector3 toTarget = (target.position - owner.transform.position).normalized;
+        float angle = Vector3.Angle(owner.transform.forward, toTarget); // 0–180
+
+        float angleScore = 1f - (angle / 180f);
+        float distanceScore = 1f - (distance / lungeRadius);
+
+        return (angleScore * angleWeight) + (distanceScore * distanceWeight);
+    }
+
+
+    private IEnumerator LungeRoutine(Transform target)
+    {
+        isLunging = true;
+        owner.ChangeState(Character.State.Lunging);
+        playerStamina.UseStamina(staminaCost);
+
+        Vector3 flatDirection = target.position - owner.transform.position;
+        flatDirection.y = 0f;
+        if (flatDirection != Vector3.zero)
+            owner.transform.rotation = Quaternion.LookRotation(flatDirection);
+
+        animator.SetTrigger("Lunge");
+
+        Vector3 startPos = owner.transform.position;
+        Vector3 stopPoint = target.position - flatDirection.normalized * lungeStopDistance;
+        stopPoint.y = startPos.y;
+
+        float elapsed = 0f;
+        Vector3 previousPos = startPos;
+
+        while (elapsed < lungeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / lungeDuration);
+
+            Vector3 desiredPos = Vector3.Lerp(startPos, stopPoint, t);
+            desiredPos.y += lungeArcHeight * Mathf.Sin(t * Mathf.PI);
+
+            Vector3 delta = desiredPos - previousPos;
+            characterController.Move(delta);
+
+            previousPos = owner.transform.position;
+
+            yield return null;
+        }
+
+        isLunging = false;
+
         owner.ChangeState(Character.State.Normal);
+        lastAttackTime = Time.time;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -136,15 +236,14 @@ public class PlayerLightMeleeAttack : Ability
         IDamageable self = owner.gameObject.GetComponent<IDamageable>();
 
         if (target == null || target == self) return;
+        if (!target.CanDamage()) return;
 
-        if (target.CanDamage())
-            target.Damage(damageAmout);
+        target.Damage(damageAmount);
 
         Vector3 hitPoint = (transform.position + other.bounds.center) * 0.5f;
         SpawnBloodEffect(hitPoint);
 
-        // Prevent multi-hit
-        DisableHitbox(); 
+        DisableHitbox();
     }
 
     private void SpawnBloodEffect(Vector3 position)
@@ -153,5 +252,20 @@ public class PlayerLightMeleeAttack : Ability
             Instantiate(bloodEffectPrefab, position, Quaternion.identity);
     }
 
+    public void StartComboState()
+    {
+        owner.ChangeState(Character.State.Attacking);
+        playerStamina.UseStamina(staminaCost);
+        animator.SetBool("ComboSuccess", false);
+    }
 
+    public void ResetComboState()
+    {
+        owner.ChangeState(Character.State.Normal);
+    }
+
+    protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit)
+    {
+        throw new System.NotImplementedException();
+    }
 }

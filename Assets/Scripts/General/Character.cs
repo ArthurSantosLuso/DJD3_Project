@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     {
         Normal,
         Attacking,
+        Lunging,
     }
 
     public State CharacterState { get; private set; }

@@ -29,7 +29,12 @@ public class ThirdPersonController : MonoBehaviour
     void Update()
     {
         if (!CanMove())
+        {
+            animator.SetFloat("VelocityX", 0f, 0.1f, Time.deltaTime);
+            animator.SetFloat("VelocityZ", 0f, 0.1f, Time.deltaTime);
+            animator.SetFloat("MoveMagnitude", 0f);
             return;
+        }
 
         HandleRotationToMouse();
         HandleMovement();
@@ -83,7 +88,8 @@ public class ThirdPersonController : MonoBehaviour
 
     private bool CanMove()
     {
-        if (character.CharacterState == Character.State.Attacking)
+        if (character.CharacterState == Character.State.Attacking ||
+            character.CharacterState == Character.State.Lunging)
             return false;
 
         return true;
