@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 9.74, y: 22.105, z: 0}
+  m_LocalEulerAnglesHint: {x: 32.6, y: 29.3, z: 0}
 --- !u!20 &2166699174175768146
 Camera:
   m_ObjectHideFlags: 0
