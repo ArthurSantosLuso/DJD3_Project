@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float sprintMultiplier;
     [SerializeField] private float rotationSpeed = 15f;
+    [SerializeField] private float sprintStaminaCostPerSecond = 20f;
+    
 
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
@@ -16,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Character character;
     private Animator animator;
     private PlayerInput input;
-
+    private PlayerStamina stamina;
+    private bool wasSprinting = false;
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         character = GetComponent<Character>();
         controller = GetComponent<CharacterController>();
         input = GetComponent<PlayerInput>();
+        stamina = GetComponent<PlayerStamina>();
 
         if (cameraTransform == null)
             cameraTransform = Camera.main.transform;
@@ -76,12 +80,16 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
 
-        float speed = moveSpeed;
+        bool isSprinting = input.sprintHeld && moveInput != Vector2.zero && stamina.HasStamina(0.01f);
 
-        if (input.sprintHeld && moveInput != Vector2.zero)
-        {
-            speed = moveSpeed * sprintMultiplier;
-        }
+        if (isSprinting && !wasSprinting)
+            stamina.StartConsuming(sprintStaminaCostPerSecond);
+        else if (!isSprinting && wasSprinting)
+            stamina.StopConsuming();
+
+        wasSprinting = isSprinting;
+
+        float speed = isSprinting ? moveSpeed * sprintMultiplier : moveSpeed;
 
         if (moveDirection.magnitude >= 0.1f)
         {
