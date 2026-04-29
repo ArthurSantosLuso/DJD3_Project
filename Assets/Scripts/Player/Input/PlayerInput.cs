@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     private Character character;
+    private PlayerMovement playerMovement;
     public Vector2 moveInput;
     public bool sprintHeld;
 
     private void Start()
     {
         character = GetComponent<Character>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void OnWeaponChange(InputAction.CallbackContext context)
@@ -55,5 +57,12 @@ public class PlayerInput : MonoBehaviour
             sprintHeld = true;
         else if (context.phase == InputActionPhase.Canceled)
             sprintHeld = false;
+    }
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            playerMovement.UseDash();
+        }
     }
 }
