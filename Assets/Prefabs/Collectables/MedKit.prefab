@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 1233986526572848552}
   - component: {fileID: 811656815606148063}
   - component: {fileID: 8777527391752954635}
-  - component: {fileID: 1691644250604159064}
   - component: {fileID: 571251457858328925}
-  - component: {fileID: 3592390704886460812}
+  - component: {fileID: 812958619055483704}
   m_Layer: 0
   m_Name: MedKit
   m_TagString: Untagged
@@ -70,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6268488298016085346, guid: 44468d05409b52545bc1b64e159bef4c, type: 3}
+  - {fileID: 2100000, guid: fa1a0f055681bac4a82e46bca02996ef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,28 +114,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.97023314, y: 0.86793965, z: 1.3984083}
   m_Center: {x: 0, y: -0.06603047, z: 0}
---- !u!95 &1691644250604159064
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7640812142838261244}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fb4c0088d2e73f04a8c1abbfde260d80, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &571251457858328925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthCollectable
   data: {fileID: 11400000, guid: fe4439ae2822f394cad92d8cdfeae956, type: 2}
---- !u!114 &3592390704886460812
+--- !u!114 &812958619055483704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,6 +136,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7640812142838261244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 349c37f1961a78e49a8a612d1b8e1d7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 449c2aec15dad294b8004f10f91e00e9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXMedkit
+  m_EditorClassIdentifier: Assembly-CSharp::Rotator
+  rotation: {x: 0, y: 35, z: 0}
+  speed: 2

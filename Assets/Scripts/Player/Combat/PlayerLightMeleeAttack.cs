@@ -33,11 +33,11 @@ public class PlayerLightMeleeAttack : Ability
     [Tooltip("How much facing direction influences target selection.")]
     [SerializeField, Range(0f, 1f)] private float angleWeight = 0.65f;
 
-    [Tooltip("How much proximity influences target selection. Should sum to 1 with angleWeight.")]
+    [Tooltip("How much proximity influences target selection.")]
     [SerializeField, Range(0f, 1f)] private float distanceWeight = 0.35f;
 
     [Header("Enemy Detection")]
-    [Tooltip("Layer(s) that contain enemies. Set this in the Inspector.")]
+    [Tooltip("Layer that contain enemies.")]
     [SerializeField] private LayerMask enemyLayer;
 
 
