@@ -6,7 +6,7 @@ public class UIHandler : MonoBehaviour
 {
     [Tooltip("Slide bars for UI. Ex: Health and Stamina")]
     [SerializeField]
-    private List<Slider> bars;
+    private List<Image> bars;
 
     [Space]
     [SerializeField]
@@ -16,7 +16,7 @@ public class UIHandler : MonoBehaviour
 
     public void SetBarValue(int barIdx, float currentValue, float maxValue)
     {
-        bars[barIdx].value = currentValue / maxValue;
+        bars[barIdx].fillAmount = currentValue / maxValue;
     }
 
     public void ShowDeathScreen()
