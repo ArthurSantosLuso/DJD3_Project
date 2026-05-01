@@ -3,12 +3,34 @@ using UnityEngine;
 
 public class MeleeEnemyLightAttack : Ability
 {
+    [SerializeField] private float damageAmount = 10f;
+
     public override float AbilityRange => throw new System.NotImplementedException();
+
+    private void Start()
+    {
+        owner = GetComponentInParent<Character>()
+            ?? GetComponent<Character>()
+            ?? GetComponentInChildren<Character>();
+    }
 
     public override void Perform()
     {
-        animator.SetTrigger("Attack");
-        Debug.Log($"{this.name} attacked the player.");
+        owner.PlayAnimation("Attack");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        IDamageable target = other.GetComponent<IDamageable>();
+        //IDamageable self = owner.gameObject.GetComponent<IDamageable>();
+
+        //if (target == null || target == self) return;
+        //if (!target.CanDamage()) return;
+        if (target is PlayerHealth)
+        {
+            target.Damage(damageAmount);
+            DisableHitbox();
+        }
     }
 
     protected override bool CanAttack()

@@ -1,11 +1,12 @@
+using System.Security;
 using UnityEngine;
 
 public class ObstacleDetector : MonoBehaviour
 {
-    public Transform cameraTransform;
-    public LayerMask obstructionMask;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private LayerMask obstructionMask;
 
-    private FadeObstacle _currentObstacle;
+    private IFadeable _currentObstacle;
 
     private void LateUpdate()
     {
@@ -13,13 +14,11 @@ public class ObstacleDetector : MonoBehaviour
 
         if (Physics.Raycast(cameraTransform.position, dir.normalized, out RaycastHit hit, dir.magnitude, obstructionMask))
         {
-            FadeObstacle fade = hit.collider.GetComponent<FadeObstacle>();
+            IFadeable fade = GetFadeable(hit.collider);
 
             if (fade != null && fade != _currentObstacle)
             {
-                if (_currentObstacle != null)
-                    _currentObstacle.FadeIn();
-
+                _currentObstacle?.FadeIn();
                 fade.FadeOut();
                 _currentObstacle = fade;
             }
@@ -32,6 +31,14 @@ public class ObstacleDetector : MonoBehaviour
                 _currentObstacle = null;
             }
         }
+    }
+
+    private static IFadeable GetFadeable(Collider col)
+    {
+        FadeObstacleGroup group = col.GetComponentInParent<FadeObstacleGroup>();
+        if (group != null) return group;
+
+        return col.GetComponent<FadeObstacle>();
     }
 
 }

@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public class FadeObstacle : MonoBehaviour
+public class FadeObstacle : MonoBehaviour, IFadeable
 {
     [SerializeField] private float fadeDuration = 0.3f;
     [SerializeField] private float fadeOutAlpha = 0.2f;
