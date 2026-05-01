@@ -2148,8 +2148,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.8002801, z: 1}
+  m_Center: {x: -0.00000017142598, y: -0.09985853, z: -0.000000105191745}
 --- !u!114 &5889359909841320501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,6 +2177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyLightAttack
   staminaCost: 0
+  damageAmount: 10
 --- !u!1 &7880073537159189634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,7 +2520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce7207a9a0e4c54483d0d8f96592d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  moveSpeed: 1.2
+  moveSpeed: 1.5
   attackRange: 1.8
   timeToAttack: 1.5
 --- !u!114 &9152366300450512447

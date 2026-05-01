@@ -7,6 +7,13 @@ public class MeleeEnemyLightAttack : Ability
 
     public override float AbilityRange => throw new System.NotImplementedException();
 
+    private void Start()
+    {
+        owner = GetComponentInParent<Character>()
+            ?? GetComponent<Character>()
+            ?? GetComponentInChildren<Character>();
+    }
+
     public override void Perform()
     {
         owner.PlayAnimation("Attack");
