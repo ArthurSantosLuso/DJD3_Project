@@ -2,13 +2,28 @@ using UnityEngine;
 
 public class EnemyHealth : ValueBase, IDamageable
 {
-    // Reduce hp
+    private HitFlash hitFlash;
+
+    private void Start()
+    {
+        // Get the flash script component
+        hitFlash = GetComponent<HitFlash>();
+    }
+
     public void Damage(float damageValue)
     {
-        base.ReduceValue(damageValue);
+        base.ReduceValue(damageValue); // Reduce hp
         //OnValueChanged?.Invoke(0, currentValue, maxValue);
+        // Trigger the flash effect
+        if (hitFlash != null)
+        {
+            hitFlash.Flash();
+        }
+
         VerifyLife();
     }
+
+
 
     // Check if died
     private void VerifyLife()
