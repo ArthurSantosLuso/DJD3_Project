@@ -12,7 +12,7 @@ public class EnemyHealth : ValueBase, IDamageable
 
     public void Damage(float damageValue)
     {
-        base.ReduceValue(damageValue); // Reduce hp
+        base.ReduceValue(damageValue); 
         //OnValueChanged?.Invoke(0, currentValue, maxValue);
         // Trigger the flash effect
         if (hitFlash != null)
