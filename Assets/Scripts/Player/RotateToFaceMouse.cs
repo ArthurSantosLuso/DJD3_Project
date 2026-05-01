@@ -3,8 +3,8 @@ using UnityEngine.UI;
 public class RotateToFaceMouse : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float minDistance = 1f;
-    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float minDistance;
+    [SerializeField] private float rotationSpeed;
 
 
     public Camera mainCamera;
