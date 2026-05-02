@@ -135,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
             dashDirection = transform.forward;
 
         stamina.UseStamina(dashStaminaCost);
+        animator.SetTrigger("Dash");
         StartCoroutine(DashCoroutine(dashDirection));
         return true;
     }

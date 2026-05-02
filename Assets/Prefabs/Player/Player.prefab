@@ -2645,10 +2645,10 @@ MonoBehaviour:
   rotationSpeed: 4
   sprintMultiplier: 3
   sprintStaminaCostPerSecond: 5
-  dashDistance: 0
-  dashDuration: 0
-  dashStaminaCost: 0
-  dashCooldown: 0
+  dashDistance: 2
+  dashDuration: 0.1
+  dashStaminaCost: 20
+  dashCooldown: 1
   cameraTransform: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -3270,6 +3270,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 151519921195948051}
     m_Modifications:
+    - target: {fileID: 2400890462971253006, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 13c4e8705498e6b41a34b5118a227a26, type: 2}
     - target: {fileID: 3538283374338222689, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1619925
