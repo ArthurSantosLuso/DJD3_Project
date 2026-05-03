@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class MeleeEnemyAI : EnemyBaseAI
+public class RangedEnemyAI : EnemyBaseAI
 {
     protected override void Attack()
     {
@@ -12,7 +11,8 @@ public class MeleeEnemyAI : EnemyBaseAI
             if (timer >= timeToAttack)
             {
                 transform.LookAt(target.transform);
-                GetComponent<Character>().UseAbility(0);
+                //Debug.Log("Ranged Attack!");
+                //GetComponent<Character>().UseAbility(0);
                 timer = 0f;
             }
         }

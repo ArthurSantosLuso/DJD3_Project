@@ -22,10 +22,7 @@ public class MeleeEnemyLightAttack : Ability
     private void OnTriggerEnter(Collider other)
     {
         IDamageable target = other.GetComponent<IDamageable>();
-        //IDamageable self = owner.gameObject.GetComponent<IDamageable>();
 
-        //if (target == null || target == self) return;
-        //if (!target.CanDamage()) return;
         if (target is PlayerHealth)
         {
             target.Damage(damageAmount);
