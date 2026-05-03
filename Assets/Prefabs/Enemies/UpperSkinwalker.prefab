@@ -297,6 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3709742721324986448}
   - component: {fileID: 3924676849034621009}
+  - component: {fileID: 1596921545044567004}
   m_Layer: 8
   m_Name: Ranged Enemy Weapon Arm
   m_TagString: Untagged
@@ -332,7 +333,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   abilities:
-  - {fileID: 0}
+  - {fileID: 1596921545044567004}
+--- !u!114 &1596921545044567004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168640783516969912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c01159d2d855e7429c0faac50db4a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedEnemyLightAttack
+  staminaCost: 0
+  bulletPrefab: {fileID: 3578186228901806580, guid: 8fbab20d41e04a2489c0359eaa0cee41, type: 3}
+  firePoint: {fileID: 453367342399248595}
+  bulletSpeed: 20
+  damageAmount: 25
+  pelletsPerShot: 1
+  spreadAngle: 15
+  fireRate: 0.8
 --- !u!1 &1573188595982802008
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +449,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1077109171976498398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2801942842278862689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453367342399248595}
+  m_Layer: 8
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &453367342399248595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2801942842278862689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.953717, z: -0.30070576, w: 0}
+  m_LocalPosition: {x: 0, y: 0.00002, z: -0.00075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6622382234184061853}
+  m_LocalEulerAnglesHint: {x: 35, y: 180, z: 0}
 --- !u!1 &3026271631691205910
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +798,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 453367342399248595}
   - {fileID: 3709742721324986448}
   - {fileID: 5431080338393827592}
   m_Father: {fileID: 9034703961091173595}
@@ -1308,7 +1361,7 @@ Animator:
   m_GameObject: {fileID: 8414349588854194597}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a27103917de052f439cfcb4921a29650, type: 3}
-  m_Controller: {fileID: 9100000, guid: 49d5bc8f899c38c4abea48dc0923eeca, type: 2}
+  m_Controller: {fileID: 9100000, guid: bd86ca952f7afdb47a1232ccc950b71f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1451,7 +1504,7 @@ MonoBehaviour:
   moveSpeed: 2
   attackRange: 5
   avoindanceRange: 3
-  timeToAttack: 0.1
+  timeToAttack: 2
   playerTag: Player
 --- !u!1 &8449708689574852122
 GameObject:

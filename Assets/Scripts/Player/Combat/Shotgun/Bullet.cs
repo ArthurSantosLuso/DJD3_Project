@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     private GameObject bloodEffectPrefab;
     private bool hasHit = false;
 
-    public void Initialize(Vector3 direction, float speed, float damage, GameObject shooter, GameObject bloodEffectPrefab)
+    public void Initialize(Vector3 direction, float speed, float damage, GameObject shooter, GameObject bloodEffectPrefab = null)
     {
         this.direction = direction.normalized;
         this.speed = speed;

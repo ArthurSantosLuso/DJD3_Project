@@ -10,9 +10,7 @@ public class RangedEnemyAI : EnemyBaseAI
 
             if (timer >= timeToAttack)
             {
-                //transform.LookAt(target.transform);
-                //Debug.Log("Ranged Attack!");
-                //GetComponent<Character>().UseAbility(0);
+                GetComponent<Character>().UseAbility(0);
                 timer = 0f;
             }
         }
