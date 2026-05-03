@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,17 +9,20 @@ public class PlayerInput : MonoBehaviour
     public Vector2 moveInput;
     public bool sprintHeld;
 
+    public Action OnWeaponChange;
+
     private void Start()
     {
         character = GetComponent<Character>();
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    public void OnWeaponChange(InputAction.CallbackContext context)
+    public void OnWeaponChangeInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
             character.ChangeToNextWeapon();
+            OnWeaponChange?.Invoke();
         }
     }
 

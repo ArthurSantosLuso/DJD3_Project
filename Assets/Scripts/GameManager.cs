@@ -45,9 +45,11 @@ public class GameManager : MonoBehaviour
     {
         PlayerHealth health = player.GetComponent<PlayerHealth>();
         PlayerStamina stamina = player.GetComponent<PlayerStamina>();
+        PlayerInput input = player.GetComponent<PlayerInput>();
 
         health.OnValueChanged += uiHandler.SetBarValue;
         stamina.OnValueChanged += uiHandler.SetBarValue;
+        input.OnWeaponChange += uiHandler.ChangeWeaponIcon;
 
         uiHandler.SetBarValue(0, health.CurrentValue, health.MaxValue);
         uiHandler.SetBarValue(1, stamina.CurrentValue, stamina.MaxValue);

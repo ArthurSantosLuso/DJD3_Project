@@ -30,6 +30,7 @@ public class RangedEnemyLightAttack : Ability
 
     public override void DeployProjectile()
     {
+        //transform.LookAt(owner.)
         for (int i = 0; i < pelletsPerShot; i++)
         {
             float randomX = Random.Range(-spreadAngle, spreadAngle);

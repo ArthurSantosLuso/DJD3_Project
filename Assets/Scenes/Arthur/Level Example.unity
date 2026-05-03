@@ -2584,9 +2584,17 @@ PrefabInstance:
       value: UI Manager
       objectReference: {fileID: 0}
     - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+      propertyPath: axeIcon
+      value: 
+      objectReference: {fileID: 208236648}
+    - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
       propertyPath: deathScreen
       value: 
       objectReference: {fileID: 9021610821318202647}
+    - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+      propertyPath: shotgunIcon
+      value: 
+      objectReference: {fileID: 1466899068}
     - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
       propertyPath: interactionPanel
       value: 
@@ -2973,10 +2981,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 393787051}
     - target: {fileID: 3256662358260996528, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: minDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3256662358260996528, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: renderImage
       value: 
       objectReference: {fileID: 6138968783150760713}
@@ -2987,14 +2991,6 @@ PrefabInstance:
     - target: {fileID: 6963003601133682041, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6963003601133682041, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003139989986359413, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: m_Name
-      value: WeaponShotgun
       objectReference: {fileID: 0}
     - target: {fileID: 8437899515643794263, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3035,10 +3031,6 @@ PrefabInstance:
     - target: {fileID: 8437899515643794263, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8710365890412805747, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: dashDistance
-      value: 1.38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

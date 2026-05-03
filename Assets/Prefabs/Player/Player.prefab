@@ -2420,7 +2420,7 @@ GameObject:
   - component: {fileID: 6723859234304824350}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2621,7 +2621,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7741478969874906195}
         m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnWeaponChange
+        m_MethodName: OnWeaponChangeInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2744,7 +2744,7 @@ MonoBehaviour:
   rotationSpeed: 4
   sprintMultiplier: 1.5
   sprintStaminaCostPerSecond: 5
-  dashDistance: 1
+  dashDistance: 1.38
   dashDuration: 0.5
   dashStaminaCost: 20
   dashCooldown: 1
@@ -2827,7 +2827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1ef80d8d9970e418fc3debcb6ca080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToFaceMouse
-  minDistance: 1
+  minDistance: 0
   rotationSpeed: 10
   mainCamera: {fileID: 0}
   groundLayer:
@@ -3416,7 +3416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230587959886045159, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
       propertyPath: m_Name
-      value: ShotgunPlaceHolder 1
+      value: WeaponShotgun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

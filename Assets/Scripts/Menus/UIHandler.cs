@@ -14,6 +14,11 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     private GameObject deathScreen;
 
+    [SerializeField]
+    private GameObject axeIcon;
+    [SerializeField]
+    private GameObject shotgunIcon;
+
     public void SetBarValue(int barIdx, float currentValue, float maxValue)
     {
         // Get normal values 0.0 - 1-0
@@ -42,5 +47,11 @@ public class UIHandler : MonoBehaviour
     public void ShowInteractionPanel()
     {
         interactionPanel.SetActive(true);
+    }
+
+    public void ChangeWeaponIcon()
+    {
+        axeIcon.SetActive(!axeIcon.activeSelf);
+        shotgunIcon.SetActive(!shotgunIcon.activeSelf);
     }
 }
