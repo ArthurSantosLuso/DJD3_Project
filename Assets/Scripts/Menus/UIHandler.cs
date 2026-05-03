@@ -23,7 +23,7 @@ public class UIHandler : MonoBehaviour
         if (barIdx == 1) //  Stamina needs to be the second bar in the list
         {
             // change those value to 0.2 - 0.8 so it makes sense with the stamina bar sprite
-            float mappedValue = Mathf.Lerp(0.2f, 0.8f, percentage);
+            float mappedValue = Mathf.Lerp(0.22f, 0.78f, percentage);
 
             bars[barIdx].fillAmount = mappedValue;
         }
