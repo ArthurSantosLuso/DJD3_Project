@@ -41,6 +41,8 @@ public class Character : MonoBehaviour
         /// Go to the next weapon
         /// Example: if current weapon idx is 2 out of 4, go to 3
         /// Example: if current weapon idx is 1 out of 2, go to 0 again
+        if (CharacterState != State.Normal) return;
+
         currentWeapon = (currentWeapon + 1) % weapons.Count;
         ChangeAbilities();
     }
@@ -48,9 +50,9 @@ public class Character : MonoBehaviour
     // Change entity current ability
     private void ChangeAbilities()
     {
-        // Clear all current abilities
-        if (currentAbilities != null) currentAbilities.Clear();
-        // Insert all new abilities to the character
+        for (int i = 0; i < weapons.Count; i++)
+            weapons[i].gameObject.SetActive(i == currentWeapon);
+
         currentAbilities = weapons[currentWeapon].Abilities;
     }
 
