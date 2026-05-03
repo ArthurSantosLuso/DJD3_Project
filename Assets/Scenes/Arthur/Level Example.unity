@@ -2919,6 +2919,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1918352318641375119, guid: a91c8d75887fe904fac3197ea10ef456, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2324267687b3df84b9760acf2326835a, type: 2}
     - target: {fileID: 5471556577268729112, guid: a91c8d75887fe904fac3197ea10ef456, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.71804
@@ -3729,6 +3733,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 769262841025316002, guid: d52fa13cb5dfc324c846cba32207267c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f86f0b6c86a9eb458f2b1736497f46a, type: 2}
     - target: {fileID: 4683635077708643449, guid: d52fa13cb5dfc324c846cba32207267c, type: 3}
       propertyPath: m_Name
       value: LowerSkinwalker

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyDamageShader_Surface
+  m_Name: EnemyDamageShader_Meele
   m_Shader: {fileID: -6465566751694194690, guid: 9fbc8042078b61c44887573db75332a7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -62,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 34b1ff198de3ed34390c553583d67920, type: 3}
+        m_Texture: {fileID: 2800000, guid: b09f9297124521d48a89c24f3778e604, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainText:
