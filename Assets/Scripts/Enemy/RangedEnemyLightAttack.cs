@@ -30,15 +30,21 @@ public class RangedEnemyLightAttack : Ability
 
     public override void DeployProjectile()
     {
-        //transform.LookAt(owner.)
+        Vector3 spawnPosition = firePoint != null ? firePoint.position : transform.position;
+
+        GameObject player = GameManager.Instance.Player;
+
         for (int i = 0; i < pelletsPerShot; i++)
         {
-            float randomX = Random.Range(-spreadAngle, spreadAngle);
-            float randomY = Random.Range(-spreadAngle, spreadAngle);
-            Vector3 spreadDirection = Quaternion.Euler(randomX, randomY, 0f) * firePoint.forward;
+            Vector3 dirToPlayer = (player.transform.position - spawnPosition).normalized;
 
-            GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(spreadDirection));
-            bulletGO.GetComponent<Bullet>().Initialize(spreadDirection, bulletSpeed, damageAmount, owner.gameObject);
+            Vector3 spreadDir = Quaternion.Euler(
+                Random.Range(-spreadAngle, spreadAngle),
+                Random.Range(-spreadAngle, spreadAngle),
+                0f) * dirToPlayer;
+
+            GameObject p = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+            p.GetComponent<Bullet>().Initialize(spreadDir, bulletSpeed, damageAmount, gameObject);
         }
     }
 
