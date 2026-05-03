@@ -51,8 +51,13 @@ public class ShotgunAttack : Ability
     {
         if (!CanAttack()) return;
 
-        currentAmmo--;
         lastFireTime = Time.time;
+        animator.SetTrigger("Shot");
+    }
+
+    public override void DeployProjectile()
+    {
+        currentAmmo--;
 
         for (int i = 0; i < pelletsPerShot; i++)
         {
@@ -64,6 +69,7 @@ public class ShotgunAttack : Ability
             bulletGO.GetComponent<Bullet>().Initialize(spreadDirection, bulletSpeed, damageAmount, owner.gameObject, bloodEffectPrefab);
         }
     }
+
     protected override bool CanAttack()
     {
         if (currentAmmo <= 0) return false;

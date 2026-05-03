@@ -83,4 +83,9 @@ public class Character : MonoBehaviour
     {
         currentAbilities[currentAbilityInUseIdx].DisableHitbox();
     }
+
+    public void DeployProjectile()
+    {
+        currentAbilities[currentAbilityInUseIdx].DeployProjectile();
+    }
 }

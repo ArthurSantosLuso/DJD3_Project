@@ -23,4 +23,6 @@ public abstract class Ability : MonoBehaviour
 
     public virtual void EnableHitbox() { }
     public virtual void DisableHitbox() { }
+
+    public virtual void DeployProjectile() { }
 }

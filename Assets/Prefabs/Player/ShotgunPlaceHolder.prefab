@@ -454,37 +454,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!1 &4914008892220489783
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2158429265445287305}
-  m_Layer: 0
-  m_Name: FirePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2158429265445287305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4914008892220489783}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13030016, y: -0.004000008, z: -0.25135398}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4369279339833206687}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6230587959886045159
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,14 +482,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.73869985, y: 0.535, z: 3.720354}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4562482, y: 0.4562482, z: 0.52254105}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9068837225040741709}
   - {fileID: 8248269186757977435}
   - {fileID: 4098299903525640335}
   - {fileID: 1294511362337834232}
-  - {fileID: 2158429265445287305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1322136699309089689
@@ -536,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   abilities:
-  - {fileID: 0}
+  - {fileID: 1745206599359463008}
 --- !u!114 &1745206599359463008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,8 +522,8 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   bulletSpeed: 20
   damageAmount: 25
-  pelletsPerShot: 6
-  spreadAngle: 15
+  pelletsPerShot: 2
+  spreadAngle: 4.25
   fireRate: 0.8
-  maxAmmo: 20
+  maxAmmo: 5
   bloodEffectPrefab: {fileID: 6663110841838267354, guid: 1b0980a4036fa6e469fead13990fd339, type: 3}
