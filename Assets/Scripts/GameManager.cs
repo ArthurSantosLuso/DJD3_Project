@@ -37,11 +37,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    [SerializeField]
-    private NavMeshSurface surface;
-
-    private bool hasGeneratedNavMesh = false;
-
     public UIHandler UIHandler => uiHandler;
     public GameObject Player => player;
 
@@ -59,15 +54,6 @@ public class GameManager : MonoBehaviour
 
         uiHandler.SetBarValue(0, health.CurrentValue, health.MaxValue);
         uiHandler.SetBarValue(1, stamina.CurrentValue, stamina.MaxValue);
-    }
-
-    private void LateUpdate()
-    {
-        if (!hasGeneratedNavMesh && surface != null)
-        {
-            surface.BuildNavMesh();
-            hasGeneratedNavMesh = true;
-        }
     }
 
     // Not in use. 
