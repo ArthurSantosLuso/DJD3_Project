@@ -2355,6 +2355,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1818817474}
   m_SourcePrefab: {fileID: 100100000, guid: 589b5a21f05cd184eadbb907f08a1eff, type: 3}
+--- !u!1 &1598124751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 108572911108775204, guid: 9f059f2292891604e89f64f0155654ef, type: 3}
+  m_PrefabInstance: {fileID: 6887004266550486108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1642057100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2685,7 +2690,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: d9a20b7ef2f23b849b93173bf15a6146, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 66b413f3a6d22de43ab44c31919e8e72, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1734717636
 GameObject:
@@ -3632,6 +3637,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 387613814924113346, guid: 9f059f2292891604e89f64f0155654ef, type: 3}
   m_PrefabInstance: {fileID: 6887004266550486108}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &543450653117514755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598124751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a3f0dfc8567bd4d8f4aa29c3493a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmmoCollectable
+  ammoAmount: 5
+--- !u!65 &543450653117514756
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598124751}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!222 &656616191713171868
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4310,6 +4349,9 @@ MonoBehaviour:
   target: {fileID: 1801417127}
   offset: {x: -5, y: 8, z: -10}
   smoothSpeed: 3
+  useBounds: 0
+  minBounds: {x: 0, y: 0}
+  maxBounds: {x: 0, y: 0}
 --- !u!114 &6138968783150760713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4670,7 +4712,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 108572911108775204, guid: 9f059f2292891604e89f64f0155654ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 543450653117514756}
+    - targetCorrespondingSourceObject: {fileID: 108572911108775204, guid: 9f059f2292891604e89f64f0155654ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 543450653117514755}
   m_SourcePrefab: {fileID: 100100000, guid: 9f059f2292891604e89f64f0155654ef, type: 3}
 --- !u!222 &6911405964779163158
 CanvasRenderer:
