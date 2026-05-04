@@ -52,7 +52,7 @@ public class BorderTreeSpawner : MonoBehaviour
         pos += new Vector3(Random.Range(-0.3f, 0.3f), 0, Random.Range(-0.3f, 0.3f));
         var prefab = treePrefabs[Random.Range(0, treePrefabs.Length)];
         var t = Instantiate(prefab, pos, Quaternion.identity);
-        t.transform.rotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+        t.transform.rotation = Quaternion.identity;
         t.transform.localScale *= Random.Range(0.85f, 1.15f);
     }
 
