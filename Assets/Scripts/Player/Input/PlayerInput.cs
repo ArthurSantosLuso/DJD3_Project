@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerStamina stamina;
+
     private Character character;
     private PlayerMovement playerMovement;
     public Vector2 moveInput;
@@ -13,6 +16,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
+        PlayerStamina stamina = GetComponent<PlayerStamina>();
         character = GetComponent<Character>();
         playerMovement = GetComponent<PlayerMovement>();
     }
@@ -67,6 +71,14 @@ public class PlayerInput : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             playerMovement.UseDash();
+        }
+    }
+
+    public void OnInfiniteStamina(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            stamina.InfiniteStamina();
         }
     }
 }

@@ -2418,6 +2418,7 @@ GameObject:
   - component: {fileID: 3826988627853800245}
   - component: {fileID: 3256662358260996528}
   - component: {fileID: 6723859234304824350}
+  - component: {fileID: 5103371052204659458}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2709,6 +2710,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7741478969874906195}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnInfiniteStamina
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b0a555b9-8fbe-4aa4-a1f1-70a07dc2755d
+    m_ActionName: 'Player/Infinite Stamina Cheat[/Keyboard/f1]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2726,6 +2743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64feee344361ca84cb8fec7609685a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
+  stamina: {fileID: 6904288365995020383}
   moveInput: {x: 0, y: 0}
   sprintHeld: 0
 --- !u!114 &8710365890412805747
@@ -2850,6 +2868,18 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &5103371052204659458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963003601133682041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962fd66054e87b340be23d67bf5feb7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cheat
 --- !u!1 &7019165554840635485
 GameObject:
   m_ObjectHideFlags: 0
