@@ -19,6 +19,8 @@ public class BorderTreeSpawner : MonoBehaviour
 
     void SpawnBorderTrees()
     {
+        Vector3 center = transform.position;
+
         for (int layer = 0; layer <= extraLayers; layer++)
         {
             float ex = roomWidth / 2f + layer * spacing;
@@ -26,14 +28,14 @@ public class BorderTreeSpawner : MonoBehaviour
 
             for (float x = -ex; x <= ex; x += spacing)
             {
-                if (!IsInEntrance(x, entranceNorth)) SpawnTree(new Vector3(x, 0, ez));
-                if (!IsInEntrance(x, entranceSouth)) SpawnTree(new Vector3(x, 0, -ez));
+                if (!IsInEntrance(x, entranceNorth)) SpawnTree(center + new Vector3(x, 0, ez));
+                if (!IsInEntrance(x, entranceSouth)) SpawnTree(center + new Vector3(x, 0, -ez));
             }
 
             for (float z = -ez + spacing; z < ez; z += spacing)
             {
-                if (!IsInEntrance(z, entranceEast)) SpawnTree(new Vector3(ex, 0, z));
-                if (!IsInEntrance(z, entranceWest)) SpawnTree(new Vector3(-ex, 0, z));
+                if (!IsInEntrance(z, entranceEast)) SpawnTree(center + new Vector3(ex, 0, z));
+                if (!IsInEntrance(z, entranceWest)) SpawnTree(center + new Vector3(-ex, 0, z));
             }
         }
     }
@@ -56,18 +58,18 @@ public class BorderTreeSpawner : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
+        Vector3 center = transform.position;
         float halfW = roomWidth / 2f;
         float halfD = roomDepth / 2f;
         float halfE = entranceWidth / 2f;
 
         Gizmos.color = Color.green;
-
-        if (entranceNorth) Gizmos.DrawLine(new Vector3(-halfE, 0, halfD), new Vector3(halfE, 0, halfD));
-        if (entranceSouth) Gizmos.DrawLine(new Vector3(-halfE, 0, -halfD), new Vector3(halfE, 0, -halfD));
-        if (entranceEast) Gizmos.DrawLine(new Vector3(halfW, 0, -halfE), new Vector3(halfW, 0, halfE));
-        if (entranceWest) Gizmos.DrawLine(new Vector3(-halfW, 0, -halfE), new Vector3(-halfW, 0, halfE));
+        if (entranceNorth) Gizmos.DrawLine(center + new Vector3(-halfE, 0, halfD), center + new Vector3(halfE, 0, halfD));
+        if (entranceSouth) Gizmos.DrawLine(center + new Vector3(-halfE, 0, -halfD), center + new Vector3(halfE, 0, -halfD));
+        if (entranceEast) Gizmos.DrawLine(center + new Vector3(halfW, 0, -halfE), center + new Vector3(halfW, 0, halfE));
+        if (entranceWest) Gizmos.DrawLine(center + new Vector3(-halfW, 0, -halfE), center + new Vector3(-halfW, 0, halfE));
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(roomWidth, 1f, roomDepth));
+        Gizmos.DrawWireCube(center, new Vector3(roomWidth, 1f, roomDepth));
     }
 }
