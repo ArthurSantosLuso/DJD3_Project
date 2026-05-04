@@ -83,4 +83,10 @@ public class PlayerStamina : ValueBase
     {
         return currentValue >= amount;
     }
+
+    public void InfiniteStamina()
+    {
+        IncreaseMaximumValue(100000);
+        IncreaseValue(100000);
+    }
 }
