@@ -812,7 +812,12 @@ MonoBehaviour:
   roomWidth: 30
   roomDepth: 25
   spacing: 2
-  extraLayers: 5
+  extraLayers: 1
+  entranceNorth: 0
+  entranceSouth: 0
+  entranceEast: 1
+  entranceWest: 1
+  entranceWidth: 4
 --- !u!1 &1099562175 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6468775712958346101, guid: 589b5a21f05cd184eadbb907f08a1eff, type: 3}
