@@ -2919,7 +2919,7 @@
         "m_Id": "2ff129358dd04cc8a7029fe39c6b5d5f"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 1,
+    "m_SurfaceType": 0,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
@@ -3147,7 +3147,7 @@
     "m_ObjectId": "d4775e6fe2a5498498d919e591c27888",
     "m_Title": "Texture",
     "m_Position": {
-        "x": -1941.599853515625,
+        "x": -1941.5999755859375,
         "y": 200.0000457763672
     }
 }
@@ -3777,7 +3777,7 @@
     "m_ObjectId": "f170318d7d73403caf4349349ee2b21e",
     "m_Title": "Vignette",
     "m_Position": {
-        "x": -1879.9998779296875,
+        "x": -1880.0001220703125,
         "y": -303.20001220703127
     }
 }
