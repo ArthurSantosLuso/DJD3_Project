@@ -29,6 +29,12 @@ public class PlayerLightMeleeAttack : Ability
     [Tooltip("How far from the target the player stops.")]
     [SerializeField] private float lungeStopDistance = 0.9f;
 
+    [Tooltip("Minimum distance to target required to trigger a lunge. Closer than this = normal attack.")]
+    [SerializeField] private float minLungeDistance = 2.5f;
+
+    [Tooltip("Seconds that must pass before the player can lunge again.")]
+    [SerializeField] private float lungeCooldown = 2.5f;
+
     [Header("Enemy Scoring Weights")]
     [Tooltip("How much facing direction influences target selection.")]
     [SerializeField, Range(0f, 1f)] private float angleWeight = 0.65f;
@@ -42,6 +48,7 @@ public class PlayerLightMeleeAttack : Ability
 
 
     private float lastAttackTime;
+    private float lastLungeTime = -999f;
     private PlayerStamina playerStamina;
     private Collider hitboxCollider;
     private CharacterController characterController;
@@ -142,10 +149,13 @@ public class PlayerLightMeleeAttack : Ability
 
     private Transform FindBestLungeTarget()
     {
+        if (Time.time - lastLungeTime < lungeCooldown)
+            return null;
+
         Collider[] hits = Physics.OverlapSphere(
             owner.transform.position, lungeRadius, enemyLayer);
 
-        if (hits.Length == 0) 
+        if (hits.Length == 0)
         {
             return null;
         }
@@ -159,10 +169,9 @@ public class PlayerLightMeleeAttack : Ability
 
             float distance = Vector3.Distance(owner.transform.position, hit.transform.position);
 
-            if (distance <= meleeRadius)
-            {
-                return null;
-            }
+            if (distance <= meleeRadius) continue;
+
+            if (distance < minLungeDistance) continue;
 
             float score = ScoreTarget(hit.transform, distance);
 
@@ -179,7 +188,7 @@ public class PlayerLightMeleeAttack : Ability
     private float ScoreTarget(Transform target, float distance)
     {
         Vector3 toTarget = (target.position - owner.transform.position).normalized;
-        float angle = Vector3.Angle(owner.transform.forward, toTarget); // 0–180
+        float angle = Vector3.Angle(owner.transform.forward, toTarget);
 
         float angleScore = 1f - (angle / 180f);
         float distanceScore = 1f - (distance / lungeRadius);
@@ -191,6 +200,7 @@ public class PlayerLightMeleeAttack : Ability
     private IEnumerator LungeRoutine(Transform target)
     {
         isLunging = true;
+        lastLungeTime = Time.time;
         owner.ChangeState(Character.State.Lunging);
         playerStamina.UseStamina(staminaCost);
 
@@ -206,7 +216,6 @@ public class PlayerLightMeleeAttack : Ability
         stopPoint.y = startPos.y;
 
         float elapsed = 0f;
-        Vector3 previousPos = startPos;
 
         while (elapsed < lungeDuration)
         {
@@ -216,10 +225,8 @@ public class PlayerLightMeleeAttack : Ability
             Vector3 desiredPos = Vector3.Lerp(startPos, stopPoint, t);
             desiredPos.y += lungeArcHeight * Mathf.Sin(t * Mathf.PI);
 
-            Vector3 delta = desiredPos - previousPos;
+            Vector3 delta = desiredPos - owner.transform.position;
             characterController.Move(delta);
-
-            previousPos = owner.transform.position;
 
             yield return null;
         }

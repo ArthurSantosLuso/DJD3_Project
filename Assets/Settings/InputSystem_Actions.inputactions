@@ -104,6 +104,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Show Configurations",
+                    "type": "Button",
+                    "id": "a5b91dfd-9f4b-414b-8094-96a94670c272",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -456,6 +465,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Infinite Stamina Cheat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50a40086-c620-46b7-9c3e-115a869f1dbb",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Show Configurations",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

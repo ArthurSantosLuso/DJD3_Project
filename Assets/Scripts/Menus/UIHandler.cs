@@ -19,6 +19,9 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     private GameObject shotgunIcon;
 
+    [SerializeField]
+    private Canvas configCanva;
+
     public void SetBarValue(int barIdx, float currentValue, float maxValue)
     {
         // Get normal values 0.0 - 1-0
@@ -53,5 +56,10 @@ public class UIHandler : MonoBehaviour
     {
         axeIcon.SetActive(!axeIcon.activeSelf);
         shotgunIcon.SetActive(!shotgunIcon.activeSelf);
+    }
+
+    public void ToggleConfig()
+    {
+        configCanva.gameObject.SetActive(!configCanva.gameObject.activeSelf);
     }
 }

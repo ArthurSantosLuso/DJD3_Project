@@ -6,6 +6,10 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField]
     private PlayerStamina stamina;
+    [SerializeField]
+    private PlayerHealth health;
+    [SerializeField]
+    private UIHandler uiHandler;
 
     private Character character;
     private PlayerMovement playerMovement;
@@ -79,6 +83,15 @@ public class PlayerInput : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             stamina.InfiniteStamina();
+            health.InfiniteHealth();
+        }
+    }
+
+    public void OnToggleConfigCanva(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            uiHandler.ToggleConfig();
         }
     }
 }

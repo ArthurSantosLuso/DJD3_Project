@@ -2418,7 +2418,6 @@ GameObject:
   - component: {fileID: 3826988627853800245}
   - component: {fileID: 3256662358260996528}
   - component: {fileID: 6723859234304824350}
-  - component: {fileID: 5103371052204659458}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2726,6 +2725,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b0a555b9-8fbe-4aa4-a1f1-70a07dc2755d
     m_ActionName: 'Player/Infinite Stamina Cheat[/Keyboard/f1]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7741478969874906195}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnToggleConfigCanva
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a5b91dfd-9f4b-414b-8094-96a94670c272
+    m_ActionName: 'Player/Show Configurations[/Keyboard/f2]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2744,6 +2759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
   stamina: {fileID: 6904288365995020383}
+  health: {fileID: 2906243175527941112}
+  uiHandler: {fileID: 0}
   moveInput: {x: 0, y: 0}
   sprintHeld: 0
 --- !u!114 &8710365890412805747
@@ -2868,18 +2885,6 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &5103371052204659458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6963003601133682041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962fd66054e87b340be23d67bf5feb7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Cheat
 --- !u!1 &7019165554840635485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,6 +3406,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 151519921195948051}
     m_Modifications:
     - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      propertyPath: maxAmmo
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 6271432135488029935}
@@ -3480,10 +3489,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 151519921195948051}
     m_Modifications:
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: meleeRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: damageAmount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: lungeCooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2400890462971253006, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 13c4e8705498e6b41a34b5118a227a26, type: 2}
+    - target: {fileID: 2989117847817731599, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3538283374338222689, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1619925
@@ -3531,6 +3556,22 @@ PrefabInstance:
     - target: {fileID: 4202229365186621659, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: m_Size.y
+      value: 0.78213215
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: m_Center.x
+      value: -0.00000026729816
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: m_Center.y
+      value: 0.12934464
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: m_Center.z
+      value: -0.031062422
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

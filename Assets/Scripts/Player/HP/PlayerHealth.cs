@@ -64,4 +64,10 @@ public class PlayerHealth : ValueBase, IDamageable, IHealable
     }
 
     public bool NeedsHealing() => currentValue < maxValue;
+
+    public void InfiniteHealth()
+    {
+        IncreaseMaximumValue(100000);
+        IncreaseValue(100000);
+    }
 }
