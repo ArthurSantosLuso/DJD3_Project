@@ -4,4 +4,5 @@ public enum EnemyType
 {
     Melee,
     Ranged,
+    Buffed,
 }

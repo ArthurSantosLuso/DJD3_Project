@@ -8,7 +8,7 @@ public abstract class ValueBase : MonoBehaviour
 
     [SerializeField]
     protected float maxValue = 100;
-    [SerializeField, Range(1, 100)]
+    [SerializeField, Min(0)]
     private int startsWith = 1;
 
     protected float currentValue;
