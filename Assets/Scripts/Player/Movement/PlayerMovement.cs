@@ -52,29 +52,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("MoveMagnitude", 0f);
             return;
         }
-
-        HandleRotationToMouse();
         HandleMovement();
-    }
-
-    void HandleRotationToMouse()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, transform.position);
-        float rayDistance;
-
-        if (groundPlane.Raycast(ray, out rayDistance))
-        {
-            Vector3 pointToLook = ray.GetPoint(rayDistance);
-
-            Vector3 lookDirection = new Vector3(pointToLook.x, transform.position.y, pointToLook.z) - transform.position;
-
-            if (lookDirection != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            }
-        }
     }
 
     void HandleMovement()
@@ -166,5 +144,5 @@ public class PlayerMovement : MonoBehaviour
             return false;
 
         return true;
-    } 
+    }
 }
