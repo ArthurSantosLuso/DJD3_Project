@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e0c799995c24f45973df46d48e2875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthCollectable
+  isAutomatic: 1
+  interactionHint: {fileID: 0}
   data: {fileID: 11400000, guid: fe4439ae2822f394cad92d8cdfeae956, type: 2}
 --- !u!114 &812958619055483704
 MonoBehaviour:

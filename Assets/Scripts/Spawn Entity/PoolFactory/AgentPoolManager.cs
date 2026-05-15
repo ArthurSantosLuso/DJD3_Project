@@ -27,9 +27,13 @@ public class AgentPoolManager : MonoBehaviour
     private float elapsedTime = 0f;
     private int agentsActivatedCount = 0;
 
+
+    public bool ShouldSpawn {  get; set; }
+
     private void Awake()
     {
         factory = GetComponent<AgentFactory>();
+        ShouldSpawn = false;
         InitializePools();
     }
 
@@ -66,18 +70,22 @@ public class AgentPoolManager : MonoBehaviour
 
     private void Update()
     {
-        if (agentsActivatedCount < totalAgentsToSpawn)
+        if (ShouldSpawn)
         {
-            elapsedTime += Time.deltaTime;
-
-            float progress = Mathf.Clamp01(elapsedTime / spawnDuration);
-            int targetCount = Mathf.FloorToInt(progress * totalAgentsToSpawn);
-
-            while (agentsActivatedCount < targetCount && inactiveAgents.Count > 0)
+            if (agentsActivatedCount < totalAgentsToSpawn)
             {
-                ActivateNextAgent();
+                elapsedTime += Time.deltaTime;
+
+                float progress = Mathf.Clamp01(elapsedTime / spawnDuration);
+                int targetCount = Mathf.FloorToInt(progress * totalAgentsToSpawn);
+
+                while (agentsActivatedCount < targetCount && inactiveAgents.Count > 0)
+                {
+                    ActivateNextAgent();
+                }
             }
         }
+
     }
 
     private void ActivateNextAgent()

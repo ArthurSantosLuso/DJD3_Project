@@ -26,7 +26,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Instance != null) Destroy(gameObject);
         Instance = this;
-        dialoguePanel.SetActive(false);
+        dialoguePanel?.SetActive(false);
     }
 
     public void EnterDialogueMode(TextAsset inkJSON, Sprite whosTalkingImage = null)

@@ -2792,10 +2792,11 @@ MonoBehaviour:
   rotationSpeed: 4
   sprintMultiplier: 1.5
   sprintStaminaCostPerSecond: 5
-  dashDistance: 1.38
+  dashDistance: 2
   dashDuration: 0.5
   dashStaminaCost: 20
   dashCooldown: 1
+  gravityMultiplier: 2
   cameraTransform: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -2830,8 +2831,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
   maxValue: 100
   startsWith: 100
-  regenRate: 10
-  regenDelay: 2
+  regenRate: 15
+  regenDelay: 1
 --- !u!114 &4129168095492781203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3451,12 +3452,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
       propertyPath: maxAmmo
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 5978441138906920022}
+    - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      propertyPath: damageAmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      propertyPath: pelletsPerShot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4369279339833206687, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.212
@@ -3538,6 +3547,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: staminaCost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: damageAmount
       value: 20
       objectReference: {fileID: 0}
@@ -3603,19 +3616,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: m_Size.y
-      value: 0.78213215
+      value: 0.89197314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: m_Size.z
+      value: 0.5643833
       objectReference: {fileID: 0}
     - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: m_Center.x
-      value: -0.00000026729816
+      value: -0.00000063038124
       objectReference: {fileID: 0}
     - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: m_Center.y
-      value: 0.12934464
+      value: 0.18426512
       objectReference: {fileID: 0}
     - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: m_Center.z
-      value: -0.031062422
+      value: -0.011227571
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

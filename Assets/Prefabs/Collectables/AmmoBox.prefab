@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 387613814924113346}
   - component: {fileID: 633878856843441718}
+  - component: {fileID: 5228062503594219402}
+  - component: {fileID: 465301052168007177}
   m_Layer: 0
   m_Name: AmmoBox
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108572911108775204}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -289.9871, y: 0.12001, z: -238.10844}
   m_LocalScale: {x: 0.46083, y: 0.46083, z: 0.46083}
   m_ConstrainProportionsScale: 0
@@ -48,6 +50,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Rotator
   rotation: {x: 0, y: 35, z: 0}
   speed: 2
+--- !u!65 &5228062503594219402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108572911108775204}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &465301052168007177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108572911108775204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a3f0dfc8567bd4d8f4aa29c3493a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmmoCollectable
+  ammoAmount: 5
 --- !u!1 &3567362989970495914
 GameObject:
   m_ObjectHideFlags: 0

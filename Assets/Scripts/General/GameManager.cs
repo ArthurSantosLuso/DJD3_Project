@@ -39,8 +39,7 @@ public class GameManager : MonoBehaviour
 
     public UIHandler UIHandler => uiHandler;
     public GameObject Player => player;
-
-
+    public int EnemyDeadCount { get; set; }
 
     private void Start()
     {
