@@ -498,8 +498,8 @@
     "m_ObjectId": "2183f1fb0a274467b8ad506a1cf41b25",
     "m_Title": "Center Screen Again",
     "m_Position": {
-        "x": -33.600006103515628,
-        "y": 168.79995727539063
+        "x": -33.5999755859375,
+        "y": 168.80001831054688
     }
 }
 
@@ -732,7 +732,7 @@
     "m_Title": "Save Screen Size and Remap/Divide by wanted Pixel Size",
     "m_Position": {
         "x": -1044.800048828125,
-        "y": 371.1999816894531
+        "y": 371.2000427246094
     }
 }
 
