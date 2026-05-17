@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashStaminaCost;
     [SerializeField] private float dashCooldown;
 
+    [Header("Gravity Settings")]
+    [SerializeField] private float gravityMultiplier = 2f;
+
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private LayerMask groundLayer;
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private bool wasSprinting = false;
     private float lastDashTime = -999f;
     private bool isDashing = false;
+    private float verticalVelocity = 0f;
 
     void Start()
     {
@@ -45,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        ApplyGravity();
+
         if (!CanMove())
         {
             animator.SetFloat("VelocityX", 0f, 0.1f, Time.deltaTime);
@@ -52,34 +58,25 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("MoveMagnitude", 0f);
             return;
         }
-
-        HandleRotationToMouse();
         HandleMovement();
     }
 
-    void HandleRotationToMouse()
+    void ApplyGravity()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, transform.position);
-        float rayDistance;
-
-        if (groundPlane.Raycast(ray, out rayDistance))
+        if (controller.isGrounded && verticalVelocity < 0f)
         {
-            Vector3 pointToLook = ray.GetPoint(rayDistance);
-
-            Vector3 lookDirection = new Vector3(pointToLook.x, transform.position.y, pointToLook.z) - transform.position;
-
-            if (lookDirection != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            }
+            verticalVelocity = -2f; // Small constant keeps the controller grounded
         }
+        else
+        {
+            verticalVelocity += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
+        }
+
+        controller.Move(new Vector3(0f, verticalVelocity, 0f) * Time.deltaTime);
     }
 
     void HandleMovement()
     {
-        //Base Movement
         Vector2 moveInput = input.moveInput;
 
         Vector3 camForward = cameraTransform.forward;
@@ -91,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
 
-        //Sprint Section
         bool isSprinting = input.sprintHeld && moveInput != Vector2.zero && stamina.HasStamina(0.01f);
 
         if (isSprinting && !wasSprinting)
@@ -103,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
 
         float speed = isSprinting ? moveSpeed * sprintMultiplier : moveSpeed;
 
-        //Movement Direction
         if (moveDirection.magnitude >= 0.1f)
         {
             controller.Move(moveDirection * speed * Time.deltaTime);
@@ -139,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DashCoroutine(dashDirection));
         return true;
     }
+
     private IEnumerator DashCoroutine(Vector3 direction)
     {
         isDashing = true;
@@ -166,5 +162,5 @@ public class PlayerMovement : MonoBehaviour
             return false;
 
         return true;
-    } 
+    }
 }

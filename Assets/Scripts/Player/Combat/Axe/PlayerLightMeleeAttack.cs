@@ -114,13 +114,17 @@ public class PlayerLightMeleeAttack : Ability
             HandleComboInput();
             return;
         }
-
-        Transform lungeTarget = FindBestLungeTarget();
-
-        if (lungeTarget != null)
-            StartCoroutine(LungeRoutine(lungeTarget));
         else
+        {
             StartNormalAttack();
+        }
+
+        //Transform lungeTarget = FindBestLungeTarget();
+
+        //if (lungeTarget != null)
+        //    StartCoroutine(LungeRoutine(lungeTarget));
+        //else
+        //    StartNormalAttack();
     }
 
 

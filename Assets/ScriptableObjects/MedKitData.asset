@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9020eeb163588489dc4c788649806c, type: 3}
   m_Name: MedKitData
   m_EditorClassIdentifier: Assembly-CSharp::MedKitData
-  healAmout: 20
+  healAmout: 50

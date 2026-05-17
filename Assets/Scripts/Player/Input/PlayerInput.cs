@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
 
     private Character character;
     private PlayerMovement playerMovement;
+    private Interactor interactor;
+
     public Vector2 moveInput;
     public bool sprintHeld;
 
@@ -20,9 +22,10 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        PlayerStamina stamina = GetComponent<PlayerStamina>();
+        stamina = GetComponent<PlayerStamina>();
         character = GetComponent<Character>();
         playerMovement = GetComponent<PlayerMovement>();
+        interactor = GetComponent<Interactor>();
     }
 
     public void OnWeaponChangeInput(InputAction.CallbackContext context)
@@ -70,6 +73,7 @@ public class PlayerInput : MonoBehaviour
         else if (context.phase == InputActionPhase.Canceled)
             sprintHeld = false;
     }
+
     public void OnDash(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -78,6 +82,21 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            if (DialogueManager.Instance.IsDialoguePlaying)
+            {
+                DialogueManager.Instance.RequestNextLine();
+                return;
+            }
+
+            interactor.ExecuteInteraction();
+        }
+    }
+
+    // >>>>>>>>>>>>>>> Temporary <<<<<<<<<<<<<<<<<<
     public void OnInfiniteStamina(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)

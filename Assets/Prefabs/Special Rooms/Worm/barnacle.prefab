@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2295773973861528118}
   - component: {fileID: 4079265651124656489}
   - component: {fileID: 857778549137393502}
-  - component: {fileID: 4786267514388841555}
   - component: {fileID: -3434519404211264750}
+  - component: {fileID: 7800752653688122021}
   m_Layer: 0
   m_Name: barnacle
   m_TagString: Untagged
@@ -106,8 +106,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   lifeTime: 1.5
---- !u!65 &4786267514388841555
-BoxCollider:
+--- !u!114 &-3434519404211264750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373493097661329055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7631f19bc1dd2e141870c5e455a6150c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Worm
+  damageValue: 50
+--- !u!135 &7800752653688122021
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -125,18 +138,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6994617, y: 0.55866486, z: 0.6994617}
-  m_Center: {x: -0.000000014901161, y: 0.27933237, z: 3.9695517e-15}
---- !u!114 &-3434519404211264750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373493097661329055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7631f19bc1dd2e141870c5e455a6150c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Worm
-  damageValue: 50
+  m_Radius: 0.3122373
+  m_Center: {x: 0, y: 0.24183877, z: -9.011584e-16}

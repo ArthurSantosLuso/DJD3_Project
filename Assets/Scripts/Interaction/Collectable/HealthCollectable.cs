@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HealthCollectable : Interactable
 {
-    [SerializeField] 
+    [SerializeField]
     private MedKitData data;
 
     public override void TryInteract(Character entity = null)
