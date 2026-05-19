@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5248342371859317136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7509418878675579161}
+  - component: {fileID: 645548524631234889}
+  m_Layer: 0
+  m_Name: RoomPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7509418878675579161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248342371859317136}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &645548524631234889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248342371859317136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672f87a72fda55d40b8140e73261dbae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BorderTreeSpawner
+  treePrefabs:
+  - {fileID: 4316249726463285133, guid: 54626a8fc55d1af4cba309ba85bfd5f0, type: 3}
+  - {fileID: 7040696021805465934, guid: f6c5526ecb4918549a354dc05bd3bc75, type: 3}
+  - {fileID: 1437739819665045811, guid: 1e83dc499a6f1ff44a654d577617872c, type: 3}
+  roomWidth: 20
+  roomDepth: 20
+  spacing: 2
+  extraLayers: 2
+  shoudStartInitialize: 0
+  entranceNorth: 0
+  entranceSouth: 0
+  entranceEast: 0
+  entranceWest: 0
+  entranceWidth: 5
+  customTreeContainer: {fileID: 0}
