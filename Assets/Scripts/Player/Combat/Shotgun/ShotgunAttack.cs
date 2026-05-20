@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShotgunAttack : Ability
@@ -20,6 +21,8 @@ public class ShotgunAttack : Ability
 
     [Header("Blood FX")]
     [SerializeField] private GameObject bloodEffectPrefab;
+
+    [SerializeField] private TextMeshProUGUI ammoCountUI;
 
     public override float AbilityRange => 20f;
 
@@ -45,6 +48,7 @@ public class ShotgunAttack : Ability
         }
 
         currentAmmo = maxAmmo;
+        ChangeAmmoUI();
     }
 
     public override void Perform()
@@ -58,6 +62,7 @@ public class ShotgunAttack : Ability
     public override void DeployProjectile()
     {
         currentAmmo--;
+        if (actionAudio) AudioManager.Instance.PlaySound(actionAudio);
 
         for (int i = 0; i < pelletsPerShot; i++)
         {
@@ -68,6 +73,7 @@ public class ShotgunAttack : Ability
             GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(spreadDirection));
             bulletGO.GetComponent<Bullet>().Initialize(spreadDirection, bulletSpeed, damageAmount, owner.gameObject, bloodEffectPrefab);
         }
+        ChangeAmmoUI();
     }
 
     protected override bool CanAttack()
@@ -80,6 +86,12 @@ public class ShotgunAttack : Ability
     public void AddAmmo(int amount)
     {
         currentAmmo = Mathf.Min(currentAmmo + amount, maxAmmo);
+        ChangeAmmoUI();
+    }
+
+    private void ChangeAmmoUI()
+    {
+        ammoCountUI.text = $"{currentAmmo}/2";
     }
 
     protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit) { }

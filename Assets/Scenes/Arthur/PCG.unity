@@ -1432,7 +1432,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9048696000718745144, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1745428166}
+      addedObject: {fileID: 1745428168}
   m_SourcePrefab: {fileID: 100100000, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
 --- !u!1 &1204185622
 GameObject:
@@ -2318,7 +2318,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9048696000718745144, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
   m_PrefabInstance: {fileID: 1008157345}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1745428166
+--- !u!114 &1745428168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2327,12 +2327,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745428162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e2c5710be74a145a8d60edb446aa2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 44a52697794872642b47fe4a06853b29, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
+  m_EditorClassIdentifier: Assembly-CSharp::LevelGeneratorExpositor
   treeContainer: {fileID: 806765115}
-  difficultyScale: 2
-  baseRoomCount: 2
+  difficultyScale: 1
+  baseRoomCount: 4
   roomsPerScale: 2
   baseMinWidth: 16
   baseMinDepth: 16
@@ -2340,7 +2340,7 @@ MonoBehaviour:
   maxRandomVariance: 60
   roomPrefab: {fileID: 5248342371859317136, guid: 429a46447df794f40a1c9771fec1b66e, type: 3}
   corridorPrefab: {fileID: 2390516315283327330, guid: 543ef0c9a61c01048ac9cc1ac36c1dd8, type: 3}
-  minCorridorLength: 3
+  minCorridorLength: 6
   corridorPrefabLength: 10
   difficultyInputField: {fileID: 1955415276}
   baseRoomCountInputField: {fileID: 1777725233}

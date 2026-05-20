@@ -3,11 +3,15 @@ using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
 {
+    [Tooltip("Audio to be played when the ability is performed.")]
+    [SerializeField]
+    protected AudioClip actionAudio;
     [SerializeField]
     protected float staminaCost;
 
     protected Character owner;
     protected Animator animator;
+
 
     private void Start()
     {
