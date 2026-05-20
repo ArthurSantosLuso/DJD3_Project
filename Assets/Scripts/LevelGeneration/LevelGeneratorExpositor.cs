@@ -1,7 +1,9 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class LevelGenerator : MonoBehaviour
+public class LevelGeneratorExpositor : MonoBehaviour
 {
     [SerializeField] private GameObject treeContainer;
 
@@ -24,21 +26,71 @@ public class LevelGenerator : MonoBehaviour
     [Tooltip("The actual length of the corridor prefab along the Z-axis in the editor before scaling")]
     [SerializeField] private float corridorPrefabLength = 10f;
 
-    private Dictionary<Vector2Int, RoomBlueprint> levelLayout = new Dictionary<Vector2Int, RoomBlueprint>();
+    [Header("UI Components")]
+    [SerializeField] private TMP_InputField difficultyInputField;
+    [SerializeField] private TMP_InputField baseRoomCountInputField;
+    [SerializeField] private TMP_InputField roomsPerScaleInputField;
+    [SerializeField] private Button regenerateButton;
 
-    // Tracks the absolute largest room generated for the level
-    // Used to calculate grid spacing so rooms never collide
+    private int defaultDifficultyScale;
+    private int defaultBaseRoomCount;
+    private int defaultRoomsPerScale;
+
+    private Dictionary<Vector2Int, RoomBlueprint> levelLayout = new Dictionary<Vector2Int, RoomBlueprint>();
     private float maxGeneratedWidth = 0f;
     private float maxGeneratedDepth = 0f;
+    private List<GameObject> spawnedLevelObjects = new List<GameObject>();
 
     void Start()
     {
+        defaultDifficultyScale = difficultyScale;
+        defaultBaseRoomCount = baseRoomCount;
+        defaultRoomsPerScale = roomsPerScale;
+
+        InitializeUIFields();
+
+        if (regenerateButton != null)
+        {
+            regenerateButton.onClick.AddListener(RegenerateLevel);
+        }
+
         GenerateLevel();
+    }
+
+    private void InitializeUIFields()
+    {
+        if (difficultyInputField != null) difficultyInputField.text = defaultDifficultyScale.ToString();
+        if (baseRoomCountInputField != null) baseRoomCountInputField.text = defaultBaseRoomCount.ToString();
+        if (roomsPerScaleInputField != null) roomsPerScaleInputField.text = defaultRoomsPerScale.ToString();
+    }
+
+    public void RegenerateLevel()
+    {
+        difficultyScale = ParseInputField(difficultyInputField, defaultDifficultyScale);
+        baseRoomCount = ParseInputField(baseRoomCountInputField, defaultBaseRoomCount);
+        roomsPerScale = ParseInputField(roomsPerScaleInputField, defaultRoomsPerScale);
+
+        ClearLevel();
+        GenerateLevel();
+    }
+
+    private int ParseInputField(TMP_InputField inputField, int defaultValue)
+    {
+        if (inputField == null || string.IsNullOrEmpty(inputField.text))
+        {
+            return defaultValue;
+        }
+
+        if (int.TryParse(inputField.text, out int result))
+        {
+            return result;
+        }
+
+        return defaultValue;
     }
 
     private void GenerateLevel()
     {
-        // Scale sizes and room amount based on difficulty
         int targetRoomCount = baseRoomCount + (difficultyScale * roomsPerScale);
         float minWidth = baseMinWidth + (difficultyScale * sizeIncreasePerScale);
         float minDepth = baseMinDepth + (difficultyScale * sizeIncreasePerScale);
@@ -48,7 +100,23 @@ public class LevelGenerator : MonoBehaviour
         SpawnPhysicalLevel();
     }
 
-    // Create a random layout on a 2D grid
+    private void ClearLevel()
+    {
+        foreach (GameObject obj in spawnedLevelObjects)
+        {
+            if (obj != null) Destroy(obj);
+        }
+        spawnedLevelObjects.Clear();
+
+        if (treeContainer != null)
+        {
+            for (int i = treeContainer.transform.childCount - 1; i >= 0; i--)
+            {
+                Destroy(treeContainer.transform.GetChild(i).gameObject);
+            }
+        }
+    }
+
     private void CreateLayoutBlueprint(int targetCount, float minW, float minD)
     {
         levelLayout.Clear();
@@ -58,7 +126,6 @@ public class LevelGenerator : MonoBehaviour
         List<Vector2Int> roomPositions = new List<Vector2Int>();
         Vector2Int startPos = Vector2Int.zero;
 
-        // Create initial room
         RoomBlueprint startRoom = new RoomBlueprint(startPos);
         RandomizeRoomSize(startRoom, minW, minD);
         levelLayout[startPos] = startRoom;
@@ -66,7 +133,6 @@ public class LevelGenerator : MonoBehaviour
 
         Vector2Int[] directions = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
 
-        // Algorithm to grow the level
         while (roomPositions.Count < targetCount)
         {
             Vector2Int currentRoom = roomPositions[Random.Range(0, roomPositions.Count)];
@@ -88,12 +154,10 @@ public class LevelGenerator : MonoBehaviour
         room.Width = Mathf.Round(Random.Range(minW, minW + maxRandomVariance));
         room.Depth = Mathf.Round(Random.Range(minD, minD + maxRandomVariance));
 
-        // Check if width/depth is bigger than current biggest width/depth 
         if (room.Width > maxGeneratedWidth) maxGeneratedWidth = room.Width;
         if (room.Depth > maxGeneratedDepth) maxGeneratedDepth = room.Depth;
     }
 
-    // Look at adjacent cells to check where corridors need to cross link
     private void DetermineEntrances()
     {
         foreach (KeyValuePair<Vector2Int, RoomBlueprint> pair in levelLayout)
@@ -108,10 +172,8 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    // Instantiate rooms and corridors
     private void SpawnPhysicalLevel()
     {
-        // Grid stride relies on max dimensions to make sure small rooms get longer hallways instead of breaking the grid lines
         float stepX = maxGeneratedWidth + minCorridorLength;
         float stepZ = maxGeneratedDepth + minCorridorLength;
 
@@ -122,8 +184,9 @@ public class LevelGenerator : MonoBehaviour
 
             Vector3 worldPos = new Vector3(gridPos.x * stepX, 0, gridPos.y * stepZ);
 
-            // Spawn room pivot and pass rendering properties to its dedicated spawner
             GameObject roomObj = Instantiate(roomPrefab, worldPos, Quaternion.identity);
+            spawnedLevelObjects.Add(roomObj);
+
             BorderTreeSpawner spawner = roomObj.GetComponent<BorderTreeSpawner>();
             if (spawner != null)
             {
@@ -131,40 +194,36 @@ public class LevelGenerator : MonoBehaviour
                     blueprint.EntranceNorth, blueprint.EntranceSouth, blueprint.EntranceEast, blueprint.EntranceWest, treeContainer);
             }
 
-            // North corridors
             if (blueprint.EntranceNorth)
             {
                 RoomBlueprint northNeighbor = levelLayout[gridPos + Vector2Int.up];
                 Vector3 northNeighborWorldPos = new Vector3(gridPos.x * stepX, 0, (gridPos.y + 1) * stepZ);
 
-                // Calculate the gap size between where this room ends and the next begins
                 float currentRoomTopEdge = worldPos.z + (blueprint.Depth / 2f);
                 float neighborBottomEdge = northNeighborWorldPos.z - (northNeighbor.Depth / 2f);
                 float distance = neighborBottomEdge - currentRoomTopEdge;
 
                 Vector3 corridorPos = new Vector3(worldPos.x, 0, currentRoomTopEdge + (distance / 2f));
                 GameObject corridor = Instantiate(corridorPrefab, corridorPos, Quaternion.identity);
+                spawnedLevelObjects.Add(corridor);
 
-                // Normalizes the stretch factor relative to the source prefab original length
                 float newScaleZ = distance / corridorPrefabLength;
                 corridor.transform.localScale = new Vector3(corridor.transform.localScale.x, corridor.transform.localScale.y, newScaleZ);
             }
 
-            // East corridors
             if (blueprint.EntranceEast)
             {
                 RoomBlueprint eastNeighbor = levelLayout[gridPos + Vector2Int.right];
                 Vector3 eastNeighborWorldPos = new Vector3((gridPos.x + 1) * stepX, 0, gridPos.y * stepZ);
 
-                // Calculate the gap size between where this room ends and the next begins
                 float currentRoomRightEdge = worldPos.x + (blueprint.Width / 2f);
                 float neighborLeftEdge = eastNeighborWorldPos.x - (eastNeighbor.Width / 2f);
                 float distance = neighborLeftEdge - currentRoomRightEdge;
 
                 Vector3 corridorPos = new Vector3(currentRoomRightEdge + (distance / 2f), 0, worldPos.z);
                 GameObject corridor = Instantiate(corridorPrefab, corridorPos, Quaternion.Euler(0, 90f, 0));
+                spawnedLevelObjects.Add(corridor);
 
-                // Normalizes the stretch factor relative to the source prefab original length
                 float newScaleZ = distance / corridorPrefabLength;
                 corridor.transform.localScale = new Vector3(corridor.transform.localScale.x, corridor.transform.localScale.y, newScaleZ);
             }
