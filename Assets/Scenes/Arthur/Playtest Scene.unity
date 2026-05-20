@@ -94727,7 +94727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3422559991097301490, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: maxAmmo
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3422559991097301490, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: actionAudio
