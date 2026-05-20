@@ -701,6 +701,63 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1001 &1869481542
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 298626921804233015, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 895191281277290075, guid: 222bbf86e5a381446b6501148228e405, type: 3}
+      propertyPath: m_Name
+      value: Fireflies_ParticleVFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 222bbf86e5a381446b6501148228e405, type: 3}
 --- !u!1 &2075819098
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2075819099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,7 +791,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: f6fde52295e90054bbb20afd2047d27a, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 7ad3fa9c2e642d044bb082e5df8567f9, type: 2}
 --- !u!4 &2075819100
 Transform:
   m_ObjectHideFlags: 0
@@ -760,3 +817,4 @@ SceneRoots:
   - {fileID: 836119775}
   - {fileID: 442808785}
   - {fileID: 2075819100}
+  - {fileID: 1869481542}
