@@ -2322,8 +2322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
   treeContainer: {fileID: 806765115}
   difficultyScale: 1
-  baseRoomCount: 1
-  roomsPerScale: 4
+  baseRoomCount: 2
+  roomsPerScale: 1
   baseMinWidth: 16
   baseMinDepth: 16
   sizeIncreasePerScale: 10

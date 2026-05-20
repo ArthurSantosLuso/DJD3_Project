@@ -21,7 +21,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject corridorPrefab;
     [SerializeField] private float minCorridorLength = 6f;
 
-    [Tooltip("The actual length of your corridor prefab along the Z-axis in the editor before scaling.")]
+    [Tooltip("The actual length of the corridor prefab along the Z-axis in the editor before scaling")]
     [SerializeField] private float corridorPrefabLength = 10f;
 
     private Dictionary<Vector2Int, RoomBlueprint> levelLayout = new Dictionary<Vector2Int, RoomBlueprint>();
