@@ -47,12 +47,13 @@ public class PlayerLightMeleeAttack : Ability
     [SerializeField] private LayerMask enemyLayer;
 
 
-    private float lastAttackTime;
-    private float lastLungeTime = -999f;
-    private PlayerStamina playerStamina;
-    private Collider hitboxCollider;
+    private float               lastAttackTime;
+    private float               lastLungeTime = -999f;
+    private PlayerStamina       playerStamina;
+    private Collider            hitboxCollider;
     private CharacterController characterController;
-    private bool isLunging;
+    private bool                isLunging;
+    private List<IDamageable>   alreadyGotHit = new List<IDamageable>();
 
     public override float AbilityRange => throw new System.NotImplementedException();
 
@@ -93,7 +94,10 @@ public class PlayerLightMeleeAttack : Ability
     public override void DisableHitbox()
     {
         if (hitboxCollider != null)
+        {
             hitboxCollider.enabled = false;
+            alreadyGotHit.Clear();
+        }
     }
 
     protected override bool CanAttack()
@@ -246,15 +250,14 @@ public class PlayerLightMeleeAttack : Ability
         IDamageable target = other.GetComponent<IDamageable>();
         IDamageable self = owner.gameObject.GetComponent<IDamageable>();
 
-        if (target == null || target == self) return;
+        if (target == null || target == self || alreadyGotHit.Contains(target)) return;
         if (!target.CanDamage()) return;
 
         target.Damage(damageAmount);
+        alreadyGotHit.Add(target);
 
         Vector3 hitPoint = (transform.position + other.bounds.center) * 0.5f;
         SpawnBloodEffect(hitPoint);
-
-        DisableHitbox();
     }
 
     private void SpawnBloodEffect(Vector3 position)
