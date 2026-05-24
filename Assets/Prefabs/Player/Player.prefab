@@ -1922,6 +1922,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3276482435974468462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5578617515734810202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 292336262297469736}
+  m_Layer: 0
+  m_Name: ShotgunCameraFollow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &292336262297469736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5578617515734810202}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.116215885, y: -0, z: -0, w: 0.993224}
+  m_LocalPosition: {x: -0.52, y: 1.55, z: 1.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8437899515643794263}
+  m_LocalEulerAnglesHint: {x: 13.348, y: 0, z: 0}
 --- !u!1 &5742444277715848136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,6 +2477,7 @@ Transform:
   - {fileID: 6000170841844270067}
   - {fileID: 8651199275249664491}
   - {fileID: 1420012103637200972}
+  - {fileID: 292336262297469736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &4384765680858570416
@@ -2520,7 +2552,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &5411488883742122221
 CapsuleCollider:
@@ -2788,13 +2820,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8d5059952d1794fba902e0c85defa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 3
+  moveSpeed: 10
   rotationSpeed: 4
   sprintMultiplier: 1.5
   sprintStaminaCostPerSecond: 5
   dashDistance: 2
   dashDuration: 0.5
-  dashStaminaCost: 20
+  dashStaminaCost: 30
   dashCooldown: 1
   gravityMultiplier: 2
   cameraTransform: {fileID: 0}
@@ -2814,7 +2846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxValue: 100
-  startsWith: 100
+  startsWith: 80
   shakeIntensityMultiplier: 0.5
   shakeDuration: 0.2
 --- !u!114 &6904288365995020383
@@ -3459,6 +3491,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5978441138906920022}
     - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      propertyPath: actionAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ffe745ccffbdec47b70662906615719, type: 3}
+    - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
       propertyPath: damageAmount
       value: 100
       objectReference: {fileID: 0}
@@ -3548,11 +3584,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: staminaCost
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: damageAmount
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: lungeCooldown

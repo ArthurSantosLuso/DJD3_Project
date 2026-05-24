@@ -93,6 +93,11 @@ public class ShotgunAttack : Ability
     {
         ammoCountUI.text = $"{currentAmmo}/2";
     }
+    public void UseAmmo(int amount)
+    {
+        currentAmmo = Mathf.Max(currentAmmo - amount, 0);
+        ChangeAmmoUI();
+    }
 
     protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit) { }
 }
