@@ -16,7 +16,6 @@ public class MeleeEnemyAI : EnemyBaseAI
 
         if (timer >= timeToAttack)
         {
-            Debug.Log($"{GetInstanceID()}: I def need to attack bc {timer} >= {timeToAttack}");
             transform.LookAt(target.transform);
             GetComponent<Character>().UseAbility(0);
             timer = 0f;
