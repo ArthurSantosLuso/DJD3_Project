@@ -68130,7 +68130,7 @@ MonoBehaviour:
   burningZonePrefab: {fileID: 5089703853418238435, guid: ccbf2e4a20ae2774088f2c1a11bc5181, type: 3}
   burnDamage: 5
   burnRadius: 3
-  burnDuration: 4
+  burnDuration: 5
   burnTickRate: 0.5
   cooldown: 5
 --- !u!1001 &1605466386
@@ -69583,6 +69583,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3213678022813688867, guid: 11ce7ae62de75f84fb33024b0cf69dbe, type: 3}
   m_PrefabInstance: {fileID: 1648228833}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1649566186
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.1216733
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0072543845
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.4414196
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371065904850146674, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087881785377791982, guid: 452118fb130bc964b835c96a65595682, type: 3}
+      propertyPath: m_Name
+      value: Flames
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 452118fb130bc964b835c96a65595682, type: 3}
 --- !u!1001 &1649651939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92095,3 +92152,4 @@ SceneRoots:
   - {fileID: 1413178137}
   - {fileID: 1232208890}
   - {fileID: 8261860279675774583}
+  - {fileID: 1649566186}
