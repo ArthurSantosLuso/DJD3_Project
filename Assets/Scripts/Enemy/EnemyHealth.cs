@@ -1,18 +1,27 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using System.Runtime.InteropServices;
 
 public class EnemyHealth : ValueBase, IDamageable
 {
     private HitFlash    hitFlash;
     private EnemyBaseAI enemyAI;
+    private bool        isArmUnplugged = false;
 
-    [SerializeField] private List<GameObject> drops;
-    [SerializeField, Range(0.0f, 1f)] private float dropRate;
+
+    [SerializeField] private bool               shouldArmUnplug = false;
+    [SerializeField] private GameObject         armUnplugged;
+    [SerializeField] private GameObject         originalArm;
+    [SerializeField] private List<GameObject>   drops;
+    [SerializeField] 
+    [Range(0.0f, 1f)] private float             dropRate;
 
 
     private void Start()
     {
+        armUnplugged.SetActive(false);
+        originalArm.SetActive(true);
         // Get the flash script component
         hitFlash = GetComponent<HitFlash>();
         enemyAI = GetComponent<EnemyBaseAI>();
@@ -38,6 +47,13 @@ public class EnemyHealth : ValueBase, IDamageable
         if (currentValue <= 0)
         {
             Kill();
+        }
+        if (shouldArmUnplug && currentValue < 50 && !isArmUnplugged)
+        {
+            armUnplugged.transform.parent = null;
+            isArmUnplugged = true;
+            armUnplugged.SetActive(true);
+            originalArm.SetActive(false);
         }
     }
 
