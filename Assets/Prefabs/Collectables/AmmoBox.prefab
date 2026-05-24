@@ -70,7 +70,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!114 &465301052168007177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +83,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a3f0dfc8567bd4d8f4aa29c3493a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoCollectable
-  ammoAmount: 5
+  isAutomatic: 1
+  interactionHint: {fileID: 0}
+  data: {fileID: 11400000, guid: 3753aad8c964cba488d83f856cf236ab, type: 2}
 --- !u!1 &3567362989970495914
 GameObject:
   m_ObjectHideFlags: 0

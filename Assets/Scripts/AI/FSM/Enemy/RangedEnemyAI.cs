@@ -4,7 +4,7 @@ public class RangedEnemyAI : EnemyBaseAI
 {
     protected override void Attack()
     {
-        if (!isAttackState) return;
+        //if (!isAttackState) return;
 
         timer += Time.deltaTime;
 

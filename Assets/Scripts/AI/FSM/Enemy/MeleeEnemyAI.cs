@@ -3,18 +3,23 @@ using UnityEngine.InputSystem;
 
 public class MeleeEnemyAI : EnemyBaseAI
 {
+    int frameCount = 0;
     protected override void Attack()
     {
-        if (isAttackState)
+        if (!CheckIfCanProceed())
         {
-            timer += Time.deltaTime;
+            timer = 0;
+            return;
+        }
 
-            if (timer >= timeToAttack)
-            {
-                transform.LookAt(target.transform);
-                GetComponent<Character>().UseAbility(0);
-                timer = 0f;
-            }
+        timer += Time.deltaTime;
+
+        if (timer >= timeToAttack)
+        {
+            Debug.Log($"{GetInstanceID()}: I def need to attack bc {timer} >= {timeToAttack}");
+            transform.LookAt(target.transform);
+            GetComponent<Character>().UseAbility(0);
+            timer = 0f;
         }
     }
 }

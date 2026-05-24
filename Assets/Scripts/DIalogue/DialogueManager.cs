@@ -1,8 +1,8 @@
+using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Ink.Runtime;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour

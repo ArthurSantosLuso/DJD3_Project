@@ -1,25 +1,37 @@
 using UnityEngine;
 
-public class AmmoCollectable : MonoBehaviour
+public class AmmoCollectable : Interactable
 {
-    [Header("Ammo Settings")]
-    [SerializeField] private int ammoAmount = 5;
+    [SerializeField]
+    private AmmoBoxData data;
 
-
-    private void OnTriggerEnter(Collider other)
+    public override void TryInteract(Character entity = null)
     {
-        // Verifica se é o Player
-        ShotgunAttack shotgun = other.GetComponentInChildren<ShotgunAttack>();
+        if (entity == null)
+        {
+            Debug.LogError("No character sent to Health Kit.");
+            return;
+        }
+        else
+        {
+            Interact(entity);
+        }
+    }
+
+    protected override void Interact(Character entity = null)
+    {
+        // Verify if it is the player
+        ShotgunAttack shotgun = entity.GetComponentInChildren<ShotgunAttack>();
 
         if (shotgun == null)
-            shotgun = other.GetComponent<ShotgunAttack>();
+            shotgun = entity.GetComponent<ShotgunAttack>();
 
         if (shotgun == null) return;
 
-        // Só dá ammo se precisar
+        // Just increase player ammo if needed
         if (shotgun.CurrentAmmo >= shotgun.MaxAmmo) return;
 
-        shotgun.AddAmmo(ammoAmount);
+        shotgun.AddAmmo(data.ammoAmout);
 
         Destroy(gameObject);
     }

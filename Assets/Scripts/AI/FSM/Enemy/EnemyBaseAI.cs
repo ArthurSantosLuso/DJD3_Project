@@ -1,8 +1,9 @@
 using LibGameAI.FSMs;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem.Android;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class EnemyBaseAI : MonoBehaviour
@@ -15,16 +16,20 @@ public abstract class EnemyBaseAI : MonoBehaviour
     protected float avoindanceRange = 0f;
     [SerializeField, Min(0.1f)]
     protected float timeToAttack = 0.1f;
+    [SerializeField, Min(0.1f)]
+    protected float staggerTime = 0.1f;
 
     [SerializeField]
     private string playerTag = "Player";
-    private float dafaultStoppingDistance;
-
-    protected NavMeshAgent agent;
-    protected StateMachine stateMachine;
-    protected GameObject target;
-    protected float timer;
-    protected bool isAttackState = false;
+        
+    protected NavMeshAgent  agent;
+    protected StateMachine  stateMachine;
+    protected Animator      animator;
+    protected GameObject    target;
+    protected float         timer;
+    //protected bool          isAttackState = false;
+    private float           defaultStoppingDistance;
+    private bool            isStaggered = false;
 
 
     // ==== Setup =================================
@@ -36,8 +41,8 @@ public abstract class EnemyBaseAI : MonoBehaviour
         // Stopping distance needs to be smaller than attack range.
         // This ensure the enemy actually enters the attack range zone.
         agent.stoppingDistance = attackRange * 0.8f;
-        dafaultStoppingDistance = agent.stoppingDistance;
-
+        defaultStoppingDistance = agent.stoppingDistance;
+        animator = GetComponent<Animator>();
 
         Initialize();
     }
@@ -55,6 +60,13 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     protected virtual void AddTransitions(State chaseState, State attackState)
     {
+        State staggerState = CreateStaggerState();
+
+        chaseState.AddTransition(new Transition(() => isStaggered, null, staggerState));
+        attackState.AddTransition(new Transition(() => isStaggered, null, staggerState));
+
+        staggerState.AddTransition(new Transition(IsStaggerOver, null, chaseState));
+
         if (avoindanceRange > 0f)
         {
             State runawayState = CreateRunawayState();
@@ -84,10 +96,13 @@ public abstract class EnemyBaseAI : MonoBehaviour
     private void StartChasing()
     {
         agent.isStopped = false;
+        animator.SetBool("isRunning", true);
     }
 
     protected virtual void Chase()
     {
+        if (!CheckIfCanProceed()) return;
+
         if (target != null)
         {
             agent.SetDestination(target.transform.position);
@@ -98,6 +113,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
     {
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
+        animator.SetBool("isRunning", false);
     }
 
     // ==== Attack =================================
@@ -108,15 +124,21 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     private void StartAttacking()
     {
-        isAttackState = true;
+        //isAttackState = true;
+
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
     }
 
     protected abstract void Attack();
 
     private void StopAttacking()
     {
-        isAttackState = false;
+        //isAttackState = false;
         timer = 0f;
+
+        agent.isStopped = false;
     }
 
     // ==== Runaway =================================
@@ -149,7 +171,44 @@ public abstract class EnemyBaseAI : MonoBehaviour
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
 
-        agent.stoppingDistance = dafaultStoppingDistance;
+        agent.stoppingDistance = defaultStoppingDistance;
+    }
+
+    // ==== Stagger =================================
+    protected virtual State CreateStaggerState()
+    {
+        return new State("Stagger", StartStagger, Stagger, StopStagger);
+    }
+
+    private void StartStagger()
+    {
+        isStaggered = false;
+        timer = 0f;
+
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+
+        animator?.SetTrigger("Hit");
+    }
+
+    protected void Stagger()
+    {
+        timer += Time.deltaTime;
+    }
+
+    private void StopStagger()
+    {
+        timer = 0f;
+
+        agent.isStopped = false;
+        agent.stoppingDistance = defaultStoppingDistance;
+    }
+
+    private bool IsStaggerOver() => timer >= staggerTime;
+
+    public void TriggerStagger()
+    {
+        isStaggered = true;
     }
 
     // ==== Verifications =================================
@@ -170,6 +229,14 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
         float distance = Vector3.Distance(target.transform.position, transform.position);
         return distance <= avoindanceRange;
+    }
+
+    protected bool CheckIfCanProceed()
+    {
+        if (animator.IsInTransition(0)) return false;
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return !stateInfo.IsName("Attack") && !stateInfo.IsName("Hit");
     }
 
     // ==== Debug =================================

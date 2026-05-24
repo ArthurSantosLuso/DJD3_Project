@@ -4,7 +4,8 @@ using UnityEngine.Rendering;
 
 public class EnemyHealth : ValueBase, IDamageable
 {
-    private HitFlash hitFlash;
+    private HitFlash    hitFlash;
+    private EnemyBaseAI enemyAI;
 
     [SerializeField] private List<GameObject> drops;
     [SerializeField, Range(0.0f, 1f)] private float dropRate;
@@ -14,6 +15,7 @@ public class EnemyHealth : ValueBase, IDamageable
     {
         // Get the flash script component
         hitFlash = GetComponent<HitFlash>();
+        enemyAI = GetComponent<EnemyBaseAI>();
     }
 
     public void Damage(float damageValue)
@@ -21,10 +23,9 @@ public class EnemyHealth : ValueBase, IDamageable
         base.ReduceValue(damageValue); 
         //OnValueChanged?.Invoke(0, currentValue, maxValue);
         // Trigger the flash effect
-        if (hitFlash != null)
-        {
-            hitFlash.Flash();
-        }
+        hitFlash?.Flash();
+
+        enemyAI.TriggerStagger();
 
         VerifyLife();
     }
