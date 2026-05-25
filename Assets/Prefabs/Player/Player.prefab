@@ -2931,6 +2931,8 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
+  maxHits: 20
+  detectionRadius: 0.2
 --- !u!1 &7019165554840635485
 GameObject:
   m_ObjectHideFlags: 0
