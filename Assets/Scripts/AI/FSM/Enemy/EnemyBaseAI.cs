@@ -1,9 +1,7 @@
 using LibGameAI.FSMs;
 using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem.Android;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class EnemyBaseAI : MonoBehaviour
