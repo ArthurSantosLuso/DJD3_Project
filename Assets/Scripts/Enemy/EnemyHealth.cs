@@ -1,53 +1,105 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
 using System.Runtime.InteropServices;
 
 public class EnemyHealth : ValueBase, IDamageable
 {
-    private HitFlash    hitFlash;
+    private HitFlash hitFlash;
     private EnemyBaseAI enemyAI;
-    private bool        isArmUnplugged = false;
+    private bool isArmUnplugged = false;
 
+    [SerializeField] private bool shouldArmUnplug = false;
+    [SerializeField] private GameObject armUnplugged;
+    [SerializeField] private GameObject originalArm;
+    [SerializeField] private List<GameObject> drops;
+    [SerializeField]
+    [Range(0.0f, 1f)] private float dropRate;
 
-    [SerializeField] private bool               shouldArmUnplug = false;
-    [SerializeField] private GameObject         armUnplugged;
-    [SerializeField] private GameObject         originalArm;
-    [SerializeField] private List<GameObject>   drops;
-    [SerializeField] 
-    [Range(0.0f, 1f)] private float             dropRate;
+    [Header("Health Bar")]
+    [Tooltip("Prefab that contains EnemyHealthBar component")]
+    [SerializeField] private GameObject healthBarPrefab;
 
+    [Tooltip("The RawImage that displays the render texture.")]
+    [SerializeField] private UnityEngine.UI.RawImage renderImage;
+
+    [Tooltip("Tag on the overlay canvas that holds all enemy health bars.")]
+    [SerializeField] private string healthBarCanvasTag = "EnemyHealthBarCanvas";
+
+    private EnemyHealthBar healthBarInstance;
+    private Canvas healthBarCanvas;
 
     private void Start()
     {
         armUnplugged.SetActive(false);
         originalArm.SetActive(true);
-        // Get the flash script component
+
         hitFlash = GetComponent<HitFlash>();
         enemyAI = GetComponent<EnemyBaseAI>();
+
+        // Cache the overlay canvas
+        GameObject canvasObj = GameObject.FindWithTag(healthBarCanvasTag);
+        if (canvasObj != null)
+            healthBarCanvas = canvasObj.GetComponent<Canvas>();
+        else
+            Debug.LogWarning($"[EnemyHealth] No GameObject found with tag '{healthBarCanvasTag}'");
     }
 
     public void Damage(float damageValue)
     {
-        base.ReduceValue(damageValue); 
-        //OnValueChanged?.Invoke(0, currentValue, maxValue);
-        // Trigger the flash effect
-        hitFlash?.Flash();
+        base.ReduceValue(damageValue);
 
+        hitFlash?.Flash();
         enemyAI.TriggerStagger();
+
+        // Show the health bar after the first hit
+        // Update it on every subsequent hit
+        HandleHealthBar();
 
         VerifyLife();
     }
 
 
+    /// <summary>
+    /// Instantiates the health bar if it doesn't exist yet,
+    /// then refreshes its fill value.
+    /// </summary>
+    private void HandleHealthBar()
+    {
+        // Only show the bar when health is below maximum
+        if (currentValue >= maxValue) return;
 
-    // Check if died
+        if (healthBarInstance == null)
+            SpawnHealthBar();
+
+        healthBarInstance?.UpdateBar(currentValue, maxValue);
+    }
+
+    private void SpawnHealthBar()
+    {
+        if (healthBarPrefab == null || healthBarCanvas == null) return;
+
+        GameObject barObj = Instantiate(healthBarPrefab, healthBarCanvas.transform);
+        healthBarInstance = barObj.GetComponent<EnemyHealthBar>();
+
+        if (healthBarInstance == null)
+        {
+            Debug.LogError("[EnemyHealth] healthBarPrefab does not have an EnemyHealthBar component!");
+            return;
+        }
+
+        healthBarInstance.Initialize(transform, healthBarCanvas, renderImage);
+        healthBarInstance.SetVisible(true);
+    }
+
     private void VerifyLife()
     {
         if (currentValue <= 0)
         {
             Kill();
+            return;
         }
+
         if (shouldArmUnplug && currentValue < 50 && !isArmUnplugged)
         {
             armUnplugged.transform.parent = null;
@@ -59,13 +111,18 @@ public class EnemyHealth : ValueBase, IDamageable
 
     private void Kill()
     {
+        // Destroy the health bar before destroying the enemy
+        if (healthBarInstance != null)
+            Destroy(healthBarInstance.gameObject);
+
         if (dropRate >= Random.value)
         {
             float drop = Random.value;
 
             if (drop > 0.5f)
                 Instantiate(drops[1], transform.position, Quaternion.identity);
-            else Instantiate(drops[0], transform.position, Quaternion.identity);
+            else
+                Instantiate(drops[0], transform.position, Quaternion.identity);
         }
 
         GameManager.Instance.EnemyDeadCount++;

@@ -20,7 +20,7 @@ public class NPC : Interactable
 
     public override void TryInteract(Character entity = null)
     {
-        // Don't start a new dialogue if we are already talking
+        // Don't start a new dialogue if already talking
         if (DialogueManager.Instance.IsDialoguePlaying) return;
 
         Interact(entity);
