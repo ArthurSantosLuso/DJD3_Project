@@ -1288,9 +1288,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3437921012037209355}
     m_Modifications:
+    - target: {fileID: 1167431141379222188, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.011533467
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167431141379222188, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.011533467
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167431141379222188, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.011533467
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167431141379222188, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167431141379222188, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.28
+      objectReference: {fileID: 0}
     - target: {fileID: 6452887624218707773, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_Name
       value: Interaction Hint Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452887624218707773, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_Pivot.x
@@ -1334,7 +1358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.194014
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1354,11 +1378,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 301.32782
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
