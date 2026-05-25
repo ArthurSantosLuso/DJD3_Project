@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,8 @@ public class PlayerInput : MonoBehaviour
 
     public void OnWeaponChangeInput(InputAction.CallbackContext context)
     {
+        if (!VerifyIfPlayerCanAct()) return;
+
         if (context.phase == InputActionPhase.Performed)
         {
             character.ChangeToNextWeapon();
@@ -39,6 +42,8 @@ public class PlayerInput : MonoBehaviour
 
     public void OnLightAttack(InputAction.CallbackContext context)
     {
+        if (!VerifyIfPlayerCanAct()) return;
+
         if (context.phase == InputActionPhase.Performed)
         {
             character.UseAbility(0);
@@ -47,6 +52,8 @@ public class PlayerInput : MonoBehaviour
 
     public void OnHeavyAttack(InputAction.CallbackContext context)
     {
+        if (!VerifyIfPlayerCanAct()) return;
+
         if (context.phase == InputActionPhase.Performed)
         {
             character.UseAbility(1);
@@ -55,6 +62,8 @@ public class PlayerInput : MonoBehaviour
 
     public void OnSpecialAbility(InputAction.CallbackContext context)
     {
+        if (!VerifyIfPlayerCanAct()) return;
+
         if (context.phase == InputActionPhase.Performed)
         {
             character.UseAbility(2);
@@ -63,11 +72,15 @@ public class PlayerInput : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!VerifyIfPlayerCanAct()) return;
+
         moveInput = context.ReadValue<Vector2>();
     }
 
     public void OnSprint(InputAction.CallbackContext context)
     {
+        if (!VerifyIfPlayerCanAct()) return;
+
         if (context.phase == InputActionPhase.Performed)
             sprintHeld = true;
         else if (context.phase == InputActionPhase.Canceled)
@@ -76,6 +89,8 @@ public class PlayerInput : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (!VerifyIfPlayerCanAct()) return;
+
         if (context.phase == InputActionPhase.Performed)
         {
             playerMovement.UseDash();
@@ -113,4 +128,6 @@ public class PlayerInput : MonoBehaviour
             uiHandler.ToggleConfig();
         }
     }
+
+    private bool VerifyIfPlayerCanAct() => GameManager.Instance.CanPlayerAct;
 }

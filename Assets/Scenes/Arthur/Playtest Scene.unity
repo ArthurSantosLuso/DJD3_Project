@@ -94096,6 +94096,10 @@ PrefabInstance:
       propertyPath: ammoCountUI
       value: 
       objectReference: {fileID: 1496570702}
+    - target: {fileID: 4129168095492781203, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
+      propertyPath: shouldConsiderInteractable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4279736835322855498, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: staminaCost
       value: 15
@@ -110826,9 +110830,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7199079386578308857}
-  - component: {fileID: 6072997556765933916}
-  - component: {fileID: 8332618445129102742}
+  - component: {fileID: 7540033082689459268}
   m_Layer: 0
   m_Name: blockout_small_candle
   m_TagString: Untagged
@@ -110836,6 +110838,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &7540033082689459268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540033082689459267}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &7725865144974879346
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -111128,6 +111145,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 7540033082689459268}
   - {fileID: 1250483794}
   - {fileID: 1008157345}
   - {fileID: 1644030763}
