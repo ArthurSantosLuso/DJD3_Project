@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NPC : Interactable
+public class DialogueInteractable : Interactable
 {
     [Header("Dialogue Content")]
     [SerializeField] private TextAsset inkJSON;
