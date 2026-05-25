@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MainHallInteractables : Interactable
 {
-    private enum InteractionType { Config, Save, ReadFiles}
+    private enum InteractionType { Config, Save, ReadFiles, Leave}
 
     [SerializeField] private InteractionType type;
 

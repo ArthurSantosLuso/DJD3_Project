@@ -31,6 +31,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON, Sprite whosTalkingImage = null)
     {
+        GameManager.Instance.StopPlayerActions();
         if (profileImage)
         {
             profileImage.gameObject.SetActive(true);
@@ -94,6 +95,7 @@ public class DialogueManager : MonoBehaviour
         IsDialoguePlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        GameManager.Instance.ActivePlayerActions();
     }
 
     private void HandleTags(List<string> currentTags)
