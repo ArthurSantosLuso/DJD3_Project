@@ -11181,9 +11181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BorderTreeSpawner
   treePrefabs:
-  - {fileID: 7040696021805465934, guid: f6c5526ecb4918549a354dc05bd3bc75, type: 3}
-  - {fileID: 4316249726463285133, guid: 54626a8fc55d1af4cba309ba85bfd5f0, type: 3}
-  - {fileID: 1437739819665045811, guid: 1e83dc499a6f1ff44a654d577617872c, type: 3}
+  - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+  - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
+  - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
   roomWidth: 4.47
   roomDepth: 43.4
   spacing: 1.5
@@ -81004,9 +81004,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BorderTreeSpawner
   treePrefabs:
-  - {fileID: 7040696021805465934, guid: f6c5526ecb4918549a354dc05bd3bc75, type: 3}
-  - {fileID: 4316249726463285133, guid: 54626a8fc55d1af4cba309ba85bfd5f0, type: 3}
-  - {fileID: 1437739819665045811, guid: 1e83dc499a6f1ff44a654d577617872c, type: 3}
+  - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+  - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
+  - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
   roomWidth: 4.47
   roomDepth: 43.4
   spacing: 1.5
