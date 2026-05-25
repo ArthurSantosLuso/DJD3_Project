@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrassSway
-  m_Shader: {fileID: -6465566751694194690, guid: 6118454590cd9ea4ab8c760148903612, type: 3}
+  m_Name: GrassMovement
+  m_Shader: {fileID: -6465566751694194690, guid: 5e2eeae5b800c554f9614e922c66cb8e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
