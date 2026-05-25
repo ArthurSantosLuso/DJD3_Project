@@ -28,7 +28,7 @@ public class UIHandler : MonoBehaviour
         float percentage = currentValue / maxValue;
 
         
-        if (barIdx == 1) //  Stamina needs to be the second bar in the list
+        if (barIdx != 3) //  Anything but 3
         {
             // change those value to 0.2 - 0.8 so it makes sense with the stamina bar sprite
             float mappedValue = Mathf.Lerp(0.22f, 0.78f, percentage);
