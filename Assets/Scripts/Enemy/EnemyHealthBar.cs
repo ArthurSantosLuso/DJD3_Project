@@ -1,21 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Attached to the health bar UI prefab.
-/// Positions itself on a Screen Space - Overlay canvas by converting
-/// the enemy's world position to screen coordinates every frame.
-///
-/// WHY VIEWPORT SPACE?
-/// The game camera renders into a 384×216 render texture displayed via a RawImage.
-/// Camera.WorldToScreenPoint returns pixels in render-texture space (0–384, 0–216),
-/// NOT in window/overlay-canvas space — so bars land at wrong positions.
-/// The fix mirrors RotateToFaceMouse: go through normalised viewport coords (0–1),
-/// then remap to the RawImage's actual on-screen rect, which IS in window space.
-/// </summary>
 public class EnemyHealthBar : MonoBehaviour
 {
-    [Tooltip("The fill image of the health bar (Image type: Filled)")]
+    [Tooltip("The fill image of the health bar")]
     [SerializeField] private Image fillImage;
 
     [Tooltip("Offset above the enemy's pivot in world units")]

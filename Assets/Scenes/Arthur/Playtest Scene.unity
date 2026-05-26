@@ -2035,19 +2035,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BorderSpawnerManual
   treePrefabs:
-  - {fileID: 4316249726463285133, guid: 54626a8fc55d1af4cba309ba85bfd5f0, type: 3}
-  - {fileID: 7040696021805465934, guid: f6c5526ecb4918549a354dc05bd3bc75, type: 3}
-  - {fileID: 1437739819665045811, guid: 1e83dc499a6f1ff44a654d577617872c, type: 3}
-  roomWidth: 18.5
-  roomDepth: 14
-  spacing: 2
+  - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
+  - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+  - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
+  roomWidth: 20
+  roomDepth: 15.5
+  spacing: 1.5
   extraLayers: 2
   shouldStart: 1
   entranceNorth: 1
   entranceSouth: 0
   entranceEast: 0
   entranceWest: 0
-  entranceWidth: 4
+  entranceWidth: 8
 --- !u!1001 &34005227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29401,19 +29401,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BorderSpawnerManual
   treePrefabs:
-  - {fileID: 4316249726463285133, guid: 54626a8fc55d1af4cba309ba85bfd5f0, type: 3}
-  - {fileID: 7040696021805465934, guid: f6c5526ecb4918549a354dc05bd3bc75, type: 3}
-  - {fileID: 1437739819665045811, guid: 1e83dc499a6f1ff44a654d577617872c, type: 3}
-  roomWidth: 31
-  roomDepth: 11
-  spacing: 2
+  - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
+  - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+  - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
+  roomWidth: 32.5
+  roomDepth: 12.5
+  spacing: 1.5
   extraLayers: 2
   shouldStart: 1
   entranceNorth: 0
   entranceSouth: 0
   entranceEast: 1
   entranceWest: 1
-  entranceWidth: 4
+  entranceWidth: 8
 --- !u!1001 &583925632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49470,6 +49470,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11ce7ae62de75f84fb33024b0cf69dbe, type: 3}
+--- !u!1001 &925600922
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.29242
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.1532295
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.196013
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706366823937919221, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683635077708643449, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+      propertyPath: m_Name
+      value: LowerSkinwalker
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
 --- !u!1001 &927419642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86511,8 +86568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf58eb26f1ee8342a370e3eaf039fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrightnessSlider
+  sliderType: 0
   slider: {fileID: 1088786975}
-  volume: {fileID: 1745428165}
+  globalVolume: {fileID: 0}
 --- !u!1001 &1644532136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90977,16 +91035,16 @@ MonoBehaviour:
   - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
   - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
   - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
-  roomWidth: 13
-  roomDepth: 13
-  spacing: 2
+  roomWidth: 14
+  roomDepth: 15
+  spacing: 1.5
   extraLayers: 3
   shouldStart: 1
   entranceNorth: 0
   entranceSouth: 0
   entranceEast: 1
   entranceWest: 0
-  entranceWidth: 4
+  entranceWidth: 8
 --- !u!4 &1745053203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3213678022813688867, guid: 11ce7ae62de75f84fb33024b0cf69dbe, type: 3}
@@ -91952,19 +92010,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BorderSpawnerManual
   treePrefabs:
-  - {fileID: 1437739819665045811, guid: 1e83dc499a6f1ff44a654d577617872c, type: 3}
-  - {fileID: 4316249726463285133, guid: 54626a8fc55d1af4cba309ba85bfd5f0, type: 3}
-  - {fileID: 7040696021805465934, guid: f6c5526ecb4918549a354dc05bd3bc75, type: 3}
-  roomWidth: 18
-  roomDepth: 18
-  spacing: 2
+  - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
+  - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
+  - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+  roomWidth: 19.5
+  roomDepth: 19.5
+  spacing: 1.5
   extraLayers: 3
   shouldStart: 1
   entranceNorth: 0
   entranceSouth: 1
   entranceEast: 0
   entranceWest: 1
-  entranceWidth: 4
+  entranceWidth: 8
 --- !u!1001 &1755423246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94084,10 +94142,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2906243175527941112, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: startsWith
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 3256662358260996528, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: mainCamera
       value: 
@@ -94096,18 +94150,6 @@ PrefabInstance:
       propertyPath: ammoCountUI
       value: 
       objectReference: {fileID: 1496570702}
-    - target: {fileID: 4129168095492781203, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: shouldConsiderInteractable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4279736835322855498, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: staminaCost
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4279736835322855498, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: damageAmount
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 6723859234304824350, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: cameraTransform
       value: 
@@ -94159,10 +94201,6 @@ PrefabInstance:
     - target: {fileID: 8437899515643794263, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8710365890412805747, guid: 9b6bb7eb0ab6be3459719e48182c03d6, type: 3}
-      propertyPath: moveSpeed
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -101240,19 +101278,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BorderSpawnerManual
   treePrefabs:
-  - {fileID: 4316249726463285133, guid: 54626a8fc55d1af4cba309ba85bfd5f0, type: 3}
-  - {fileID: 7040696021805465934, guid: f6c5526ecb4918549a354dc05bd3bc75, type: 3}
-  - {fileID: 1437739819665045811, guid: 1e83dc499a6f1ff44a654d577617872c, type: 3}
-  roomWidth: 15
-  roomDepth: 13
-  spacing: 1
+  - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
+  - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+  - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
+  roomWidth: 16.5
+  roomDepth: 14.5
+  spacing: 1.5
   extraLayers: 2
   shouldStart: 1
   entranceNorth: 1
   entranceSouth: 1
   entranceEast: 0
   entranceWest: 1
-  entranceWidth: 4
+  entranceWidth: 8
 --- !u!4 &1949575993 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61c4078a0e4f1e5408d247ddc4632c24, type: 3}
@@ -111180,3 +111218,4 @@ SceneRoots:
   - {fileID: 1329015377}
   - {fileID: 867568922}
   - {fileID: 39706795}
+  - {fileID: 925600922}
