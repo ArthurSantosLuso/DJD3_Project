@@ -3,8 +3,8 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     [Header("Interaction Settings")]
-    public bool isAutomatic = false;
-    public GameObject interactionHint;
+    [SerializeField] private bool isAutomatic = false;
+    [SerializeField] private GameObject interactionHint;
 
     public abstract void TryInteract(Character entity = null);
     protected abstract void Interact(Character entity = null);
