@@ -124,7 +124,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _TopColor: {r: 0, g: 0.030671008, b: 0.039215688, a: 1}
-    - _WindMovement: {r: 0.02, g: 0, b: 0, a: 0}
+    - _WindMovement: {r: 0.02, g: 0.02, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7204609246284127224
