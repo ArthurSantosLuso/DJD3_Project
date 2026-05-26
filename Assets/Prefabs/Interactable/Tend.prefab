@@ -242,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7609180726872830856}
-  - component: {fileID: 2272984197262790491}
+  - component: {fileID: 4329017622576112849}
   m_Layer: 0
   m_Name: Tend
   m_TagString: Untagged
@@ -270,7 +270,7 @@ Transform:
   - {fileID: 3272244599699971166}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2272984197262790491
+--- !u!114 &4329017622576112849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,8 +283,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainHallInteractables
   isAutomatic: 0
-  interactionHint: {fileID: 3553518156406633990}
+  interactionHint: {fileID: 0}
   type: 3
+  canvasToOpen: {fileID: 0}
+  sceneToOpen: Main Menu Placeholder
 --- !u!1 &8246984106360671701
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,10 +452,5 @@ PrefabInstance:
 --- !u!224 &1418065894829231664 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
-  m_PrefabInstance: {fileID: 7556445293547794747}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3553518156406633990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6452887624218707773, guid: 28a7c23956f02134f8600943f883a877, type: 3}
   m_PrefabInstance: {fileID: 7556445293547794747}
   m_PrefabAsset: {fileID: 0}

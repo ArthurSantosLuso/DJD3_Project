@@ -1,11 +1,15 @@
-using System.Security;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainHallInteractables : Interactable
 {
-    private enum InteractionType { Config, Save, ReadFiles, Leave}
+    public enum InteractionType { Config, Save, ReadFiles, Leave}
 
+    [Header("Setup")]
     [SerializeField] private InteractionType type;
+    [SerializeField] private GameObject canvasToOpen;
+    [SerializeField, SceneDropdown] private string sceneToOpen;
 
     public override void TryInteract(Character entity = null)
     {
@@ -14,34 +18,25 @@ public class MainHallInteractables : Interactable
 
     protected override void Interact(Character entity = null)
     {
-        switch (type)
+        OpenMenu();
+    }
+
+    private void OpenMenu()
+    {
+        if (!canvasToOpen.activeSelf)
         {
-            case InteractionType.Config:
-                ConfigurationsMenu();
-                break;
-
-            case InteractionType.Save:
-                SaveGame();
-                break;
-
-            case InteractionType.ReadFiles:
-                ReadFilesMenu();
-                break;
+            canvasToOpen.SetActive(true);
+            GameManager.Instance.StopPlayerActions();
         }
     }
 
-    private void ConfigurationsMenu()
+    public void OpenScene()
     {
-        Debug.Log("Config");
+        SceneManager.LoadScene(sceneToOpen);
     }
 
-    private void SaveGame()
+    private void SavaGame()
     {
-        Debug.Log("Game Saved");
-    }
-
-    private void ReadFilesMenu()
-    {
-        Debug.Log("Files menu opened");
+        // Implement
     }
 }

@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<RotateToFaceMouse>().enabled = false;
     }
 
-    public void ActivePlayerActions()
+    public void ActivatePlayerActions()
     {
         CanPlayerAct = true;
         player.GetComponent<PlayerMovement>().enabled = true;

@@ -95,7 +95,7 @@ public class DialogueManager : MonoBehaviour
         IsDialoguePlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
-        GameManager.Instance.ActivePlayerActions();
+        GameManager.Instance.ActivatePlayerActions();
     }
 
     private void HandleTags(List<string> currentTags)
