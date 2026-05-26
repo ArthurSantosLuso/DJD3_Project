@@ -6,6 +6,8 @@ public abstract class Interactable : MonoBehaviour
     [SerializeField] private bool isAutomatic = false;
     [SerializeField] private GameObject interactionHint;
 
+    public bool IsAutomatic => isAutomatic;
+
     public abstract void TryInteract(Character entity = null);
     protected abstract void Interact(Character entity = null);
 

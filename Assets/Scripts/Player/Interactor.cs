@@ -15,7 +15,7 @@ public class Interactor : MonoBehaviour
         if (interactable != null && character.ShouldConsiderInteractable)
         {
             Debug.Log("Entrei num collider trigger Interactable!");
-            if (interactable.isAutomatic)
+            if (interactable.IsAutomatic)
             {
                 interactable.TryInteract(character);
             }
