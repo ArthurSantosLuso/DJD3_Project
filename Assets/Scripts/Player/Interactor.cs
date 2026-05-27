@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class Interactor : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class Interactor : MonoBehaviour
             }
             else
             {
+                Outline objOutline = GetComponentInParent<Outline>()
+                                ?? GetComponent<Outline>()
+                                ?? GetComponentInChildren<Outline>();
+
+                objOutline?.ToggleOutline(true);
                 currentInteractable = interactable;
                 currentInteractable.ShowPrompt();
             }
@@ -34,6 +40,12 @@ public class Interactor : MonoBehaviour
         {
             currentInteractable.HidePrompt();
             currentInteractable = null;
+
+            Outline objOutline = GetComponentInParent<Outline>()
+                ?? GetComponent<Outline>()
+                ?? GetComponentInChildren<Outline>();
+
+            objOutline?.ToggleOutline(false);
         }
     }
 
