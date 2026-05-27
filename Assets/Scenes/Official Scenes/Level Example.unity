@@ -4274,6 +4274,7 @@ MonoBehaviour:
   roomDepth: 11.1
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 1
   entranceSouth: 1
   entranceEast: 0
@@ -13971,6 +13972,7 @@ MonoBehaviour:
   roomDepth: 14.4
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 1
   entranceSouth: 0
   entranceEast: 0
@@ -15517,6 +15519,7 @@ MonoBehaviour:
   roomDepth: 19.3
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 1
   entranceEast: 0
@@ -16685,6 +16688,7 @@ MonoBehaviour:
   roomDepth: 10.4
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 1
   entranceSouth: 0
   entranceEast: 0
@@ -21156,6 +21160,7 @@ MonoBehaviour:
   roomDepth: 13.7
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 0
   entranceEast: 1
@@ -24036,6 +24041,7 @@ MonoBehaviour:
   roomDepth: 43.4
   spacing: 1.5
   extraLayers: 2
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 0
   entranceEast: 0
@@ -33930,6 +33936,7 @@ MonoBehaviour:
   roomDepth: 14.7
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 1
   entranceSouth: 0
   entranceEast: 0
@@ -36579,6 +36586,7 @@ MonoBehaviour:
   roomDepth: 16.1
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 1
   entranceEast: 0
@@ -40009,6 +40017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb4cdcf3c2f1854e9d299ff27619bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WormSpawn
+  actionAudio: {fileID: 0}
   staminaCost: 0
   timerBetweenSpawn: 2
   spawnPerTick: 2
@@ -51090,6 +51099,7 @@ MonoBehaviour:
   roomDepth: 11.1
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 1
   entranceSouth: 1
   entranceEast: 1
@@ -52655,6 +52665,7 @@ MonoBehaviour:
   roomDepth: 11.3
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 1
   entranceSouth: 1
   entranceEast: 1
@@ -56072,6 +56083,7 @@ MonoBehaviour:
   roomDepth: 18.3
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 0
   entranceEast: 1
@@ -73209,6 +73221,7 @@ MonoBehaviour:
   roomDepth: 30
   spacing: 2
   extraLayers: 2
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 0
   entranceEast: 0
@@ -80292,6 +80305,7 @@ MonoBehaviour:
   roomDepth: 20.1
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 1
   entranceEast: 0
@@ -80542,6 +80556,7 @@ MonoBehaviour:
   roomDepth: 43.4
   spacing: 1.5
   extraLayers: 2
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 0
   entranceEast: 0
@@ -85955,6 +85970,7 @@ MonoBehaviour:
   roomDepth: 12.2
   spacing: 1.5
   extraLayers: 3
+  shoudStartInitialize: 0
   entranceNorth: 0
   entranceSouth: 0
   entranceEast: 1
@@ -90257,7 +90273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a3f0dfc8567bd4d8f4aa29c3493a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoCollectable
-  ammoAmount: 5
+  isAutomatic: 0
+  interactionHint: {fileID: 0}
+  data: {fileID: 0}
 --- !u!65 &543450653117514756
 BoxCollider:
   m_ObjectHideFlags: 0
