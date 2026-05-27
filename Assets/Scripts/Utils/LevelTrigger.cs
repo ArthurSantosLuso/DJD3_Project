@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Trigger : MonoBehaviour
+public class LevelTrigger : MonoBehaviour
 {
+    [SerializeField, SceneDropdown] private string sceneToOpen;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerMovement>() != null)
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(sceneToOpen);
     }
 }

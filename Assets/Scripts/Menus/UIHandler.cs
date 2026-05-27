@@ -20,7 +20,7 @@ public class UIHandler : MonoBehaviour
     private GameObject shotgunIcon;
 
     [SerializeField]
-    private Canvas configCanva;
+    private GameObject pausePanel;
 
     public void SetBarValue(int barIdx, float currentValue, float maxValue)
     {
@@ -60,6 +60,9 @@ public class UIHandler : MonoBehaviour
 
     public void ToggleConfig()
     {
-        configCanva.gameObject.SetActive(!configCanva.gameObject.activeSelf);
+        pausePanel.SetActive(!pausePanel.activeSelf);
+        if (pausePanel.activeSelf)
+            GameManager.Instance.StopPlayerActions();
+        else GameManager.Instance.ActivatePlayerActions();
     }
 }

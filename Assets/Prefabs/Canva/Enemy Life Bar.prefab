@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 5241166435318443531}
   - component: {fileID: 5427898890594937633}
   m_Layer: 5
-  m_Name: EnemyLifeBar
+  m_Name: Enemy Life Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
