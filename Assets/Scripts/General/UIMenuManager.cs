@@ -1,22 +1,16 @@
-using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Unity.Cinemachine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UIMenuManager : MonoBehaviour
 {
+    [Header("Start Disable")]
+    [SerializeField] private List<GameObject> objs;
+    [Header("Start Enable")]
+    [SerializeField] private List<GameObject> objsActive;
     [Header("UI")]
-    [SerializeField] private GameObject menuUI;
-    [SerializeField] private GameObject healthBar;
-    [SerializeField] private GameObject weaponDisplay;
-    [SerializeField] private GameObject staminaBar;
     [SerializeField] private GraphicRaycaster gameplayRaycaster;
-    [SerializeField] private GameObject renderingCanvas;
-
-    [Header("Input")]
-    [SerializeField] private GameObject playerObject;
 
     [Header("Cameras")]
     public CinemachineCamera currentCamera;
@@ -35,16 +29,19 @@ public class UIMenuManager : MonoBehaviour
         optionsCamera.Priority = 0;
         currentCamera = menuCamera;
         cinemachineBrain.LensModeOverride.Enabled = false;
-        mainCamera.targetTexture = null; 
+        mainCamera.targetTexture = null;
 
-        // UI
-        menuUI.SetActive(true);
-        healthBar.SetActive(false);
-        weaponDisplay.SetActive(false);
-        staminaBar.SetActive(false);
         gameplayRaycaster.enabled = false;
-        playerObject.SetActive(false);
-        renderingCanvas.SetActive(false);
+
+        foreach (var obj in objs)
+        {
+            obj.SetActive(false);
+        }
+
+        foreach (var obj in objsActive)
+        {
+            obj.SetActive(true);
+        }
     }
 
     public void UpdateCamera(CinemachineCamera target)
@@ -63,13 +60,16 @@ public class UIMenuManager : MonoBehaviour
         cinemachineBrain.LensModeOverride.Enabled = true;
         mainCamera.targetTexture = pixelRenderTexture; 
 
-        // UI
-        menuUI.SetActive(false);
-        healthBar.SetActive(true);
-        weaponDisplay.SetActive(true);
-        staminaBar.SetActive(true);
         gameplayRaycaster.enabled = true;
-        playerObject.SetActive(true);
-        renderingCanvas.SetActive(true);
+
+        foreach (var obj in objs)
+        {
+            obj.SetActive(true);
+        }
+
+        foreach (var obj in objsActive)
+        {
+            obj.SetActive(false);
+        }
     }
 }
