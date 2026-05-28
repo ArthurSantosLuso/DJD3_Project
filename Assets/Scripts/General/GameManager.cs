@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Character>().enabled = false;
         player.GetComponent<PlayerStamina>().enabled = false;
         player.GetComponent<RotateToFaceMouse>().enabled = false;
+
+        Time.timeScale = 0f;
     }
 
     public void ActivatePlayerActions()
@@ -85,5 +87,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Character>().enabled = true;
         player.GetComponent<PlayerStamina>().enabled = true;
         player.GetComponent<RotateToFaceMouse>().enabled = true;
+
+        Time.timeScale = 1f;
     }
 }

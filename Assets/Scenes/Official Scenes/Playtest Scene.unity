@@ -54080,10 +54080,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1801417113}
     - target: {fileID: 1436089184659921066, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
-      propertyPath: surface
-      value: 
-      objectReference: {fileID: 2044477095}
-    - target: {fileID: 1436089184659921066, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
       propertyPath: uiHandler
       value: 
       objectReference: {fileID: 1644030764}
@@ -54134,13 +54130,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9048696000718745144, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1745428165}
-    - targetCorrespondingSourceObject: {fileID: 9048696000718745144, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1745428168}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
 --- !u!1001 &1008593159
 PrefabInstance:
@@ -83987,6 +83977,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3213678022813688867, guid: 11ce7ae62de75f84fb33024b0cf69dbe, type: 3}
   m_PrefabInstance: {fileID: 900750307}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1612854150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6578429577799577634, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
+  m_PrefabInstance: {fileID: 4312850850251322637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1613901581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85689,6 +85684,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 208236648}
     - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+      propertyPath: pausePanel
+      value: 
+      objectReference: {fileID: 1612854150}
+    - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
       propertyPath: configCanva
       value: 
       objectReference: {fileID: 2037966139}
@@ -85761,7 +85760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BrightnessSlider
   sliderType: 0
   slider: {fileID: 1088786975}
-  globalVolume: {fileID: 0}
+  globalVolume: {fileID: 1745428165}
 --- !u!1001 &1644532136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90306,42 +90305,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11ce7ae62de75f84fb33024b0cf69dbe, type: 3}
---- !u!1 &1745428162 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9048696000718745144, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
+--- !u!114 &1745428165 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8606814819423980809, guid: fa71724966c29c24e9a1f374cfc7f959, type: 3}
   m_PrefabInstance: {fileID: 1008157345}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1745428165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745428162}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: 35a664a8b6673ba4a8c5f114951ed826, type: 2}
---- !u!114 &1745428168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745428162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2584a2d076632dc4d8efd8732ea524d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  sceneMusic: {fileID: 8300000, guid: 8a6e98f2fd52a774e9b29d44410e46d1, type: 3}
-  musicVolume: 0.09
 --- !u!1001 &1745551188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108939,6 +108913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rendering Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1426147232218694161, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 1745428165}
     - target: {fileID: 1865411547061574407, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
