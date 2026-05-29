@@ -248,6 +248,7 @@ public class PlayerLightMeleeAttack : Ability
     private void OnTriggerEnter(Collider other)
     {
         IDamageable target = other.GetComponent<IDamageable>();
+        Debug.Log(other.gameObject.name);
         IDamageable self = owner.gameObject.GetComponent<IDamageable>();
 
         if (target == null || target == self || alreadyGotHit.Contains(target)) return;

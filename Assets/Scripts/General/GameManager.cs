@@ -33,8 +33,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private UIHandler uiHandler;
-
     [SerializeField]
+    private IsometricFollowCamera followCamera;
+
     private GameObject player;
 
     public UIHandler UIHandler => uiHandler;
@@ -42,7 +43,18 @@ public class GameManager : MonoBehaviour
     public int EnemyDeadCount { get; set; }
     public bool CanPlayerAct { get; private set; }
 
-    private void Start()
+    private void LateUpdate()
+    {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            followCamera.SetCameraTarget(player.transform);
+            player.GetComponent<ObstacleDetector>().SetCameraTransform(followCamera.transform);
+            InitializeEverything();
+        }
+    }
+
+    private void InitializeEverything()
     {
         PlayerHealth health = player.GetComponent<PlayerHealth>();
         PlayerStamina stamina = player.GetComponent<PlayerStamina>();

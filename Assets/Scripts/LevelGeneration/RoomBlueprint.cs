@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-// Pure data container used during the layout planning phase. 
+// Pure data container used during the layout planning phase.
 // It keeps generation abstract so we don't handle heavy Unity transforms until the layout is locked.
 public class RoomBlueprint
 {
@@ -13,6 +14,13 @@ public class RoomBlueprint
     public bool EntranceSouth { get; set; }
     public bool EntranceEast { get; set; }
     public bool EntranceWest { get; set; }
+
+    // Role of this room in the level
+    public bool IsStartRoom { get; set; }
+    public bool IsEndRoom { get; set; }
+
+    // Used to determine which entrances should receive guiding lights.
+    public HashSet<Vector2Int> CorrectPathExits { get; private set; } = new HashSet<Vector2Int>();
 
     public RoomBlueprint(Vector2Int gridPos)
     {

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d68c696f9dfdef469c5b19f08af36bf, type: 3}
+  m_Name: RoomAssetConfig
+  m_EditorClassIdentifier: Assembly-CSharp::RoomAssetConfig
+  categories:
+  - type: 0
+    prefabs:
+    - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
+    - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
+    - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+    - {fileID: 4579098500924100712, guid: 11ce7ae62de75f84fb33024b0cf69dbe, type: 3}
+    - {fileID: 6468775712958346101, guid: 589b5a21f05cd184eadbb907f08a1eff, type: 3}
+    - {fileID: 22164201459624509, guid: caf659e8bb4dbc94985ba1a4fb4487dc, type: 3}
+    minCount: 15
+    maxCount: 30
+  - type: 1
+    prefabs:
+    - {fileID: 6691400623961090714, guid: 9cc2505f08c947a4f9c68880f3118d73, type: 3}
+    - {fileID: 9106482354314211870, guid: dbf9e67485dccc5498a2e786a56bf08a, type: 3}
+    - {fileID: 3852049943946708908, guid: de2abcbc2ee19d84784529b511fbeb49, type: 3}
+    minCount: 50
+    maxCount: 70
+  - type: 2
+    prefabs:
+    - {fileID: 5295474234164754524, guid: 316325ef7c645ed4da7d9104452af847, type: 3}
+    minCount: 2
+    maxCount: 2

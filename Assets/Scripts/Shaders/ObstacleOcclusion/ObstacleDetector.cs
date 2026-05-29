@@ -61,4 +61,9 @@ public class ObstacleDetector : MonoBehaviour
 
         return col.GetComponent<FadeObstacle>();
     }
+
+    public void SetCameraTransform(Transform transform)
+    {
+        cameraTransform = transform;
+    }
 }

@@ -26,6 +26,11 @@ public class IsometricFollowCamera : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
     }
 
+    public void SetCameraTarget(Transform transform)
+    {
+        target = transform;
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (!useBounds) return;

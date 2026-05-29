@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
+        uiHandler = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIHandler>();
         stamina = GetComponent<PlayerStamina>();
         character = GetComponent<Character>();
         playerMovement = GetComponent<PlayerMovement>();

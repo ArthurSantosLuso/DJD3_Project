@@ -11,6 +11,12 @@ public class RotateToFaceMouse : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private RawImage renderImage;
 
+    public void Start()
+    {
+        mainCamera = Camera.main;
+        renderImage = GameObject.FindGameObjectWithTag("Render Texture").GetComponent<RawImage>();
+    }
+
     void Update()
     {
         Vector3 mousePos = Input.mousePosition;
