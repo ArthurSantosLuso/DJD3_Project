@@ -3518,6 +3518,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponAxe
       objectReference: {fileID: 0}
+    - target: {fileID: 4650539133466272201, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
