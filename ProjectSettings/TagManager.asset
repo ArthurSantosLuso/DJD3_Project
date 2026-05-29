@@ -7,6 +7,7 @@ TagManager:
   - TreeContainer
   - EnemyHealthBarCanvas
   - Render Texture
+  - UIManager
   layers:
   - Default
   - TransparentFX
