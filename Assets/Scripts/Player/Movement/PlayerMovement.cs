@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 6f;
-    [SerializeField] private float rotationSpeed = 15f;
+    // [SerializeField] private float rotationSpeed = 15f;
 
     [Header("Sprint Settings")]
     [SerializeField] private float sprintMultiplier;
