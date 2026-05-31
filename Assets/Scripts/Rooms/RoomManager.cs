@@ -82,6 +82,8 @@ public class RoomManager : MonoBehaviour
             rp.transform.SetParent(transform);
             rp.transform.localPosition = Vector3.zero;
             returnPoint = rp.transform;
+
+            
         }
 
         GenerateGates();
@@ -129,7 +131,7 @@ public class RoomManager : MonoBehaviour
     }
 
     // Gates are hidden when open, visible when closed
-    public void SetGatesOpen(bool open)
+    private void SetGatesOpen(bool open)
     {
         foreach (GameObject gate in spawnedGates)
             if (gate != null) gate.SetActive(!open);
@@ -170,6 +172,7 @@ public class RoomManager : MonoBehaviour
 
     /// <summary>
     /// Spawns each enemy from the config one at a time, with a short delay between each.
+    /// The tier is resolved at activation time using the current teddy bear count.
     /// </summary>
     private System.Collections.IEnumerator SpawnEnemiesRoutine()
     {
@@ -179,9 +182,17 @@ public class RoomManager : MonoBehaviour
             yield break;
         }
 
-        foreach (EnemySpawnEntry entry in spawnConfig.entries)
+        EnemySpawnTier tier = spawnConfig.GetTierForTeddyCount(GameManager.Instance.TeddyBearCount);
+        if (tier == null)
         {
-            for (int i = 0; i < entry.count; i++)
+            Debug.LogWarning($"{gameObject.name}: no matching spawn tier for TeddyBearCount {GameManager.Instance.TeddyBearCount}.");
+            yield break;
+        }
+
+        foreach (EnemySpawnEntry entry in tier.entries)
+        {
+            int countToSpawn = Random.Range(entry.minCount, entry.maxCount + 1);
+            for (int i = 0; i < countToSpawn; i++)
             {
                 Vector3 spawnPos = GetRandomSpawnPosition();
                 EnemyBaseAI enemy = agentPool.RequestAgent(entry.type, spawnPos, Quaternion.identity);
@@ -309,10 +320,11 @@ public class RoomManager : MonoBehaviour
         GameObject entryPortalObj = Instantiate(portalPrefab, spawnPos, Quaternion.identity);
 
         Portal entryPortal = entryPortalObj.GetComponent<Portal>();
-        entryPortal.OnPlayerTeleport += SetGatesOpen;
-
         if (entryPortal != null)
+        {
             entryPortal.SetDestination(linkedSpecialRoom.returnPoint);
+            entryPortal.OnPlayerTeleport += SetGatesOpen;
+        }
 
         // Build the return portal inside the arena and pass it straight to the arena's RoomManager
         // so it holds the reference and can activate it once the fight is over.

@@ -18,4 +18,4 @@ MonoBehaviour:
     lootRoomCount: 0
   - minTeddyCount: 1
     specialRoomCount: 1
-    lootRoomCount: 1
+    lootRoomCount: 0

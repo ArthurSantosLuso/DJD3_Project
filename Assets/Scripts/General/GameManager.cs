@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         followCamera.SetCameraTarget(player.transform);
         player.GetComponent<ObstacleDetector>().SetCameraTransform(followCamera.transform);
 
-        navMeshSurface.BuildNavMesh();
+        navMeshSurface?.BuildNavMesh();
         InitializePlayer();
     }
 

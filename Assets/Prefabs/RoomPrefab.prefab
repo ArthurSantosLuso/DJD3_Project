@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3601114009175464893}
   - component: {fileID: 3559284708946052496}
   - component: {fileID: 23874561562707531}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RoomPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,8 +127,7 @@ MonoBehaviour:
   spawnMargin: 3
   entranceClearance: 3
   portalSpawnPoint: {fileID: 4036751812577265684}
-  returnPoint: {fileID: 7445698198664621376}
-  portalPrefab: {fileID: 4464208774192087080, guid: 45e0f06c750176947862c10346226439, type: 3}
+  portalPrefab: {fileID: 849456869711427434, guid: 45e0f06c750176947862c10346226439, type: 3}
   teddyBearPrefab: {fileID: 3979498351234999696}
 --- !u!65 &23874561562707531
 BoxCollider:

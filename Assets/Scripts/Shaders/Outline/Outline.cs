@@ -1,12 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Xml.Xsl;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 
 
 // This code need changes... The way it inserts and removes the outline materials are not the way it should be

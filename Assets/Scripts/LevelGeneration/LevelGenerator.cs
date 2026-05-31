@@ -75,6 +75,7 @@ public class LevelGenerator : MonoBehaviour
     /// </summary>
     private void GenerateLevel()
     {
+        difficultyScale = GameManager.Instance.TeddyBearCount;
         // Scale sizes and room amount based on difficulty
         int targetRoomCount = baseRoomCount + (difficultyScale * roomsPerScale);
         float minWidth = baseMinWidth + (difficultyScale * sizeIncreasePerScale);
