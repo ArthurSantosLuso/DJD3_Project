@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
+    public Action<bool> OnPlayerTeleport;
+
     [SerializeField] private float cooldownDuration = 2f;
 
     private Transform destination;
@@ -46,6 +49,8 @@ public class Portal : MonoBehaviour
             player.transform.SetPositionAndRotation(destination.position, destination.rotation);
         }
 
+        OnPlayerTeleport?.Invoke(true);
+
         StartCoroutine(CooldownRoutine());
     }
 
@@ -53,6 +58,6 @@ public class Portal : MonoBehaviour
     {
         onCooldown = true;
         yield return new WaitForSeconds(cooldownDuration);
-        onCooldown = false;
+        Destroy(gameObject);
     }
 }

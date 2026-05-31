@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomTypeConfig
   tiers:
   - minTeddyCount: 0
-    specialRoomCount: 1
+    specialRoomCount: 0
     lootRoomCount: 0
   - minTeddyCount: 1
     specialRoomCount: 1

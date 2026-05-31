@@ -6,7 +6,7 @@ This script handles:
 Room activation, gate control, enemy spawning, and portal setup.
 When the player enters a room trigger, the room activates based on its type — 
 combat rooms lock the gates and spawn enemies, special rooms spawn a portal to a linked arena.
-Gates reopen once all enemies are defeated.
+Gates reopen (or rewards appear) once all enemies are defeated.
 */
 
 public class RoomManager : MonoBehaviour
@@ -87,7 +87,7 @@ public class RoomManager : MonoBehaviour
         GenerateGates();
         SetGatesOpen(true);
 
-        // Disable teddy bear until the final room is cleared
+        // The teddy bear sits dormant until the final room is cleared
         if (teddyBearPrefab != null)
         {
             if (roomType == RoomType.Final)
@@ -118,11 +118,6 @@ public class RoomManager : MonoBehaviour
         if (entranceWest) SpawnGate(new Vector3(-halfW, 0f, 0f), Quaternion.Euler(0f, 90f, 0f));
     }
 
-    /// <summary>
-    /// Spawm the gates of the room.
-    /// </summary>
-    /// <param name="localPos">Position of the gate</param>
-    /// <param name="localRot">Rotation of the gate</param>
     private void SpawnGate(Vector3 localPos, Quaternion localRot)
     {
         GameObject gate = Instantiate(
@@ -133,11 +128,8 @@ public class RoomManager : MonoBehaviour
         spawnedGates.Add(gate);
     }
 
-    /// <summary>
-    /// Set if gate is open or closed.
-    /// </summary>
-    /// <param name="open"></param>
-    private void SetGatesOpen(bool open)
+    // Gates are hidden when open, visible when closed
+    public void SetGatesOpen(bool open)
     {
         foreach (GameObject gate in spawnedGates)
             if (gate != null) gate.SetActive(!open);
@@ -206,6 +198,8 @@ public class RoomManager : MonoBehaviour
                     navAgent.enabled = true;
                 }
 
+                Debug.Log($"{gameObject.name}: spawned {entry.type} at {spawnPos}. Room centre: {transform.position}");
+
                 enemy.GetComponent<EnemyHealth>().OnDeath += OnEnemyDied;
                 spawnedEnemies.Add(enemy);
                 remainingEnemies++;
@@ -213,14 +207,16 @@ public class RoomManager : MonoBehaviour
                 yield return new WaitForSeconds(delayBetweenSpawns);
             }
         }
+
+        Debug.Log($"{gameObject.name}: all enemies spawned. Total to kill: {remainingEnemies}");
     }
 
     /// <summary>
-    /// Returns a random world space position guaranteed to be inside the walkable floor area of this room.
+    /// Returns a random world-space position guaranteed to be inside the walkable floor area of this room.
     /// </summary>
     private Vector3 GetRandomSpawnPosition()
     {
-        // If it's a pre made special room, use a default radius
+        // If it's a pre-made special room (width/depth are 0), use a default radius
         float rangeX = (roomWidth > 0f) ? (roomWidth / 2f - spawnMargin) : 8f;
         float rangeZ = (roomDepth > 0f) ? (roomDepth / 2f - spawnMargin) : 8f;
 
@@ -250,7 +246,7 @@ public class RoomManager : MonoBehaviour
                 }
                 else
                 {
-                    // For pre made rooms, any valid NavMesh spot near the centre works
+                    // For pre-made rooms, any valid NavMesh spot near the centre works
                     return navHit.position;
                 }
             }
@@ -268,15 +264,19 @@ public class RoomManager : MonoBehaviour
         spawnedEnemies.Remove(enemy.GetComponent<EnemyBaseAI>());
         remainingEnemies--;
 
+        Debug.Log($"{gameObject.name}: enemy died. Remaining: {remainingEnemies}");
+
         if (remainingEnemies <= 0)
             OnAllEnemiesDefeated();
     }
 
     /// <summary>
-    /// Called when the last enemy in the room dies. Unlocks the room gates.
+    /// Called when the last enemy in the room dies. Unlocks the room based on its type.
     /// </summary>
     private void OnAllEnemiesDefeated()
     {
+        Debug.Log($"{gameObject.name}: all enemies defeated — room type: {roomType}");
+
         switch (roomType)
         {
             case RoomType.CombatRegular:
@@ -298,8 +298,8 @@ public class RoomManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawns a portal that teleports the player into the linked special room.
-    /// Also prepares the return portal on the other side.
+    /// Spawns the entry portal in this room and sets up the full portal pair with the arena.
+    /// The return portal is created inside the arena and handed to it directly.
     /// </summary>
     private void SpawnEntryPortal()
     {
@@ -309,17 +309,21 @@ public class RoomManager : MonoBehaviour
         GameObject entryPortalObj = Instantiate(portalPrefab, spawnPos, Quaternion.identity);
 
         Portal entryPortal = entryPortalObj.GetComponent<Portal>();
+        entryPortal.OnPlayerTeleport += SetGatesOpen;
+
         if (entryPortal != null)
             entryPortal.SetDestination(linkedSpecialRoom.returnPoint);
 
-        returnPortalInstance = linkedSpecialRoom.PrepareReturnPortal(portalPrefab, returnPoint);
-        linkedSpecialRoom.ActivateAsLinkedSpecialRoom(agentPool, spawnConfig);
+        // Build the return portal inside the arena and pass it straight to the arena's RoomManager
+        // so it holds the reference and can activate it once the fight is over.
+        GameObject returnPortal = linkedSpecialRoom.BuildReturnPortal(portalPrefab, returnPoint);
+        linkedSpecialRoom.ActivateAsLinkedSpecialRoom(agentPool, spawnConfig, returnPortal);
     }
 
     /// <summary>
-    /// Creates the return portal inside the arena room, kept inactive until the fight is over.
+    /// Creates the return portal inside this room, inactive. Ownership stays with the caller.
     /// </summary>
-    public GameObject PrepareReturnPortal(GameObject prefab, Transform destination)
+    public GameObject BuildReturnPortal(GameObject prefab, Transform destination)
     {
         Vector3 spawnPos = portalSpawnPoint != null ? portalSpawnPoint.position : transform.position;
         GameObject obj = Instantiate(prefab, spawnPos, Quaternion.identity);
@@ -339,13 +343,15 @@ public class RoomManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Turns the out-of-bounds arena into an active combat room for the linked special encounter.
+    /// Turns this arena into an active combat room for the linked special encounter.
+    /// Receives the return portal reference so it can activate it once the fight is over.
     /// </summary>
-    public void ActivateAsLinkedSpecialRoom(AgentPoolManager pool, EnemySpawnConfig config)
+    public void ActivateAsLinkedSpecialRoom(AgentPoolManager pool, EnemySpawnConfig config, GameObject returnPortal)
     {
         agentPool = pool;
         spawnConfig = config;
         roomType = RoomType.Special;
+        returnPortalInstance = returnPortal;
         StartCoroutine(SpawnEnemiesRoutine());
     }
 
