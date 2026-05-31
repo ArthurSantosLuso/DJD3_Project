@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6566270300938232037}
   - component: {fileID: 7836260977902455013}
   - component: {fileID: 646960310129141451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5950037559485891138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: New Medium Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 2093655622764386499}
   - component: {fileID: 2399200176377075352}
   - component: {fileID: 4514137151196602373}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fooliage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

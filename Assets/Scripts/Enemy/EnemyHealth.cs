@@ -1,10 +1,11 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.Rendering;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : ValueBase, IDamageable
 {
+    public System.Action<EnemyHealth> OnDeath;
+
     private HitFlash hitFlash;
     private EnemyBaseAI enemyAI;
     private bool isArmUnplugged = false;
@@ -36,6 +37,8 @@ public class EnemyHealth : ValueBase, IDamageable
 
         hitFlash = GetComponent<HitFlash>();
         enemyAI = GetComponent<EnemyBaseAI>();
+
+        renderImage = GameObject.FindWithTag("Render Texture").GetComponent<RawImage>();
 
         // Cache the overlay canvas
         GameObject canvasObj = GameObject.FindWithTag(healthBarCanvasTag);
@@ -125,7 +128,8 @@ public class EnemyHealth : ValueBase, IDamageable
                 Instantiate(drops[0], transform.position, Quaternion.identity);
         }
 
-        GameManager.Instance.EnemyDeadCount++;
+        OnDeath?.Invoke(this);
+        // GameManager.Instance.EnemyDeadCount++;
         Destroy(gameObject);
     }
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8132924755759931685}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: New Tall Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5942887075407829421}
   - component: {fileID: 875147712695487825}
   - component: {fileID: 2618739456719087743}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 8177625310938644967}
   - component: {fileID: 1545287131516388383}
   - component: {fileID: 7059607755816998136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fooliage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
