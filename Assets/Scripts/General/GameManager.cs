@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject player;
 
+    public int TeddyBearCount { get; set; }
     public UIHandler UIHandler => uiHandler;
     public GameObject Player => player;
     public int EnemyDeadCount { get; set; }

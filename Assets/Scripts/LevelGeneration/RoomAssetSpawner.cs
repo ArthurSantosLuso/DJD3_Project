@@ -223,15 +223,20 @@ public class RoomAssetSpawner : MonoBehaviour
 
     /// <summary>
     /// Instantiate the asset inside the room.
+    /// Pick a random prefab from the category and rools its 'chanceToSpawn' before.
+    /// If the rools fails, the asset do not spawn.
     /// </summary>
     /// <param name="category">Asset category</param>
     /// <param name="worldPos">Position to be instantiated</param>
     private void InstantiateAsset(AssetCategory category, Vector3 worldPos)
     {
         // Randomly get one of the assets of the category
-        GameObject prefab = category.prefabs[Random.Range(0, category.prefabs.Length)];
+        AssetPrefab randAsset = category.prefabs[Random.Range(0, category.prefabs.Length)];
+
+        if (Random.value > randAsset.chanceToSpawn) return;
+
         // Randomly rotate the asset in Y to give an organic variety
-        GameObject obj = Instantiate(prefab, worldPos, Quaternion.Euler(0f, Random.Range(0f, 360f), prefab.transform.rotation.z));
+        GameObject obj = Instantiate(randAsset.prefab, worldPos, Quaternion.Euler(0f, Random.Range(0f, 360f), randAsset.prefab.transform.rotation.z));
 
         if (assetContainer != null)
             obj.transform.SetParent(assetContainer.transform);

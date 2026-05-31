@@ -11,7 +11,7 @@ public enum AssetPlacementType
 public class AssetCategory
 {
     public AssetPlacementType type;
-    public GameObject[] prefabs;
+    public AssetPrefab[] prefabs;
 
     [Min(0)] public int minCount = 1;
     [Min(0)] public int maxCount = 5;
@@ -21,4 +21,11 @@ public class AssetCategory
 public class RoomAssetConfig : ScriptableObject
 {
     public AssetCategory[] categories;
+}
+
+[System.Serializable]
+public struct AssetPrefab
+{
+    public GameObject prefab;
+    [Range(0f, 1f),] public float chanceToSpawn;
 }

@@ -12,7 +12,7 @@ public class AgentPoolManager : MonoBehaviour
     [SerializeField] private float spawnDuration = 5f;
     [Tooltip("Percentage of the total agents that will be Crew (0.0 to 1.0). The rest will be Robots")]
     [Range(0f, 1f)]
-    [SerializeField] private float crewRatio = 0.7f;
+    [SerializeField] private float meleeRatio = 0.7f;
 
     [Header("Spawn Locations")]
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
@@ -47,7 +47,7 @@ public class AgentPoolManager : MonoBehaviour
     /// </summary>
     private void PreWarmSimulation()
     {
-        int crewCount = Mathf.RoundToInt(totalAgentsToSpawn * crewRatio);
+        int crewCount = Mathf.RoundToInt(totalAgentsToSpawn * meleeRatio);
         int robotCount = totalAgentsToSpawn - crewCount;
 
         for (int i = 0; i < crewCount; i++)
