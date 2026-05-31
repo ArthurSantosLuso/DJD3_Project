@@ -8,6 +8,7 @@ TagManager:
   - EnemyHealthBarCanvas
   - Render Texture
   - UIManager
+  - Ammo Count
   layers:
   - Default
   - TransparentFX
