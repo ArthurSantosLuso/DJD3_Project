@@ -1,14 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/*
+This script handles:
+Spawning decorative and gameplay assets inside a room after it's placed in the world.
+Assets are split into three categories: collision objects (blocked near entrances),
+non-collision objects (placed anywhere), and lights (placed on the side of the correct-path entrances).
+*/
+
 public class RoomAssetSpawner : MonoBehaviour
 {
     // How deep into the room the forbidden rectangle extends from each entrance wall
     [SerializeField] private float entranceForbiddenDepth = 5f;
-
     [SerializeField] private float entranceClearance = 3f;
 
-    // Grid step used when sampling candidate positions across the full room interior
+    // Grid step used when sampling candidate positions across the room interior
     [SerializeField] private float roomSamplingStep = 2f;
 
     private float roomWidth;
@@ -19,7 +25,7 @@ public class RoomAssetSpawner : MonoBehaviour
     private RoomAssetConfig assetConfig;
 
     /// <summary>
-    /// Initialize the configuration for asset spawning
+    /// Sets up room data and triggers asset placement. Called by LevelGenerator after the room is spawned.
     /// </summary>
     public void InitializeAssets(
         float width, float depth,
@@ -42,18 +48,16 @@ public class RoomAssetSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Dispatch assets around the room.
+    /// Dispatches asset placement for each category in the config.
     /// </summary>
     private void SpawnAssets()
     {
-        // Do not spawn assets if no assetsConfig found
         if (assetConfig == null) return;
 
         foreach (AssetCategory category in assetConfig.categories)
         {
             if (category.prefabs == null || category.prefabs.Length == 0) continue;
 
-            // Randomly, within the min and max value indicated, pick an amount of assets to be spawnned 
             int count = Random.Range(category.minCount, category.maxCount + 1);
 
             switch (category.type)
@@ -72,10 +76,8 @@ public class RoomAssetSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Prepare collision assets for spawning.
+    /// Places assets that have collision. They don't spawn in forbidden zones around entrances.
     /// </summary>
-    /// <param name="category">Asset category</param>
-    /// <param name="count">Amout to spawn</param>
     private void SpawnCollisionAssets(AssetCategory category, int count)
     {
         List<Vector3> candidates = GenerateRoomCandidates();
@@ -84,25 +86,18 @@ public class RoomAssetSpawner : MonoBehaviour
         int spawned = 0;
         foreach (Vector3 localPos in candidates)
         {
-            // Spawn asset until the generated limit
             if (spawned >= count) break;
-            // Verify if the spawn position is inside the forbidden area
             if (!IsInsideEntranceForbiddenZone(localPos))
             {
-                // Call method to handle asset instantiation
                 InstantiateAsset(category, transform.TransformPoint(localPos));
-                // Increment support variable
                 spawned++;
             }
         }
     }
 
     /// <summary>
-    /// Prepare non collision assets for spawning.
-    /// These assets can be spawned in any part of the room, since they don't collide with the player
+    /// Places assets with no collision. These can go anywhere in the room since they don't block the player.
     /// </summary>
-    /// <param name="category">Assets category</param>
-    /// <param name="count">Amount to spawn</param>
     private void SpawnNoCollisionAssets(AssetCategory category, int count)
     {
         float halfW = roomWidth / 2f;
@@ -120,13 +115,10 @@ public class RoomAssetSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Prepate light assets for spawning. 
+    /// Places lights at fixed positions on the side of each entrance that leads toward the correct path.
     /// </summary>
-    /// <param name="category">Asset category</param>
-    /// <param name="count">Amout to spawn</param>
     private void SpawnLightAssets(AssetCategory category, int count)
     {
-        // Get the desired positions for the lights
         List<Vector3> positions = BuildLightPositions();
 
         int spawned = 0;
@@ -138,41 +130,36 @@ public class RoomAssetSpawner : MonoBehaviour
         }
     }
 
-    /// <returns>Returns world space positions on both side of every correct path entrance</returns>
+    /// <summary>
+    /// Builds world space light positions near every correct path entrance of this room.
+    /// </summary>
     private List<Vector3> BuildLightPositions()
     {
-        // list to be returned
         List<Vector3> positions = new List<Vector3>();
-        // Check if room has a corridor entrance that leads to correct the path
-        // If not, return an empty list
         if (correctPathExits == null) return positions;
 
         float halfW = roomWidth / 2f;
         float halfD = roomDepth / 2f;
-        float flankOffset = entranceClearance; // lateral distance from centre of corridor
+        float flankOffset = entranceClearance;
 
-        // North entrance
         if (correctPathExits.Contains(Vector2Int.up))
         {
             positions.Add(transform.TransformPoint(new Vector3(-flankOffset, 0f, halfD)));
             positions.Add(transform.TransformPoint(new Vector3(flankOffset, 0f, halfD)));
         }
 
-        // South entrance
         if (correctPathExits.Contains(Vector2Int.down))
         {
             positions.Add(transform.TransformPoint(new Vector3(-flankOffset, 0f, -halfD)));
             positions.Add(transform.TransformPoint(new Vector3(flankOffset, 0f, -halfD)));
         }
 
-        // East entrance
         if (correctPathExits.Contains(Vector2Int.right))
         {
             positions.Add(transform.TransformPoint(new Vector3(halfW, 0f, -flankOffset)));
             positions.Add(transform.TransformPoint(new Vector3(halfW, 0f, flankOffset)));
         }
 
-        // West entrance
         if (correctPathExits.Contains(Vector2Int.left))
         {
             positions.Add(transform.TransformPoint(new Vector3(-halfW, 0f, -flankOffset)));
@@ -183,9 +170,8 @@ public class RoomAssetSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Builds a grid of local space candidate possible positions for asset placement
+    /// Builds a grid of local space candidate positions covering the room floor.
     /// </summary>
-    /// <returns></returns>
     private List<Vector3> GenerateRoomCandidates()
     {
         List<Vector3> positions = new List<Vector3>();
@@ -193,21 +179,15 @@ public class RoomAssetSpawner : MonoBehaviour
         float halfD = roomDepth / 2f;
 
         for (float x = -halfW; x <= halfW; x += roomSamplingStep)
-        {
             for (float z = -halfD; z <= halfD; z += roomSamplingStep)
-            {
                 positions.Add(new Vector3(x, 0f, z));
-            }
-        }
 
         return positions;
     }
 
     /// <summary>
-    /// Check if the given position is inside of any entrance forbidden area.
+    /// Returns true if the given local position falls inside the forbidden zone of any entrance.
     /// </summary>
-    /// <param name="localPos">Position inside the room to be checked</param>
-    /// <returns>Returns true if the position falls inside the forbidden area.</returns>
     private bool IsInsideEntranceForbiddenZone(Vector3 localPos)
     {
         float halfW = roomWidth / 2f;
@@ -222,30 +202,24 @@ public class RoomAssetSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Instantiate the asset inside the room.
-    /// Pick a random prefab from the category and rools its 'chanceToSpawn' before.
-    /// If the rools fails, the asset do not spawn.
+    /// Picks a random prefab from the category and instantiates it, applying a random Y rotation.
+    /// Skips the spawn if the prefab's chance roll fails.
     /// </summary>
-    /// <param name="category">Asset category</param>
-    /// <param name="worldPos">Position to be instantiated</param>
     private void InstantiateAsset(AssetCategory category, Vector3 worldPos)
     {
-        // Randomly get one of the assets of the category
         AssetPrefab randAsset = category.prefabs[Random.Range(0, category.prefabs.Length)];
 
         if (Random.value > randAsset.chanceToSpawn) return;
 
-        // Randomly rotate the asset in Y to give an organic variety
-        GameObject obj = Instantiate(randAsset.prefab, worldPos, Quaternion.Euler(0f, Random.Range(0f, 360f), randAsset.prefab.transform.rotation.z));
+        GameObject obj = Instantiate(
+            randAsset.prefab,
+            worldPos,
+            Quaternion.Euler(0f, Random.Range(0f, 360f), randAsset.prefab.transform.rotation.z));
 
         if (assetContainer != null)
             obj.transform.SetParent(assetContainer.transform);
     }
 
-    /// <summary>
-    /// Shuffle a generic list
-    /// </summary>
-    /// <param name="list">List to be shuffled</param>
     private void Shuffle<T>(List<T> list)
     {
         for (int i = list.Count - 1; i > 0; i--)
@@ -260,7 +234,7 @@ public class RoomAssetSpawner : MonoBehaviour
         float halfW = roomWidth / 2f;
         float halfD = roomDepth / 2f;
 
-        // Light placement markers
+        // Correct path light positions
         if (correctPathExits != null)
         {
             Gizmos.color = Color.yellow;

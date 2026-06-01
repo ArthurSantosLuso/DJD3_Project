@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class MeleeEnemyAI : EnemyBaseAI
 {
-    int frameCount = 0;
+    
     protected override void Attack()
     {
         if (!CheckIfCanProceed())

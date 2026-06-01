@@ -12,7 +12,7 @@ public class RangedEnemyLightAttack : Ability
     [Header("Shotgun Settings")]
     [SerializeField] private int pelletsPerShot = 6;
     [SerializeField] private float spreadAngle = 15f;
-    [SerializeField] private float fireRate = 0.8f;
+    // [SerializeField] private float fireRate = 0.8f;
 
     public override float AbilityRange => throw new System.NotImplementedException();
 

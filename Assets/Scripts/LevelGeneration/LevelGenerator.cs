@@ -17,6 +17,7 @@ public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject treeContainer;
     [SerializeField] private GameObject assetContainer;
+    [SerializeField] private GameObject roomCorridorContainer;
 
     [Header("Generation Scaling")]
     [SerializeField] private int difficultyScale = 1;
@@ -39,8 +40,20 @@ public class LevelGenerator : MonoBehaviour
 
     [Header("Assets")]
     [SerializeField] private RoomAssetConfig defaultAssetConfig;
-    [SerializeField] private GameObject startRoomMarker;
-    [SerializeField] private GameObject endRoomMarker;
+
+    [Header("Player")]
+    [SerializeField] private GameObject playerPrefab;
+
+    [Header("Room Type Distribution")]
+    [SerializeField] private RoomTypeConfig roomTypeConfig;
+
+    [Header("Room Behaviour")]
+    [SerializeField] private AgentPoolManager agentPoolManager;
+    [SerializeField] private EnemySpawnConfig defaultEnemySpawnConfig;
+    [Tooltip("Prefabs used for out-of-bounds special rooms. One is picked at random per Special room.")]
+    [SerializeField] private GameObject[] specialRoomPrefabs;
+    [Tooltip("How far off the main level the out-of-bounds special rooms are placed.")]
+    [SerializeField] private float specialRoomOffset = 10000f;
 
     // 2d layout of the level
     private Dictionary<Vector2Int, RoomBlueprint> levelLayout = new Dictionary<Vector2Int, RoomBlueprint>();
@@ -62,6 +75,7 @@ public class LevelGenerator : MonoBehaviour
     /// </summary>
     private void GenerateLevel()
     {
+        difficultyScale = GameManager.Instance.TeddyBearCount;
         // Scale sizes and room amount based on difficulty
         int targetRoomCount = baseRoomCount + (difficultyScale * roomsPerScale);
         float minWidth = baseMinWidth + (difficultyScale * sizeIncreasePerScale);
@@ -70,8 +84,9 @@ public class LevelGenerator : MonoBehaviour
         // Determine the 2D layout of the level
         CreateLayoutBlueprint(targetRoomCount, minWidth, minDepth);
         DetermineEntrances();       // Set all entrances to all rooms
-        MarkStartAndEndRooms();     // sets IsStartRoom, IsEndRoom
+        MarkStartAndEndRooms();     // Sets IsStartRoom, IsEndRoom
         MarkCorrectPath();          // BFS* populates CorrectPathExits on every room
+        AssignRoomTypes();          // Distribute room types based on tiers and teddy bear count
         SpawnPhysicalLevel();       // Spawn the level itself to 3D world
     }
 
@@ -163,20 +178,22 @@ public class LevelGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// Flag initial and final room.
+    /// Flag initial and final room and assign their RoomTypes explicitly.
     /// Start is always the generation origin (point 0, 0, 0).
     /// End is the room furthest from initial room by Manhattan distance.
     /// </summary>
     private void MarkStartAndEndRooms()
     {
         levelLayout[Vector2Int.zero].IsStartRoom = true;
+        levelLayout[Vector2Int.zero].RoomType = RoomType.Initial;
 
         Vector2Int endPos = FindFarthestRoom();
         levelLayout[endPos].IsEndRoom = true;
+        levelLayout[endPos].RoomType = RoomType.Final;
     }
 
     /// <summary>
-    /// Look for the farthest room from point zero (intial room)
+    /// Look for the farthest room from point zero (initial room)
     /// </summary>
     /// <returns>Return farthest room from initial room.</returns>
     private Vector2Int FindFarthestRoom()
@@ -281,15 +298,78 @@ public class LevelGenerator : MonoBehaviour
         return null; // Disconnected graph, this shouldn't happen with this system, but just to make sure
     }
 
+
+    /// <summary>
+    /// Assigns a RoomType to every room in the layout.
+    /// Start and end rooms are always fixed. The remaining rooms are filled using
+    /// the exact counts from the matching RoomTypeTier. Everything else becomes CombatRegular.
+    /// </summary>
+    private void AssignRoomTypes()
+    {
+        if (roomTypeConfig == null)
+        {
+            Debug.LogWarning("RoomTypeConfig not assigned — all rooms will keep their default type.");
+            return;
+        }
+
+        // Collect every room that isn't start or end
+        List<Vector2Int> assignable = new List<Vector2Int>();
+        foreach (KeyValuePair<Vector2Int, RoomBlueprint> pair in levelLayout)
+        {
+            if (!pair.Value.IsStartRoom && !pair.Value.IsEndRoom)
+                assignable.Add(pair.Key);
+        }
+
+        if (assignable.Count == 0) return;
+
+        int teddyCount = GameManager.Instance.TeddyBearCount;
+        RoomTypeTier tier = roomTypeConfig.GetTierForTeddyCount(teddyCount);
+
+        if (tier == null)
+        {
+            Debug.LogWarning($"No matching RoomTypeTier for TeddyBearCount {teddyCount}.");
+            return;
+        }
+
+        // Shuffle so types are distributed randomly across the layout
+        ShuffleList(assignable);
+
+        int index = 0;
+        int roomCount = assignable.Count;
+
+        for (int i = 0; i < tier.specialRoomCount && index < roomCount; i++, index++)
+            levelLayout[assignable[index]].RoomType = RoomType.Special;
+
+        for (int i = 0; i < tier.lootRoomCount && index < roomCount; i++, index++)
+            levelLayout[assignable[index]].RoomType = RoomType.Loot;
+
+        // Every remaining room that isn't Initial, Final, Special or Loot becomes CombatRegular
+        while (index < roomCount)
+            levelLayout[assignable[index++]].RoomType = RoomType.CombatRegular;
+    }
+
+    private void ShuffleList(List<Vector2Int> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+
+
     /// <summary>
     /// Translates the 2D blueprint into actual GameObjects in the 3D world.
-    /// Spawns rooms, corridors, tree borders, assets, and role markers.
+    /// Spawns rooms, corridors, tree borders, assets, role markers, and wires up RoomManager.
     /// </summary>
     private void SpawnPhysicalLevel()
     {
         // Grid step is based on the largest room so no two rooms ever overlap
         float stepX = maxGeneratedWidth + minCorridorLength;
         float stepZ = maxGeneratedDepth + minCorridorLength;
+
+        // Counter used to space out-of-bounds special rooms apart from each other
+        int specialRoomIndex = 0;
 
         foreach (KeyValuePair<Vector2Int, RoomBlueprint> pair in levelLayout)
         {
@@ -300,7 +380,7 @@ public class LevelGenerator : MonoBehaviour
             Vector3 worldPos = new Vector3(gridPos.x * stepX, 0f, gridPos.y * stepZ);
 
             // Spawn the room prefab at the calculated world position
-            GameObject roomObj = Instantiate(roomPrefab, worldPos, Quaternion.identity);
+            GameObject roomObj = Instantiate(roomPrefab, worldPos, Quaternion.identity, roomCorridorContainer.transform);
             spawnedLevelObjects.Add(roomObj);
 
             // Hand off room dimensions and entrance flags to the tree border spawner
@@ -327,38 +407,44 @@ public class LevelGenerator : MonoBehaviour
                     defaultAssetConfig);
             }
 
-            // Spawn the start room marker at the room's centre
-            if (blueprint.IsStartRoom && startRoomMarker != null)
+            // Spawn Player at the room centre
+            if (blueprint.IsStartRoom && playerPrefab != null)
             {
-                GameObject marker = Instantiate(startRoomMarker, worldPos, Quaternion.identity);
-                spawnedLevelObjects.Add(marker);
+                GameObject player = Instantiate(playerPrefab, worldPos, Quaternion.identity);
+                spawnedLevelObjects.Add(player);
             }
 
-            // Spawn the end room marker at the room's centre
-            if (blueprint.IsEndRoom && endRoomMarker != null)
+            RoomManager roomManager = roomObj.GetComponent<RoomManager>();
+            if (roomManager != null)
             {
-                GameObject marker = Instantiate(endRoomMarker, worldPos, Quaternion.identity);
-                spawnedLevelObjects.Add(marker);
+                RoomManager linkedSpecial = null;
+
+                // For Special rooms, spawn the pre made room and get its RoomManager
+                if (blueprint.RoomType == RoomType.Special)
+                    linkedSpecial = SpawnOutOfBoundsSpecialRoom(specialRoomIndex++);
+
+                roomManager.InitializeRoom(
+                    blueprint.RoomType,
+                    blueprint.Width, blueprint.Depth,
+                    blueprint.EntranceNorth, blueprint.EntranceSouth,
+                    blueprint.EntranceEast, blueprint.EntranceWest,
+                    agentPoolManager, defaultEnemySpawnConfig, linkedSpecial);
             }
 
             // North corridor
             if (blueprint.EntranceNorth)
             {
                 RoomBlueprint northNeighbor = levelLayout[gridPos + Vector2Int.up];
-                // World position of the room directly above this one
                 Vector3 northNeighborWorldPos = new Vector3(gridPos.x * stepX, 0f, (gridPos.y + 1) * stepZ);
 
-                // Calculate the gap between the top edge of this room and the bottom edge of the neighbor
                 float currentRoomTopEdge = worldPos.z + (blueprint.Depth / 2f);
                 float neighborBottomEdge = northNeighborWorldPos.z - (northNeighbor.Depth / 2f);
                 float distance = neighborBottomEdge - currentRoomTopEdge;
 
-                // Place the corridor prefab centred in the gap
                 Vector3 corridorPos = new Vector3(worldPos.x, 0f, currentRoomTopEdge + (distance / 2f));
-                GameObject corridor = Instantiate(corridorPrefab, corridorPos, Quaternion.identity);
+                GameObject corridor = Instantiate(corridorPrefab, corridorPos, Quaternion.identity, roomCorridorContainer.transform);
                 spawnedLevelObjects.Add(corridor);
 
-                // Stretch the corridor prefab to exactly fill the gap
                 float scaleZ = distance / corridorPrefabLength;
                 corridor.transform.localScale = new Vector3(
                     corridor.transform.localScale.x,
@@ -370,20 +456,16 @@ public class LevelGenerator : MonoBehaviour
             if (blueprint.EntranceEast)
             {
                 RoomBlueprint eastNeighbor = levelLayout[gridPos + Vector2Int.right];
-                // World position of the room directly to the right of this one
                 Vector3 eastNeighborWorldPos = new Vector3((gridPos.x + 1) * stepX, 0f, gridPos.y * stepZ);
 
-                // Calculate the gap between the right edge of this room and the left edge of the neighbor
                 float currentRoomRightEdge = worldPos.x + (blueprint.Width / 2f);
                 float neighborLeftEdge = eastNeighborWorldPos.x - (eastNeighbor.Width / 2f);
                 float distance = neighborLeftEdge - currentRoomRightEdge;
 
-                // Place the corridor prefab centred in the gap, rotated 90° to run east-west
                 Vector3 corridorPos = new Vector3(currentRoomRightEdge + (distance / 2f), 0f, worldPos.z);
-                GameObject corridor = Instantiate(corridorPrefab, corridorPos, Quaternion.Euler(0f, 90f, 0f));
+                GameObject corridor = Instantiate(corridorPrefab, corridorPos, Quaternion.Euler(0f, 90f, 0f), roomCorridorContainer.transform);
                 spawnedLevelObjects.Add(corridor);
 
-                // Stretch the corridor prefab to exactly fill the gap
                 float scaleZ = distance / corridorPrefabLength;
                 corridor.transform.localScale = new Vector3(
                     corridor.transform.localScale.x,
@@ -391,5 +473,30 @@ public class LevelGenerator : MonoBehaviour
                     scaleZ);
             }
         }
+    }
+
+    private RoomManager SpawnOutOfBoundsSpecialRoom(int index)
+    {
+        if (specialRoomPrefabs == null || specialRoomPrefabs.Length == 0)
+        {
+            Debug.LogWarning("LevelGenerator: no special room prefabs assigned.");
+            return null;
+        }
+
+        // Pick a random special room prefab
+        GameObject prefab = specialRoomPrefabs[Random.Range(0, specialRoomPrefabs.Length)];
+
+        // Place each special room at a unique far-away position so they never overlap
+        Vector3 outOfBoundsPos = new Vector3(specialRoomOffset + index * 500f, 0f, 0f);
+
+        GameObject specialRoomObj = Instantiate(prefab, outOfBoundsPos, Quaternion.identity, roomCorridorContainer.transform);
+        spawnedLevelObjects.Add(specialRoomObj);
+
+        // Initialize the special room's own RoomManager — it runs its own combat independently
+        RoomManager specialManager = specialRoomObj.GetComponent<RoomManager>();
+        if (specialManager != null)
+            specialManager.InitializeRoom(RoomType.Special, 0f, 0f, false, false, false, false, agentPoolManager, defaultEnemySpawnConfig);
+
+        return specialManager;
     }
 }

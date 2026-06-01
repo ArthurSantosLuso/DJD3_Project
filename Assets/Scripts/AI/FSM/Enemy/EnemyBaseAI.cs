@@ -19,7 +19,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     [SerializeField]
     private string playerTag = "Player";
-        
+
     protected NavMeshAgent  agent;
     protected StateMachine  stateMachine;
     protected Animator      animator;

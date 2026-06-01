@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class ShotgunAttack : Ability
@@ -47,6 +49,7 @@ public class ShotgunAttack : Ability
             }
         }
 
+        ammoCountUI = GameObject.FindGameObjectWithTag("Ammo Count").GetComponent<TextMeshProUGUI>();
         currentAmmo = maxAmmo;
         ChangeAmmoUI();
     }

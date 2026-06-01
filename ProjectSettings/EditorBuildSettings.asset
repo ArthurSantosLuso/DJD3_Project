@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Official Scenes/Main Hall.unity
     guid: 3bb9e511dcb45e64782a259b232134af
   - enabled: 1
     path: Assets/Scenes/Official Scenes/PCG.unity
     guid: 656fe7b5cae4f8d43819b7402b221358
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Official Scenes/Playtest Scene.unity
     guid: 232a87488061b5f42848ea3dc781dd5d
   m_configObjects:

@@ -100,13 +100,15 @@ GameObject:
   m_Component:
   - component: {fileID: 6423119701326435154}
   - component: {fileID: 9043586927679719448}
+  - component: {fileID: 4100574766939528380}
+  - component: {fileID: 7135893427409304344}
   m_Layer: 0
   m_Name: Teddy Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6423119701326435154
 Transform:
   m_ObjectHideFlags: 0
@@ -115,7 +117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2598841063656327477}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 138.11908, y: 3.993, z: -40.16721}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
@@ -137,3 +139,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Rotator
   rotation: {x: 0, y: 35, z: 0}
   speed: 2
+--- !u!114 &4100574766939528380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2598841063656327477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a64470323608d4a8a00b7c959b03cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeddyBear
+  isAutomatic: 1
+  interactionHint: {fileID: 0}
+  sceneToOpen: Main Hall
+--- !u!65 &7135893427409304344
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2598841063656327477}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020067438, y: 0.020832095, z: 0.010081939}
+  m_Center: {x: -0.00009872675, y: 0.010018436, z: -0.00049205776}

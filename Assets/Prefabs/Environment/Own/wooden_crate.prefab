@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 746195512292667744}
   - component: {fileID: 1319256665938447795}
   - component: {fileID: 965723693325803128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898495116197729954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wooden_crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

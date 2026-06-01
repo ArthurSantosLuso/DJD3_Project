@@ -45,6 +45,7 @@ public class Bullet : MonoBehaviour
         if (damageable != null) Instantiate(bloodEffectPrefab, other.ClosestPoint(transform.position), Quaternion.identity);
 
         hasHit = true;
+        Debug.Log($"Acertei isso: {other.gameObject.name}");
         Destroy(gameObject);
     }
 }
