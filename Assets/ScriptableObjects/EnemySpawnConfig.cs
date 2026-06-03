@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemySpawnEntry
 {
     public EnemyType type;
-    [Min(1)] public int minCount;
+    [Min(0)] public int minCount;
     [Min(1)] public int maxCount;
 }
 [System.Serializable]

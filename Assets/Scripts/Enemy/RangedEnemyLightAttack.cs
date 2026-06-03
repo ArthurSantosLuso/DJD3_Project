@@ -12,7 +12,6 @@ public class RangedEnemyLightAttack : Ability
     [Header("Shotgun Settings")]
     [SerializeField] private int pelletsPerShot = 6;
     [SerializeField] private float spreadAngle = 15f;
-    // [SerializeField] private float fireRate = 0.8f;
 
     public override float AbilityRange => throw new System.NotImplementedException();
 
@@ -32,19 +31,23 @@ public class RangedEnemyLightAttack : Ability
     {
         Vector3 spawnPosition = firePoint != null ? firePoint.position : transform.position;
 
-        GameObject player = GameManager.Instance.Player;
-
         for (int i = 0; i < pelletsPerShot; i++)
         {
-            Vector3 dirToPlayer = (player.transform.position - spawnPosition).normalized;
+            // FIX: Use firePoint.forward (which is kept aimed at the player by
+            // RangedEnemyAI.Attack) and spread around Y/X axes — exactly how
+            // ShotgunAttack works. Previously this used a raw world-space
+            // dirToPlayer rotated on the Z axis, which tilted bullets sideways
+            // instead of spreading them, and caused downward shots when the
+            // enemy wasn't rotated.
+            float randomX = Random.Range(-spreadAngle, spreadAngle);
+            float randomY = Random.Range(-spreadAngle, spreadAngle);
+            Vector3 spreadDirection = Quaternion.Euler(randomX, randomY, 0f) * firePoint.forward;
 
-            Vector3 spreadDir = Quaternion.Euler(
-                Random.Range(-spreadAngle, spreadAngle),
-                Random.Range(-spreadAngle, spreadAngle),
-                0f) * dirToPlayer;
-
-            GameObject p = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
-            p.GetComponent<Bullet>().Initialize(spreadDir, bulletSpeed, damageAmount, gameObject);
+            // FIX: Give the bullet a proper rotation so its own forward axis
+            // matches the travel direction. Quaternion.identity left the bullet
+            // facing world-forward regardless of where it was going.
+            GameObject p = Instantiate(bulletPrefab, spawnPosition, Quaternion.LookRotation(spreadDirection));
+            p.GetComponent<Bullet>().Initialize(spreadDirection, bulletSpeed, damageAmount, gameObject);
         }
     }
 

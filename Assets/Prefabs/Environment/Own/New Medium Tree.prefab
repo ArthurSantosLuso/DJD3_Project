@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6566270300938232037}
   - component: {fileID: 7836260977902455013}
   - component: {fileID: 646960310129141451}
+  - component: {fileID: 1062260058258082813}
   m_Layer: 7
   m_Name: trunk
   m_TagString: Untagged
@@ -90,6 +91,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1062260058258082813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621171507052030444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43005b896c002dc49bae72e5cdc4288e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeObstacle
+  fadeDuration: 0.3
+  fadeOutAlpha: 0.2
 --- !u!1 &4079277761284186498
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5950037559485891138}
   - component: {fileID: 8749839795340938346}
+  - component: {fileID: 2173497540016877950}
   m_Layer: 7
   m_Name: New Medium Tree
   m_TagString: Untagged
@@ -145,6 +161,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4.3376136, z: 1}
   m_Center: {x: 0, y: 1.6688068, z: 0}
+--- !u!114 &2173497540016877950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4079277761284186498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5ab37a9c05175428b9a54a709b2fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeObstacleGroup
 --- !u!1 &7039008560606694395
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +184,7 @@ GameObject:
   - component: {fileID: 2093655622764386499}
   - component: {fileID: 2399200176377075352}
   - component: {fileID: 4514137151196602373}
+  - component: {fileID: 577216892851943752}
   m_Layer: 7
   m_Name: fooliage
   m_TagString: Untagged
@@ -235,3 +264,17 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &577216892851943752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7039008560606694395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43005b896c002dc49bae72e5cdc4288e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeObstacle
+  fadeDuration: 0.3
+  fadeOutAlpha: 0.2

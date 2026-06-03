@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
   gatePrefab: {fileID: 2409804933913066556, guid: f4eacce6e6a5a3342a9b9cd7445822b3, type: 3}
-  delayBetweenSpawns: 0.4
+  delayBetweenSpawns: 1
   spawnMargin: 3
   entranceClearance: 3
   portalSpawnPoint: {fileID: 4036751812577265684}

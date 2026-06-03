@@ -346,14 +346,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c01159d2d855e7429c0faac50db4a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemyLightAttack
+  actionAudio: {fileID: 0}
   staminaCost: 0
-  bulletPrefab: {fileID: 3578186228901806580, guid: 8fbab20d41e04a2489c0359eaa0cee41, type: 3}
+  bulletPrefab: {fileID: 3578186228901806580, guid: 7efab60bb156f4440a5d45cafeee6f6a, type: 3}
   firePoint: {fileID: 453367342399248595}
   bulletSpeed: 20
-  damageAmount: 25
+  damageAmount: 15
   pelletsPerShot: 1
   spreadAngle: 0
-  fireRate: 0.8
 --- !u!1 &1573188595982802008
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,13 +473,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2801942842278862689}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.21632959, y: 0.67320246, z: -0.20886715, w: 0.67555505}
-  m_LocalPosition: {x: 0, y: 0.00002, z: -0.00075}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.557, z: 0.111}
+  m_LocalScale: {x: 100.00005, y: 100.00003, z: 100.00004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6622382234184061853}
-  m_LocalEulerAnglesHint: {x: -0.634, y: 90, z: -34.995}
+  m_Father: {fileID: 5471556577268729112}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3026271631691205910
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +798,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 453367342399248595}
   - {fileID: 3709742721324986448}
   - {fileID: 5431080338393827592}
   m_Father: {fileID: 9034703961091173595}
@@ -1347,6 +1346,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 453367342399248595}
   - {fileID: 1356265091478285108}
   - {fileID: 2026136619510888026}
   m_Father: {fileID: 0}
@@ -1475,6 +1475,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxValue: 100
   startsWith: 100
+  shouldArmUnplug: 0
+  armUnplugged: {fileID: 0}
+  originalArm: {fileID: 0}
+  drops: []
+  dropRate: 0
+  healthBarPrefab: {fileID: 0}
+  renderImage: {fileID: 0}
+  healthBarCanvasTag: EnemyHealthBarCanvas
 --- !u!114 &6582839512138918776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,11 +1509,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debb02b008306644b80457268ce00e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemyAI
-  moveSpeed: 2
+  moveSpeed: 1.2
   attackRange: 5
-  avoindanceRange: 3
+  avoindanceRange: 2
   timeToAttack: 2
+  staggerTime: 0.6
+  fleeDelay: 1
   playerTag: Player
+  rotationSpeed: 8
 --- !u!1 &8449708689574852122
 GameObject:
   m_ObjectHideFlags: 0

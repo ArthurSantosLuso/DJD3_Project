@@ -16,18 +16,20 @@ public abstract class EnemyBaseAI : MonoBehaviour
     protected float timeToAttack = 0.1f;
     [SerializeField, Min(0.1f)]
     protected float staggerTime = 0.1f;
+    [SerializeField, Min(0f)]
+    private float fleeDelay = 1.5f; // seconds inside avoidance range before fleeing
 
     [SerializeField]
     private string playerTag = "Player";
 
-    protected NavMeshAgent  agent;
-    protected StateMachine  stateMachine;
-    protected Animator      animator;
-    protected GameObject    target;
-    protected float         timer;
-    //protected bool          isAttackState = false;
-    private float           defaultStoppingDistance;
-    private bool            isStaggered = false;
+    protected NavMeshAgent agent;
+    protected StateMachine stateMachine;
+    protected Animator animator;
+    protected GameObject target;
+    protected float timer;
+    private float defaultStoppingDistance;
+    private bool isStaggered = false;
+    private float fleeDelayTimer = 0f; // counts up while inside avoidance range
 
 
     // ==== Setup =================================
@@ -36,8 +38,6 @@ public abstract class EnemyBaseAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
-        // Stopping distance needs to be smaller than attack range.
-        // This ensure the enemy actually enters the attack range zone.
         agent.stoppingDistance = attackRange * 0.8f;
         defaultStoppingDistance = agent.stoppingDistance;
         animator = GetComponent<Animator>();
@@ -60,22 +60,42 @@ public abstract class EnemyBaseAI : MonoBehaviour
     {
         State staggerState = CreateStaggerState();
 
-        chaseState.AddTransition(new Transition(() => isStaggered, null, staggerState));
-        attackState.AddTransition(new Transition(() => isStaggered, null, staggerState));
+        // FIX: Validate that avoindanceRange makes sense relative to attackRange.
+        // If avoidance >= attack range the enemy would immediately flee the moment
+        // it could attack, and never actually attack. Clamp it or disable it.
+        if (avoindanceRange > 0f && avoindanceRange >= attackRange)
+        {
+            Debug.LogWarning($"[{gameObject.name}] avoindanceRange ({avoindanceRange}) must be " +
+                             $"smaller than attackRange ({attackRange}). Avoidance disabled.");
+            avoindanceRange = 0f;
+        }
 
-        staggerState.AddTransition(new Transition(IsStaggerOver, null, chaseState));
+        // FIX: Transition priority matters — the FSM takes the FIRST transition
+        // whose condition is true. Previous order put stagger at the top so it
+        // shadowed everything else in the same frame. New order:
+        //   1. Attack / avoidance  (gameplay-critical)
+        //   2. Stagger             (reaction, lower priority)
+        //
+        // Chase state transitions
+        chaseState.AddTransition(new Transition(IsInRange, null, attackState));
 
         if (avoindanceRange > 0f)
         {
             State runawayState = CreateRunawayState();
 
-            chaseState.AddTransition(new Transition(IsInAvoidanceRange, null, runawayState));
-            attackState.AddTransition(new Transition(IsInAvoidanceRange, null, runawayState));
+            // The transition fires only after the enemy has been inside the
+            // avoidance zone continuously for fleeDelay seconds.
+            // IsInAvoidanceRange still guards the timer so it resets the
+            // moment the player steps out, preventing a stale countdown.
+            chaseState.AddTransition(new Transition(ShouldFlee, null, runawayState));
+            attackState.AddTransition(new Transition(ShouldFlee, null, runawayState));
             runawayState.AddTransition(new Transition(() => !IsInAvoidanceRange(), null, chaseState));
         }
 
-        chaseState.AddTransition(new Transition(IsInRange, null, attackState));
+        chaseState.AddTransition(new Transition(() => isStaggered, null, staggerState));
         attackState.AddTransition(new Transition(() => !IsInRange(), null, chaseState));
+        attackState.AddTransition(new Transition(() => isStaggered, null, staggerState));
+        staggerState.AddTransition(new Transition(IsStaggerOver, null, chaseState));
     }
 
     // ==== Update =================================
@@ -105,6 +125,14 @@ public abstract class EnemyBaseAI : MonoBehaviour
         {
             agent.SetDestination(target.transform.position);
         }
+
+        // Tick the flee delay while the player is inside the avoidance zone.
+        // Reset it as soon as they step out, so the countdown only counts
+        // continuous exposure — not accumulated time across separate encounters.
+        if (IsInAvoidanceRange())
+            fleeDelayTimer += Time.deltaTime;
+        else
+            fleeDelayTimer = 0f;
     }
 
     protected virtual void StopChasing()
@@ -122,8 +150,6 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     private void StartAttacking()
     {
-        //isAttackState = true;
-
         agent.isStopped = true;
         agent.ResetPath();
         agent.velocity = Vector3.zero;
@@ -133,9 +159,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     private void StopAttacking()
     {
-        //isAttackState = false;
         timer = 0f;
-
         agent.isStopped = false;
     }
 
@@ -147,6 +171,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     private void StartRunaway()
     {
+        fleeDelayTimer = 0f; // reset so returning to chase doesn't instantly flee again
         agent.isStopped = false;
         agent.stoppingDistance = 0f;
     }
@@ -168,7 +193,6 @@ public abstract class EnemyBaseAI : MonoBehaviour
     {
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
-
         agent.stoppingDistance = defaultStoppingDistance;
     }
 
@@ -227,6 +251,29 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
         float distance = Vector3.Distance(target.transform.position, transform.position);
         return distance <= avoindanceRange;
+    }
+
+    // Returns true only after the enemy has been inside the avoidance zone
+    // for at least fleeDelay seconds. The timer is ticked by Chase() and
+    // TickFleeTimer() so both the chase and attack states contribute.
+    private bool ShouldFlee()
+    {
+        if (!IsInAvoidanceRange())
+        {
+            fleeDelayTimer = 0f;
+            return false;
+        }
+        return fleeDelayTimer >= fleeDelay;
+    }
+
+    // Called every frame by the attack state action so the flee delay also
+    // accumulates while the enemy is standing still and shooting.
+    protected void TickFleeTimer()
+    {
+        if (IsInAvoidanceRange())
+            fleeDelayTimer += Time.deltaTime;
+        else
+            fleeDelayTimer = 0f;
     }
 
     protected bool CheckIfCanProceed()

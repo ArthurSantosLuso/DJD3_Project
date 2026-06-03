@@ -42,7 +42,10 @@ public class Bullet : MonoBehaviour
 
         IDamageable damageable = other.GetComponent<IDamageable>();
         damageable?.Damage(damage);
-        if (damageable != null) Instantiate(bloodEffectPrefab, other.ClosestPoint(transform.position), Quaternion.identity);
+        if (damageable != null && bloodEffectPrefab != null)
+        {
+            Instantiate(bloodEffectPrefab, other.ClosestPoint(transform.position), Quaternion.identity);
+        }
 
         hasHit = true;
         Debug.Log($"Acertei isso: {other.gameObject.name}");

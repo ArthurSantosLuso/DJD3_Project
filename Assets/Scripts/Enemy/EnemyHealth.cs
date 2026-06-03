@@ -32,8 +32,11 @@ public class EnemyHealth : ValueBase, IDamageable
 
     private void Start()
     {
-        armUnplugged.SetActive(false);
-        originalArm.SetActive(true);
+        if (shouldArmUnplug)
+        {
+            armUnplugged?.SetActive(false);
+            originalArm.SetActive(true);
+        }
 
         hitFlash = GetComponent<HitFlash>();
         enemyAI = GetComponent<EnemyBaseAI>();

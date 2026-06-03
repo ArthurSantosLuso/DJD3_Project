@@ -42,7 +42,7 @@ MonoBehaviour:
     - prefab: {fileID: 6691400623961090714, guid: 9cc2505f08c947a4f9c68880f3118d73, type: 3}
       chanceToSpawn: 0.5
     minCount: 100
-    maxCount: 150
+    maxCount: 120
   - type: 2
     prefabs:
     - prefab: {fileID: 5295474234164754524, guid: 316325ef7c645ed4da7d9104452af847, type: 3}
