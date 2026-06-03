@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SmallTreeMat
+  m_Name: MediumTreeMat
   m_Shader: {fileID: -6465566751694194690, guid: 5e2eeae5b800c554f9614e922c66cb8e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -113,18 +113,18 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WindStrenght: 0.07
+    - _WindStrenght: 0.11
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BottomColor: {r: 0, g: 0.03976665, b: 0.09411765, a: 1}
+    - _BottomColor: {r: 0.012424285, g: 0, b: 0.027830176, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TopColor: {r: 0, g: 0.025471702, b: 0.016981136, a: 1}
-    - _WindMovement: {r: 0.05, g: 0.03, b: 0, a: 0}
+    - _TopColor: {r: 0.009803922, g: 0.021975247, b: 0.039215688, a: 1}
+    - _WindMovement: {r: 0.05, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7204609246284127224
