@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RotateToFaceMouse : MonoBehaviour
+public class RotateToFaceMouse : PausableMonoBehaviour
 {
     [Header("Settings")]
     // [SerializeField] private float minDistance = 1f;

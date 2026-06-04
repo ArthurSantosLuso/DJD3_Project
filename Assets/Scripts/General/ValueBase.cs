@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class ValueBase : MonoBehaviour
+public abstract class ValueBase : PausableMonoBehaviour
 {
     // Script base for systems that the main objective is to use a value for something.
     // Example: Health and Stamina

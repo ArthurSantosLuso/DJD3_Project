@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using static UnityEngine.UI.GridLayoutGroup;
 
-public class Interactor : MonoBehaviour
+public class Interactor : PausableMonoBehaviour
 {
     private Character character;
     private Interactable currentInteractable;

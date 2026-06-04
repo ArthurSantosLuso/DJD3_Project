@@ -2,11 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PausableMonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 6f;
-    // [SerializeField] private float rotationSpeed = 15f;
 
     [Header("Sprint Settings")]
     [SerializeField] private float sprintMultiplier;
@@ -35,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private float verticalVelocity = 0f;
 
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
@@ -47,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             cameraTransform = Camera.main.transform;
     }
 
-    void Update()
+    private void Update()
     {
         ApplyGravity();
 
@@ -61,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
     }
 
-    void ApplyGravity()
+    private void ApplyGravity()
     {
         if (controller.isGrounded && verticalVelocity < 0f)
         {
@@ -75,9 +74,9 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(new Vector3(0f, verticalVelocity, 0f) * Time.deltaTime);
     }
 
-    void HandleMovement()
+    private void HandleMovement()
     {
-        Vector2 moveInput = input.moveInput;
+        Vector2 moveInput = input.MoveInput;
 
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
@@ -88,12 +87,23 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
 
-        bool isSprinting = input.sprintHeld && moveInput != Vector2.zero && stamina.HasStamina(0.01f);
+        bool isSprinting;
+        if (character.ShouldUseStamina)
+        {
+            isSprinting = input.SprintHeld && moveInput != Vector2.zero && stamina.HasStamina(0.01f);
+        }
+        else
+        {
+            isSprinting = input.SprintHeld && moveInput != Vector2.zero;
+        }
 
-        if (isSprinting && !wasSprinting)
-            stamina.StartConsuming(sprintStaminaCostPerSecond);
-        else if (!isSprinting && wasSprinting)
-            stamina.StopConsuming();
+        if (character.ShouldUseStamina)
+        {
+            if (isSprinting && !wasSprinting)
+                stamina.StartConsuming(sprintStaminaCostPerSecond);
+            else if (!isSprinting && wasSprinting)
+                stamina.StopConsuming();
+        }
 
         wasSprinting = isSprinting;
 
@@ -115,9 +125,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isDashing) return false;
         if (Time.time < lastDashTime + dashCooldown) return false;
-        if (!stamina.HasStamina(dashStaminaCost)) return false;
+        if (character.ShouldUseStamina && !stamina.HasStamina(dashStaminaCost)) return false;
 
-        Vector2 moveInput = input.moveInput;
+        Vector2 moveInput = input.MoveInput;
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
         camForward.y = 0;
@@ -129,7 +139,9 @@ public class PlayerMovement : MonoBehaviour
         if (dashDirection == Vector3.zero)
             dashDirection = transform.forward;
 
-        stamina.UseStamina(dashStaminaCost);
+        if (character.ShouldUseStamina) 
+            stamina.UseStamina(dashStaminaCost);
+
         animator.SetTrigger("Dash");
         StartCoroutine(DashCoroutine(dashDirection));
         return true;
@@ -157,9 +169,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanMove()
     {
-        if (character.CharacterState == Character.State.Attacking ||
-            character.CharacterState == Character.State.Lunging)
-            return false;
+        if (character.ShouldAttack)
+        {
+            if (character.CharacterState == Character.State.Attacking)
+                return false;
+        }
 
         return true;
     }

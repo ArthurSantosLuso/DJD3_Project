@@ -44,7 +44,7 @@ public class PlayerHealth : ValueBase, IDamageable, IHealable
     private void KillPlayer()
     {
         // Death logic
-        GameManager.Instance.DisplayDeathScreen();
+        LevelManager.Instance.DisplayDeathScreen();
         GameManager.Instance.StopPlayerActions();
     }
 
