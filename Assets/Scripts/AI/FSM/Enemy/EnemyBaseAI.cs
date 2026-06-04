@@ -47,7 +47,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     public void Initialize()
     {
-        target = GameManager.Instance.Player;
+        target = LevelManager.Instance.Player;
         State chaseState = CreateChaseState();
         State attackState = CreateAttackState();
 
