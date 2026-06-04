@@ -88,6 +88,8 @@ public class LevelGenerator : MonoBehaviour
         MarkCorrectPath();          // BFS* populates CorrectPathExits on every room
         AssignRoomTypes();          // Distribute room types based on tiers and teddy bear count
         SpawnPhysicalLevel();       // Spawn the level itself to 3D world
+
+        LevelManager.Instance.LevelGenerationFinished();
     }
 
 
