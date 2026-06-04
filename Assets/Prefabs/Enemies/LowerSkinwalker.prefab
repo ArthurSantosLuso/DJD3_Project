@@ -983,6 +983,7 @@ MonoBehaviour:
   avoindanceRange: 0
   timeToAttack: 0.2
   staggerTime: 0.6
+  fleeDelay: 1.5
   playerTag: Player
 --- !u!114 &258744460292062719
 MonoBehaviour:
@@ -997,6 +998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
   shouldConsiderInteractable: 0
+  shouldAttack: 1
+  shouldUseStamina: 1
+  shouldUseHealth: 1
   weapons:
   - {fileID: 8691719694950486527}
   valuesBase: []

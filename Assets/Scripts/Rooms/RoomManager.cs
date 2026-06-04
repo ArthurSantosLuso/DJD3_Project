@@ -182,10 +182,10 @@ public class RoomManager : MonoBehaviour
             yield break;
         }
 
-        EnemySpawnTier tier = spawnConfig.GetTierForTeddyCount(GameManager.Instance.TeddyBearCount);
+        EnemySpawnTier tier = spawnConfig.GetTierForTeddyCount(LevelManager.Instance.TeddyBearCount);
         if (tier == null)
         {
-            Debug.LogWarning($"{gameObject.name}: no matching spawn tier for TeddyBearCount {GameManager.Instance.TeddyBearCount}.");
+            Debug.LogWarning($"{gameObject.name}: no matching spawn tier for TeddyBearCount {LevelManager.Instance.TeddyBearCount}.");
             yield break;
         }
 

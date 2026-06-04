@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using Unity.AI.Navigation;
 using UnityEngine;
 
+[RequireComponent(typeof(LevelGenerator))]
 public class LevelManager : MonoBehaviour
 {
     #region Singleton
@@ -32,14 +33,23 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
+    [SerializeField] private IsometricFollowCamera      followCamera;
+    [SerializeField] private UIHandler                  uiHandler;
+    [SerializeField] private LevelGenerator             levelGenerator;
+    [SerializeField] private NavMeshSurface             navMeshSurface;
+
     private int                     currentTeddyBearValue;
     private GameObject              playerGameObject;
-    private UIHandler               uiHandler;
-    private IsometricFollowCamera   followCamera;
-    private NavMeshSurface          navMeshSurface;
 
     public int TeddyBearCount => currentTeddyBearValue;
     public GameObject Player => playerGameObject;
+
+    private void Start()
+    {
+        if (levelGenerator == null) levelGenerator = GetComponent<LevelGenerator>();
+        currentTeddyBearValue = GameManager.Instance.TeddyBearCount;
+        levelGenerator.GenerateLevel();
+    }
 
     public void LevelGenerationFinished()
     {
@@ -58,6 +68,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private void InitializePlayer()
     {
+        Character playerCharacter = playerGameObject.GetComponent<Character>();
         PlayerHealth health = playerGameObject.GetComponent<PlayerHealth>();
         PlayerStamina stamina = playerGameObject.GetComponent<PlayerStamina>();
         PlayerInput input = playerGameObject.GetComponent<PlayerInput>();
@@ -68,6 +79,13 @@ public class LevelManager : MonoBehaviour
 
         uiHandler.SetBarValue(0, health.CurrentValue, health.MaxValue);
         uiHandler.SetBarValue(1, stamina.CurrentValue, stamina.MaxValue);
+
+        IAmmoProvider shotgun = playerGameObject.GetComponentInChildren<IAmmoProvider>();
+
+        if (shotgun != null)
+        {
+            shotgun.OnAmmoChanged += uiHandler.UpdateAmmoText;
+        }
     }
 
     public void FinishLevel()

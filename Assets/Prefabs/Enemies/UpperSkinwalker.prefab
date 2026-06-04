@@ -1458,6 +1458,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
   shouldConsiderInteractable: 0
+  shouldAttack: 1
+  shouldUseStamina: 1
+  shouldUseHealth: 1
   weapons:
   - {fileID: 3924676849034621009}
   valuesBase: []

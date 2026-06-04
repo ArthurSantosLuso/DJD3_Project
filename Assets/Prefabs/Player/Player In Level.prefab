@@ -2713,14 +2713,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64feee344361ca84cb8fec7609685a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
-  stamina: {fileID: 6904288365995020383}
-  health: {fileID: 2906243175527941112}
   uiHandler: {fileID: 0}
   shakeIntensity: 0.5
   shakeDuration: 0.2
   shakeDelay: 0.2
-  moveInput: {x: 0, y: 0}
-  sprintHeld: 0
 --- !u!114 &8710365890412805747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2790,6 +2786,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
   shouldConsiderInteractable: 1
+  shouldAttack: 1
+  shouldUseStamina: 1
+  shouldUseHealth: 1
   weapons:
   - {fileID: 7370183687060323135}
   - {fileID: 2674703153491739659}
