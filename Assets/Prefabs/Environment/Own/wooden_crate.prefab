@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 746195512292667744}
   - component: {fileID: 1319256665938447795}
   - component: {fileID: 965723693325803128}
+  - component: {fileID: 5070109801335823623}
   m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
@@ -112,6 +113,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0383759, y: 1.1520243, z: 1.1721125}
   m_Center: {x: 0.0039310455, y: -0.0043389797, z: 0.024350643}
+--- !u!114 &5070109801335823623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4755744594407333447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43005b896c002dc49bae72e5cdc4288e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeObstacle
+  fadeDuration: 0.3
+  fadeOutAlpha: 0.2
 --- !u!1 &6468775712958346101
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +136,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898495116197729954}
+  - component: {fileID: 6143998048502640732}
+  - component: {fileID: 8395600748145652918}
   m_Layer: 7
   m_Name: wooden_crate
   m_TagString: Untagged
@@ -136,7 +153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6468775712958346101}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -144,3 +161,36 @@ Transform:
   - {fileID: 6075956137487603919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6143998048502640732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6468775712958346101}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8395600748145652918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6468775712958346101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5ab37a9c05175428b9a54a709b2fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeObstacleGroup

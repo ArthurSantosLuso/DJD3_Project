@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,18 +10,21 @@ public class UIHandler : MonoBehaviour
     private List<Image> bars;
 
     [Space]
+    [Header("Screens")]
+    [SerializeField]
+    private GameObject pausePanel;
     [SerializeField]
     private GameObject interactionPanel;
     [SerializeField]
     private GameObject deathScreen;
 
+    [Header("Weapons UI")]
     [SerializeField]
     private GameObject axeIcon;
     [SerializeField]
     private GameObject shotgunIcon;
-
     [SerializeField]
-    private GameObject pausePanel;
+    private TextMeshProUGUI shotgunAmmoCount;
 
     public void SetBarValue(int barIdx, float currentValue, float maxValue)
     {
@@ -65,4 +69,20 @@ public class UIHandler : MonoBehaviour
             GameManager.Instance.StopPlayerActions();
         else GameManager.Instance.ActivatePlayerActions();
     }
+
+    public void UpdateAmmoText(int current, int max)
+    {
+        if (shotgunAmmoCount != null)
+        {
+            shotgunAmmoCount.text = $"{current}/{max}";
+        }
+    }
+
+    //public void ToggleAmmoVisibility(bool isVisible)
+    //{
+    //    if (shotgunAmmoCount != null)
+    //    {
+    //        shotgunAmmoCount.gameObject.SetActive(isVisible);
+    //    }
+    //}
 }

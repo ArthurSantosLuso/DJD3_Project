@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerStamina stamina;
-    [SerializeField]
-    private PlayerHealth health;
+    //[SerializeField]
+    //private PlayerStamina stamina;
+    //[SerializeField]
+    //private PlayerHealth health;
     [SerializeField]
     private UIHandler uiHandler;
     [SerializeField] 
@@ -22,16 +22,18 @@ public class PlayerInput : MonoBehaviour
     private Character character;
     private PlayerMovement playerMovement;
     private Interactor interactor;
+    
+    
+    public Vector2 MoveInput { get; private set; }
+    public bool SprintHeld { get; private set; }
 
-    public Vector2 moveInput;
-    public bool sprintHeld;
 
     public Action OnWeaponChange;
 
     private void Start()
     {
         uiHandler = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIHandler>();
-        stamina = GetComponent<PlayerStamina>();
+        // stamina = GetComponent<PlayerStamina>();
         character = GetComponent<Character>();
         playerMovement = GetComponent<PlayerMovement>();
         interactor = GetComponent<Interactor>();
@@ -93,7 +95,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (!VerifyIfPlayerCanAct()) return;
 
-        moveInput = context.ReadValue<Vector2>();
+        MoveInput = context.ReadValue<Vector2>();
     }
 
     public void OnSprint(InputAction.CallbackContext context)
@@ -101,9 +103,9 @@ public class PlayerInput : MonoBehaviour
         if (!VerifyIfPlayerCanAct()) return;
 
         if (context.phase == InputActionPhase.Performed)
-            sprintHeld = true;
+            SprintHeld = true;
         else if (context.phase == InputActionPhase.Canceled)
-            sprintHeld = false;
+            SprintHeld = false;
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -130,15 +132,15 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    // >>>>>>>>>>>>>>> Temporary <<<<<<<<<<<<<<<<<<
-    public void OnInfiniteStamina(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            stamina.InfiniteStamina();
-            health.InfiniteHealth();
-        }
-    }
+    //// >>>>>>>>>>>>>>> Temporary <<<<<<<<<<<<<<<<<<
+    //public void OnInfiniteStamina(InputAction.CallbackContext context)
+    //{
+    //    if (context.phase == InputActionPhase.Performed)
+    //    {
+    //        stamina.InfiniteStamina();
+    //        health.InfiniteHealth();
+    //    }
+    //}
 
     public void OnToggleConfigCanva(InputAction.CallbackContext context)
     {

@@ -21,6 +21,8 @@ public class UIMenuManager : MonoBehaviour
     [SerializeField] private CinemachineCamera optionsCamera;
     [SerializeField] private RenderTexture pixelRenderTexture;
 
+    private CinemachineBrain cameraBrain;
+
     void Awake()
     {
         // Cameras
@@ -41,6 +43,27 @@ public class UIMenuManager : MonoBehaviour
         foreach (var obj in objsActive)
         {
             obj.SetActive(true);
+        }
+
+        cameraBrain = mainCamera.GetComponent<CinemachineBrain>();
+    }
+
+    private void Update()
+    {
+        if (cameraBrain.IsBlending)
+        {
+            var currentBlend = cameraBrain.ActiveBlend;
+
+            if (currentBlend != null)
+            {
+                float blendPercent = currentBlend.TimeInBlend / currentBlend.Duration;
+
+                if (blendPercent >= 0.92f)
+                {
+                    GameManager.Instance.ActivatePlayerActions();
+                    gameObject.SetActive(false);
+                }
+            }
         }
     }
 

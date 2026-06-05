@@ -20,7 +20,6 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject roomCorridorContainer;
 
     [Header("Generation Scaling")]
-    [SerializeField] private int difficultyScale = 1;
     [SerializeField] private int baseRoomCount = 4;
     [SerializeField] private int roomsPerScale = 2;
 
@@ -60,22 +59,17 @@ public class LevelGenerator : MonoBehaviour
 
     // Tracks the absolute largest room generated for the level
     // Used to calculate grid spacing so rooms never collide
+    private int difficultyScale = 1;
     private float maxGeneratedWidth = 0f;
     private float maxGeneratedDepth = 0f;
     private List<GameObject> spawnedLevelObjects = new List<GameObject>();
 
-    private void Start()
-    {
-        // Generate level
-        GenerateLevel();
-    }
-
     /// <summary>
     /// Call all methods to handle the level generation.
     /// </summary>
-    private void GenerateLevel()
+    public void GenerateLevel()
     {
-        difficultyScale = GameManager.Instance.TeddyBearCount;
+        difficultyScale = LevelManager.Instance.TeddyBearCount;
         // Scale sizes and room amount based on difficulty
         int targetRoomCount = baseRoomCount + (difficultyScale * roomsPerScale);
         float minWidth = baseMinWidth + (difficultyScale * sizeIncreasePerScale);
@@ -88,6 +82,8 @@ public class LevelGenerator : MonoBehaviour
         MarkCorrectPath();          // BFS* populates CorrectPathExits on every room
         AssignRoomTypes();          // Distribute room types based on tiers and teddy bear count
         SpawnPhysicalLevel();       // Spawn the level itself to 3D world
+
+        LevelManager.Instance.LevelGenerationFinished();
     }
 
 

@@ -1,11 +1,18 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : PausableMonoBehaviour
 {
     [SerializeField]
     private bool shouldConsiderInteractable;
+    [SerializeField]
+    private bool shouldAttack;
+    [SerializeField]
+    private bool shouldUseStamina;
+    [SerializeField]
+    private bool shouldUseHealth;
     [SerializeField]
     private List<Weapon> weapons;
     [SerializeField]
@@ -13,6 +20,9 @@ public class Character : MonoBehaviour
 
     public List<ValueBase> ValueBases => valuesBase;
     public bool ShouldConsiderInteractable => shouldConsiderInteractable;
+    public bool ShouldAttack => shouldAttack;
+    public bool ShouldUseStamina => shouldUseStamina;
+    public bool ShouldUseHealth => shouldUseHealth;
 
     private List<Ability> currentAbilities;
     private Animator animator;
@@ -23,7 +33,6 @@ public class Character : MonoBehaviour
     {
         Normal,
         Attacking,
-        Lunging,
         Dodging,
     }
 
@@ -33,7 +42,7 @@ public class Character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         currentWeapon = -1;
-        ChangeToNextWeapon();
+        if (ShouldAttack) ChangeToNextWeapon();
     }
 
     public void ChangeToNextWeapon()

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class ShotgunAttack : Ability
+public class ShotgunAttack : Ability, IAmmoProvider
 {
     [Header("Bullet Settings")]
     [SerializeField] private GameObject bulletPrefab;
@@ -24,8 +24,6 @@ public class ShotgunAttack : Ability
     [Header("Blood FX")]
     [SerializeField] private GameObject bloodEffectPrefab;
 
-    [SerializeField] private TextMeshProUGUI ammoCountUI;
-
     public override float AbilityRange => 20f;
 
     public int CurrentAmmo => currentAmmo;
@@ -33,6 +31,8 @@ public class ShotgunAttack : Ability
 
     private float lastFireTime = -999f;
     private PlayerStamina playerStamina;
+
+    public event System.Action<int, int> OnAmmoChanged;
 
     private void Start()
     {
@@ -49,7 +49,6 @@ public class ShotgunAttack : Ability
             }
         }
 
-        ammoCountUI = GameObject.FindGameObjectWithTag("Ammo Count").GetComponent<TextMeshProUGUI>();
         currentAmmo = maxAmmo;
         ChangeAmmoUI();
     }
@@ -94,7 +93,7 @@ public class ShotgunAttack : Ability
 
     private void ChangeAmmoUI()
     {
-        ammoCountUI.text = $"{currentAmmo}/2";
+        OnAmmoChanged?.Invoke(currentAmmo, maxAmmo);
     }
     public void UseAmmo(int amount)
     {
