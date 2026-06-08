@@ -2359,6 +2359,7 @@ GameObject:
   - component: {fileID: 3826988627853800245}
   - component: {fileID: 3256662358260996528}
   - component: {fileID: 6723859234304824350}
+  - component: {fileID: 2657646967457866173}
   m_Layer: 0
   m_Name: Player In Level
   m_TagString: Player
@@ -2696,6 +2697,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a5b91dfd-9f4b-414b-8094-96a94670c272
     m_ActionName: 'Player/Show Configurations[/Keyboard/f2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ce84ac8a-6548-44c0-a32b-9d6e26a81187
+    m_ActionName: 'Player/Ability[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2843,6 +2848,19 @@ MonoBehaviour:
     m_Bits: 128
   maxHits: 20
   detectionRadius: 0.2
+--- !u!114 &2657646967457866173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963003601133682041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7657546625ff3542a061b32c5dee215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneStartController
+  shouldStartSitting: 0
 --- !u!1 &7019165554840635485
 GameObject:
   m_ObjectHideFlags: 0

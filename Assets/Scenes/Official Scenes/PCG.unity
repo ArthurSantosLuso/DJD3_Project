@@ -865,6 +865,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6319525085236888158, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+      propertyPath: fadeImage
+      value: 
+      objectReference: {fileID: 30754434}
     - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
       propertyPath: axeIcon
       value: 
@@ -933,6 +937,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a543c4b53d73054098f92d1dba2ba44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIHandler
+--- !u!114 &538324897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6319525085236888158, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+  m_PrefabInstance: {fileID: 538324895}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f414b76b3be60048b14dcd8e99e5804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenFader
 --- !u!1 &560688443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,7 +1741,6 @@ GameObject:
   - component: {fileID: 1648965745}
   - component: {fileID: 1648965744}
   - component: {fileID: 1648965743}
-  - component: {fileID: 1648965748}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1830,21 +1844,8 @@ MonoBehaviour:
   uiHandler: {fileID: 538324896}
   levelGenerator: {fileID: 1648965745}
   navMeshSurface: {fileID: 1212352819}
-  sceneToOpenWhenLevelFinished: Main Hall
-  screenFader: {fileID: 0}
---- !u!114 &1648965748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648965742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f414b76b3be60048b14dcd8e99e5804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScreenFader
-  fadeImage: {fileID: 30754434}
+  sceneToOpenWhenLevelFinished: Main Hall - Returning
+  screenFader: {fileID: 538324897}
 --- !u!1 &1765794708
 GameObject:
   m_ObjectHideFlags: 0
