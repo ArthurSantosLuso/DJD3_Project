@@ -32,6 +32,7 @@ public class MainHallInteractables : Interactable
 
     public void OpenScene()
     {
+        GameManager.Instance.ActivatePlayerActions();
         SceneManager.LoadScene(sceneToOpen);
     }
 

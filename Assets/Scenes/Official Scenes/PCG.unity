@@ -1593,8 +1593,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 1}
+  m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1795,8 +1795,8 @@ MonoBehaviour:
   treeContainer: {fileID: 806765115}
   assetContainer: {fileID: 593137200}
   roomCorridorContainer: {fileID: 973700593}
-  baseRoomCount: 2
-  roomsPerScale: 3
+  baseRoomCount: 3
+  roomsPerScale: 1
   baseMinWidth: 10
   baseMinDepth: 20
   sizeIncreasePerScale: 5

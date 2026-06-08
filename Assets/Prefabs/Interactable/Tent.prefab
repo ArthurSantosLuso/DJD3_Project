@@ -287,7 +287,7 @@ MonoBehaviour:
   interactionHint: {fileID: 3553518156406633990}
   type: 3
   canvasToOpen: {fileID: 0}
-  sceneToOpen: PCG
+  sceneToOpen: Main Hall - Main Menu
 --- !u!114 &3313441062101424666
 MonoBehaviour:
   m_ObjectHideFlags: 0
