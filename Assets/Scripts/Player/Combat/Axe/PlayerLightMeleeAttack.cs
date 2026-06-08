@@ -6,8 +6,9 @@ using UnityEngine;
 public class PlayerLightMeleeAttack : Ability
 {
 
-    [Header("Blood FX")]
+    [Header("VFX")]
     [SerializeField] private GameObject bloodEffectPrefab;
+    [SerializeField] private ParticleSystem axeParticles;
 
     [Header("Combo Settings")]
     [SerializeField] private float comboResetTime = 1.0f;
@@ -43,6 +44,7 @@ public class PlayerLightMeleeAttack : Ability
 
         hitboxCollider = GetComponent<Collider>();
         hitboxCollider.enabled = false;
+        axeParticles.Stop();
     }
 
     public override void EnableHitbox()
@@ -136,11 +138,13 @@ public class PlayerLightMeleeAttack : Ability
         owner.ChangeState(Character.State.Attacking);
         playerStamina.UseStamina(staminaCost);
         animator.SetBool("ComboSuccess", false);
+        axeParticles.Play();
     }
 
     public void ResetComboState()
     {
         owner.ChangeState(Character.State.Normal);
+        axeParticles.Stop();
     }
 
     protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit)

@@ -3643,7 +3643,7 @@ MonoBehaviour:
   firePoint: {fileID: 5978441138906920022}
   projectileSpeed: 12
   damageAmount: 30
-  enemyDetectionRadius: 4
+  enemyDetectionRadius: 10
   cooldown: 5
   axeMeshRenderer: {fileID: 2259073740967367027}
   enemyLayer:
