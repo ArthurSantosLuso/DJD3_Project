@@ -62,6 +62,7 @@ public class PlayerLightMeleeAttack : Ability
 
     protected override bool CanAttack()
     {
+        if (!enabled) return false;
         if (owner.CharacterState != Character.State.Normal &&
             owner.CharacterState != Character.State.Attacking)
             return false;
