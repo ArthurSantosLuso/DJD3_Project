@@ -38,6 +38,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private UIHandler                  uiHandler;
     [SerializeField] private LevelGenerator             levelGenerator;
     [SerializeField] private NavMeshSurface             navMeshSurface;
+    [SceneDropdown]
+    [SerializeField] private string                     sceneToOpenWhenLevelFinished;
+    [SerializeField] private ScreenFader                screenFader;   
 
     private int                     currentTeddyBearValue;
     private GameObject              playerGameObject;
@@ -93,6 +96,7 @@ public class LevelManager : MonoBehaviour
     public void FinishLevel()
     {
         GameManager.Instance.IncreaseTeddyBear();
+        screenFader?.FadeAndLoad(sceneToOpenWhenLevelFinished, 1f);
     }
 
     public void DisplayDeathScreen()
