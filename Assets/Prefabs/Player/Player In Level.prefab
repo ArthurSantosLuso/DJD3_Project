@@ -3394,6 +3394,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 151519921195948051}
     m_Modifications:
+    - target: {fileID: 1322136699309089689, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      propertyPath: abilities.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322136699309089689, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      propertyPath: 'abilities.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3878825958873411867}
+    - target: {fileID: 1322136699309089689, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      propertyPath: 'abilities.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3422559991097301490}
     - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
       propertyPath: firePoint
       value: 
@@ -3445,7 +3457,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6230587959886045159, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3878825958873411867}
   m_SourcePrefab: {fileID: 100100000, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
 --- !u!4 &857254454902865933 stripped
 Transform:
@@ -3457,12 +3472,52 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1322136699309089689, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
   m_PrefabInstance: {fileID: 3983249197513926546}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7003139989986359413}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: deb4539c82d3eba4e9bfd8b6363693b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
+--- !u!114 &3422559991097301490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+  m_PrefabInstance: {fileID: 3983249197513926546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003139989986359413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018f5da77bccef94cba5260369de86fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShotgunAttack
+--- !u!1 &7003139989986359413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6230587959886045159, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+  m_PrefabInstance: {fileID: 3983249197513926546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3878825958873411867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003139989986359413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4ee201f489f3a4dab95f00b1e2659f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShotgunExplosiveAbility
+  actionAudio: {fileID: 0}
+  staminaCost: 0
+  explosiveProjectilePrefab: {fileID: 2324027806226887061, guid: b81106bb31151354db0edae71b13ccc1, type: 3}
+  firePoint: {fileID: 5978441138906920022}
+  projectileSpeed: 15
+  impactDamage: 100
+  burningZonePrefab: {fileID: 5089703853418238435, guid: ccbf2e4a20ae2774088f2c1a11bc5181, type: 3}
+  burnDamage: 5
+  burnRadius: 3
+  burnDuration: 4
+  burnTickRate: 0.5
+  cooldown: 5
 --- !u!1001 &4469957590885040253
 PrefabInstance:
   m_ObjectHideFlags: 0

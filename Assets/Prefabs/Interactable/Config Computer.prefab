@@ -2433,6 +2433,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1491590758775377620}
     m_Modifications:
+    - target: {fileID: 1167431141379222188, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167431141379222188, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167431141379222188, guid: 28a7c23956f02134f8600943f883a877, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6452887624218707773, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_Name
       value: Interaction Hint Canvas
@@ -2451,11 +2463,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2467,11 +2479,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 515
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 290
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8894637432196185867, guid: 28a7c23956f02134f8600943f883a877, type: 3}
       propertyPath: m_LocalPosition.x
