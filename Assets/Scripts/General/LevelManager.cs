@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.InputSystem.DualShock;
 
 [RequireComponent(typeof(LevelGenerator))]
 public class LevelManager : MonoBehaviour
@@ -80,18 +81,18 @@ public class LevelManager : MonoBehaviour
         uiHandler.SetBarValue(0, health.CurrentValue, health.MaxValue);
         uiHandler.SetBarValue(1, stamina.CurrentValue, stamina.MaxValue);
 
-        IAmmoProvider shotgun = playerGameObject.GetComponentInChildren<IAmmoProvider>();
+        IAmmoProvider shotgun = playerGameObject.GetComponentInChildren<IAmmoProvider>(true);
 
         if (shotgun != null)
         {
             shotgun.OnAmmoChanged += uiHandler.UpdateAmmoText;
+            uiHandler.UpdateAmmoText(shotgun.CurrentAmmo, shotgun.MaxAmmo);
         }
     }
 
     public void FinishLevel()
     {
         GameManager.Instance.IncreaseTeddyBear();
-
     }
 
     public void DisplayDeathScreen()

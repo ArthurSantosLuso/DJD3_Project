@@ -13,9 +13,19 @@ public abstract class Ability : MonoBehaviour
     protected Animator animator;
 
 
-    private void Start()
+    private void Awake()
     {
-        animator = GetComponent<Animator>();
+        owner = GetComponentInParent<Character>()
+        ?? GetComponent<Character>()
+        ?? GetComponentInChildren<Character>();
+
+        animator = owner.GetComponent<Animator>();
+    }
+
+    public virtual void Initialize(Character owner, Animator animator)
+    {
+        this.owner = owner;
+        this.animator = animator;
     }
 
     public abstract float AbilityRange { get; }

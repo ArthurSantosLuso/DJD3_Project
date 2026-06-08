@@ -8,11 +8,9 @@ public class MeleeEnemyLightAttack : Ability
 
     public override float AbilityRange => 0f; // fill in if needed
 
-    private void Start()
+    public override void Initialize(Character owner, Animator animator)
     {
-        owner = GetComponentInParent<Character>()
-            ?? GetComponent<Character>()
-            ?? GetComponentInChildren<Character>();
+        base.Initialize(owner, animator);
 
         // Ensure hitbox starts disabled
         if (hitbox != null)

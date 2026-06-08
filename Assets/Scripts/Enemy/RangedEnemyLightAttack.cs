@@ -15,13 +15,6 @@ public class RangedEnemyLightAttack : Ability
 
     public override float AbilityRange => throw new System.NotImplementedException();
 
-    private void Start()
-    {
-        owner = GetComponentInParent<Character>()
-            ?? GetComponent<Character>()
-            ?? GetComponentInChildren<Character>();
-    }
-
     public override void Perform()
     {
         owner.PlayAnimation("Attack");
@@ -33,19 +26,10 @@ public class RangedEnemyLightAttack : Ability
 
         for (int i = 0; i < pelletsPerShot; i++)
         {
-            // FIX: Use firePoint.forward (which is kept aimed at the player by
-            // RangedEnemyAI.Attack) and spread around Y/X axes — exactly how
-            // ShotgunAttack works. Previously this used a raw world-space
-            // dirToPlayer rotated on the Z axis, which tilted bullets sideways
-            // instead of spreading them, and caused downward shots when the
-            // enemy wasn't rotated.
             float randomX = Random.Range(-spreadAngle, spreadAngle);
             float randomY = Random.Range(-spreadAngle, spreadAngle);
             Vector3 spreadDirection = Quaternion.Euler(randomX, randomY, 0f) * firePoint.forward;
 
-            // FIX: Give the bullet a proper rotation so its own forward axis
-            // matches the travel direction. Quaternion.identity left the bullet
-            // facing world-forward regardless of where it was going.
             GameObject p = Instantiate(bulletPrefab, spawnPosition, Quaternion.LookRotation(spreadDirection));
             p.GetComponent<Bullet>().Initialize(spreadDirection, bulletSpeed, damageAmount, gameObject);
         }

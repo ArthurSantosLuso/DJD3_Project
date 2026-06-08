@@ -27,21 +27,11 @@ public class PlayerLightMeleeAttack : Ability
 
     public override float AbilityRange => throw new System.NotImplementedException();
 
-    private void Start()
+    public override void Initialize(Character owner, Animator animator)
     {
-        owner = GetComponentInParent<Character>()
-            ?? GetComponent<Character>()
-            ?? GetComponentInChildren<Character>();
+        base.Initialize(owner, animator);
 
-        if (owner == null)
-        {
-            Debug.LogError($"[PlayerLightMeleeAttack] Could not find Character owner on {name}.");
-            return;
-        }
-
-        animator = owner.GetComponent<Animator>();
         characterController = owner.GetComponent<CharacterController>();
-
         foreach (ValueBase valBase in owner.ValueBases)
         {
             if (valBase is PlayerStamina stamina)

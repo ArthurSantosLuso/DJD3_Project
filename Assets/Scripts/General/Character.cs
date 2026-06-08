@@ -38,12 +38,28 @@ public class Character : PausableMonoBehaviour
 
     public State CharacterState { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         currentWeapon = -1;
+
+        foreach (Weapon weapon in weapons)
+        {
+            foreach(Ability ability in weapon.Abilities)
+            {
+                ability.Initialize(this, animator);
+            }
+        }
+
         if (ShouldAttack) ChangeToNextWeapon();
     }
+
+    //private void Start()
+    //{
+    //    animator = GetComponent<Animator>();
+    //    currentWeapon = -1;
+    //    if (ShouldAttack) ChangeToNextWeapon();
+    //}
 
     public void ChangeToNextWeapon()
     {
