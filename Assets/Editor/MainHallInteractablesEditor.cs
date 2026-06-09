@@ -9,6 +9,7 @@ public class MainHallInteractablesEditor : Editor
     private SerializedProperty sceneToOpenProp;
     private SerializedProperty isAutomaticProp;
     private SerializedProperty interactionHintProp;
+    private SerializedProperty upgradePropsContainerProp;
 
     private void OnEnable()
     {
@@ -17,6 +18,7 @@ public class MainHallInteractablesEditor : Editor
         canvasToOpenProp = serializedObject.FindProperty("canvasToOpen");
         isAutomaticProp = serializedObject.FindProperty("isAutomatic");
         interactionHintProp = serializedObject.FindProperty("interactionHint");
+        upgradePropsContainerProp = serializedObject.FindProperty("upgradePropsContainer");
     }
 
     public override void OnInspectorGUI()
@@ -34,6 +36,11 @@ public class MainHallInteractablesEditor : Editor
         if (currentType == MainHallInteractables.InteractionType.Leave)
         {
             EditorGUILayout.PropertyField(sceneToOpenProp);
+        }
+
+        if (currentType == MainHallInteractables.InteractionType.Upgrade)
+        {
+            EditorGUILayout.PropertyField(upgradePropsContainerProp);
         }
 
         EditorGUILayout.PropertyField(isAutomaticProp);

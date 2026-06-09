@@ -4,12 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class MainHallInteractables : Interactable
 {
-    public enum InteractionType { Config, Save, ReadFiles, Leave}
+    public enum InteractionType { Config, Save, Upgrade, Leave}
 
     [Header("Setup")]
     [SerializeField] private InteractionType type;
     [SerializeField] private GameObject canvasToOpen;
     [SerializeField, SceneDropdown] private string sceneToOpen;
+    [SerializeField] private GameObject upgradePropsContainer;
+ 
+    private void Start()
+    {
+        if (type == InteractionType.Upgrade)
+        {
+            UpdateUpgradeProps();
+        }
+    }
 
     public override void TryInteract(Character entity = null)
     {
@@ -39,5 +48,12 @@ public class MainHallInteractables : Interactable
     private void SavaGame()
     {
         // Implement
+    }
+
+    private void UpdateUpgradeProps()
+    {
+        if (!GameManager.Instance.HasUpgradeAvaliable)
+            upgradePropsContainer.SetActive(false);
+        else upgradePropsContainer.SetActive(true);
     }
 }

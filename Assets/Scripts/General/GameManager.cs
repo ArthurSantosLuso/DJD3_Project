@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 /*
@@ -38,8 +39,11 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] private int teddyBearCount;
+    [SerializeField] private int avaliableUpgrades;
 
     public int TeddyBearCount => teddyBearCount;
+    public bool HasUpgradeAvaliable => avaliableUpgrades > 0;
+    public int AvaliableUpgrades => avaliableUpgrades;
     public bool CanPlayerAct { get; private set; }
 
     public void IncreaseTeddyBear() => teddyBearCount++;
