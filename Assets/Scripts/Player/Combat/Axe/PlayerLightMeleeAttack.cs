@@ -143,6 +143,7 @@ public class PlayerLightMeleeAttack : Ability
 
     public void ResetComboState()
     {
+        if (owner.CharacterState == Character.State.UsingAbility) return;
         owner.ChangeState(Character.State.Normal);
         axeParticles.Stop();
     }
@@ -154,7 +155,8 @@ public class PlayerLightMeleeAttack : Ability
     private void OnDisable()
     {
         axeParticles.Stop();
-        owner.ChangeState(Character.State.Normal);
+        if (owner.CharacterState != Character.State.UsingAbility)
+            owner.ChangeState(Character.State.Normal);
     }
 
     protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit)
