@@ -118,7 +118,7 @@ MonoBehaviour:
   type: 2
   canvasToOpen: {fileID: 0}
   sceneToOpen: Main Menu Placeholder
-  upgradePropsContainer: {fileID: 0}
+  upgradePropsContainer: {fileID: 3573411926917030950}
 --- !u!114 &2410349407963317965
 MonoBehaviour:
   m_ObjectHideFlags: 0
