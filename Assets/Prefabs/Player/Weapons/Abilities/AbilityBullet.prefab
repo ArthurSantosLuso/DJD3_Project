@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3559423952874967860}
   - component: {fileID: -7060788316053812208}
   - component: {fileID: -3099296919944917706}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AbilityBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8193581118967994670}
   - component: {fileID: 7500898097441630312}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrailAB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 9171743656628284600}
   - component: {fileID: 6205218825137360731}
   - component: {fileID: 3040048117794464506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5196,7 +5196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477696528307184384}
   - component: {fileID: 5095280825869830581}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrailAdd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5339,7 +5339,7 @@ GameObject:
   - component: {fileID: 3540583287127378928}
   - component: {fileID: 4934311933257280519}
   - component: {fileID: 5489443636337889177}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
