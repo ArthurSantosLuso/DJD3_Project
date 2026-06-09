@@ -77,12 +77,4 @@ public class UIHandler : MonoBehaviour
             shotgunAmmoCount.text = $"{current}/{max}";
         }
     }
-
-    //public void ToggleAmmoVisibility(bool isVisible)
-    //{
-    //    if (shotgunAmmoCount != null)
-    //    {
-    //        shotgunAmmoCount.gameObject.SetActive(isVisible);
-    //    }
-    //}
 }

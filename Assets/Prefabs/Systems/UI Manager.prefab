@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 981472833488677851}
   - component: {fileID: 7043063305825722367}
   - component: {fileID: 8455044557764053419}
+  - component: {fileID: 6319525085236888158}
   m_Layer: 0
   m_Name: UI Manager
-  m_TagString: Untagged
+  m_TagString: UIManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,11 +49,12 @@ MonoBehaviour:
   bars:
   - {fileID: 0}
   - {fileID: 0}
+  pausePanel: {fileID: 0}
   interactionPanel: {fileID: 0}
   deathScreen: {fileID: 0}
   axeIcon: {fileID: 0}
   shotgunIcon: {fileID: 0}
-  configCanva: {fileID: 0}
+  shotgunAmmoCount: {fileID: 0}
 --- !u!114 &8455044557764053419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,3 +72,16 @@ MonoBehaviour:
   profileImage: {fileID: 0}
   continueIcon: {fileID: 0}
   typingSpeed: 0.04
+--- !u!114 &6319525085236888158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766470452135527863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f414b76b3be60048b14dcd8e99e5804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenFader
+  fadeImage: {fileID: 0}

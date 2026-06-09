@@ -29,8 +29,7 @@ public class BurningZone : MonoBehaviour
             Collider[] hits = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider hit in hits)
             {
-                if (hit.gameObject == shooter) continue;
-                hit.GetComponent<IDamageable>()?.Damage(damage);
+                hit.GetComponent<IDamageable>()?.DamageNoStagger(damage);
             }
 
             yield return new WaitForSeconds(tickRate);

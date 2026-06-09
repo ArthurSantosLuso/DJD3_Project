@@ -6,8 +6,9 @@ using UnityEngine;
 public class PlayerLightMeleeAttack : Ability
 {
 
-    [Header("Blood FX")]
+    [Header("VFX")]
     [SerializeField] private GameObject bloodEffectPrefab;
+    [SerializeField] private ParticleSystem axeParticles;
 
     [Header("Combo Settings")]
     [SerializeField] private float comboResetTime = 1.0f;
@@ -27,21 +28,11 @@ public class PlayerLightMeleeAttack : Ability
 
     public override float AbilityRange => throw new System.NotImplementedException();
 
-    private void Start()
+    public override void Initialize(Character owner, Animator animator)
     {
-        owner = GetComponentInParent<Character>()
-            ?? GetComponent<Character>()
-            ?? GetComponentInChildren<Character>();
+        base.Initialize(owner, animator);
 
-        if (owner == null)
-        {
-            Debug.LogError($"[PlayerLightMeleeAttack] Could not find Character owner on {name}.");
-            return;
-        }
-
-        animator = owner.GetComponent<Animator>();
         characterController = owner.GetComponent<CharacterController>();
-
         foreach (ValueBase valBase in owner.ValueBases)
         {
             if (valBase is PlayerStamina stamina)
@@ -53,6 +44,7 @@ public class PlayerLightMeleeAttack : Ability
 
         hitboxCollider = GetComponent<Collider>();
         hitboxCollider.enabled = false;
+        axeParticles.Stop();
     }
 
     public override void EnableHitbox()
@@ -72,6 +64,7 @@ public class PlayerLightMeleeAttack : Ability
 
     protected override bool CanAttack()
     {
+        if (!enabled) return false;
         if (owner.CharacterState != Character.State.Normal &&
             owner.CharacterState != Character.State.Attacking)
             return false;
@@ -145,11 +138,25 @@ public class PlayerLightMeleeAttack : Ability
         owner.ChangeState(Character.State.Attacking);
         playerStamina.UseStamina(staminaCost);
         animator.SetBool("ComboSuccess", false);
+        axeParticles.Play();
     }
 
     public void ResetComboState()
     {
+        if (owner.CharacterState == Character.State.UsingAbility) return;
         owner.ChangeState(Character.State.Normal);
+        axeParticles.Stop();
+    }
+    private void OnEnable()
+    {
+        axeParticles.Stop();
+    }
+
+    private void OnDisable()
+    {
+        axeParticles.Stop();
+        if (owner.CharacterState != Character.State.UsingAbility)
+            owner.ChangeState(Character.State.Normal);
     }
 
     protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit)

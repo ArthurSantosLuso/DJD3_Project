@@ -17,6 +17,6 @@ public class TeddyBear : Interactable
 
     protected override void Interact(Character entity = null)
     {
-        SceneManager.LoadScene(sceneToOpen);
+        LevelManager.Instance.FinishLevel();
     }
 }

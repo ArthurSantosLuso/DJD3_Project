@@ -34,26 +34,45 @@ public class Character : PausableMonoBehaviour
         Normal,
         Attacking,
         Dodging,
+        UsingAbility,
     }
 
     public State CharacterState { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         currentWeapon = -1;
+
+        foreach (Weapon weapon in weapons)
+        {
+            foreach(Ability ability in weapon.Abilities)
+            {
+                ability.Initialize(this, animator);
+            }
+        }
+
         if (ShouldAttack) ChangeToNextWeapon();
     }
 
-    public void ChangeToNextWeapon()
+    //private void Start()
+    //{
+    //    animator = GetComponent<Animator>();
+    //    currentWeapon = -1;
+    //    if (ShouldAttack) ChangeToNextWeapon();
+    //}
+
+    public bool ChangeToNextWeapon()
     {
         /// Go to the next weapon
         /// Example: if current weapon idx is 2 out of 4, go to 3
         /// Example: if current weapon idx is 1 out of 2, go to 0 again
-        if (CharacterState != State.Normal) return;
+        Debug.Log($"Trying to change weapon, state: {CharacterState}");
+        if (CharacterState != State.Normal) return false;
 
         currentWeapon = (currentWeapon + 1) % weapons.Count;
         ChangeAbilities();
+        return true;
     }
 
     // Change entity current ability

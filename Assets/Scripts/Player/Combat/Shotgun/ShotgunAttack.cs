@@ -34,11 +34,9 @@ public class ShotgunAttack : Ability, IAmmoProvider
 
     public event System.Action<int, int> OnAmmoChanged;
 
-    private void Start()
+    public override void Initialize(Character owner, Animator animator)
     {
-        owner = GetComponentInParent<Character>();
-
-        animator = owner.GetComponent<Animator>();
+        base.Initialize(owner, animator);
 
         foreach (ValueBase valBase in owner.ValueBases)
         {
@@ -50,7 +48,6 @@ public class ShotgunAttack : Ability, IAmmoProvider
         }
 
         currentAmmo = maxAmmo;
-        ChangeAmmoUI();
     }
 
     public override void Perform()
