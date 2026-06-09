@@ -39,25 +39,25 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] private int teddyBearCount;
-    [SerializeField] private int avaliableUpgrades;
+    [SerializeField] private int availableUpgrades;
 
     private List<UpgradeData> playerUpgrades = new();
 
     public List<UpgradeData> PlayerUpgrades => playerUpgrades;
     public int TeddyBearCount => teddyBearCount;
-    public bool HasUpgradeAvaliable => avaliableUpgrades > 0;
-    public int AvaliableUpgrades => avaliableUpgrades;
+    public bool HasUpgradeAvaliable => availableUpgrades > 0;
+    public int AvaliableUpgrades => availableUpgrades;
     public bool CanPlayerAct { get; private set; }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) Debug.Log(playerUpgrades.Count);
-    }
-
 
     public void IncreaseTeddyBear() => teddyBearCount++;
 
-    public void AddPlayerUpgrade(UpgradeData upgrade) => playerUpgrades.Add(upgrade);
+    public void AddPlayerUpgrade(UpgradeData upgrade)
+    {
+        playerUpgrades.Add(upgrade);
+        availableUpgrades--;
+    }
+
+    public void AddAvailableUpgrade() => availableUpgrades++;
 
     #region Game State - Pause
 

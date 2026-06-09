@@ -2324,6 +2324,7 @@ GameObject:
   - component: {fileID: 3826988627853800245}
   - component: {fileID: 3256662358260996528}
   - component: {fileID: 6723859234304824350}
+  - component: {fileID: 7813485931228511075}
   m_Layer: 0
   m_Name: Player In Hall
   m_TagString: Player
@@ -2684,14 +2685,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cb0d2d58358c24bbade7a2cd154d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
-  shouldConsiderInteractable: 0
+  shouldConsiderInteractable: 1
   shouldAttack: 0
   shouldUseStamina: 0
   shouldUseHealth: 0
+  shouldUseUpgrades: 0
   weapons: []
-  valuesBase:
-  - {fileID: 0}
-  - {fileID: 0}
+  valuesBase: []
 --- !u!114 &3826988627853800245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2740,6 +2740,19 @@ MonoBehaviour:
     m_Bits: 128
   maxHits: 20
   detectionRadius: 0.2
+--- !u!114 &7813485931228511075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963003601133682041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7657546625ff3542a061b32c5dee215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneStartController
+  shouldStartSitting: 0
 --- !u!1 &7019165554840635485
 GameObject:
   m_ObjectHideFlags: 0

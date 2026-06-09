@@ -7,17 +7,28 @@ public class UpgradeGenerator : MonoBehaviour
     [SerializeField] private List<UpgradeData>  avaliableUpgrades;
     [SerializeField] private GameObject         upgradesContainer;
     [SerializeField] private GameObject         upgradePrefab;
+    [SerializeField] private GameObject         noUpgradeText;
+    [SerializeField] private GameObject         upgradePanel;
 
-    private void Start()
+    private void OnEnable()
     {
-        if (GameManager.Instance.HasUpgradeAvaliable)
+        UpgradeUI.OnUpgradeSelected += HandleUpgradeSelected;
+
+        if (GameManager.Instance.HasUpgradeAvaliable && upgradesContainer.transform.childCount == 0)
             GenerateNewUpgrades();
+        else if (!GameManager.Instance.HasUpgradeAvaliable) noUpgradeText.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        UpgradeUI.OnUpgradeSelected -= HandleUpgradeSelected;
     }
 
     public void GenerateNewUpgrades()
     {
+        noUpgradeText.SetActive(false);
         // Aux list
-        List<UpgradeData> upgrades = avaliableUpgrades;
+        List<UpgradeData> upgrades = new(avaliableUpgrades);
 
         for (int i = 0; i < upgradeCount; i++)
         {
@@ -36,5 +47,14 @@ public class UpgradeGenerator : MonoBehaviour
         }
     }
 
+    private void HandleUpgradeSelected()
+    {
+        // Clear all upgrade UI cards
+        foreach (Transform child in upgradesContainer.transform)
+            Destroy(child.gameObject);
 
+        // Close the canvas and restore player control
+        upgradePanel.SetActive(false);
+        GameManager.Instance.ActivatePlayerActions();
+    }
 }

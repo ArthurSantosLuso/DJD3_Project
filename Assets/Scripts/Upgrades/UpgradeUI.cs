@@ -12,6 +12,8 @@ public class UpgradeUI : MonoBehaviour
 
     private UpgradeData data;
 
+    public static event Action OnUpgradeSelected;
+
     public void Initialize(UpgradeData data)
     {
         this.data = data;
@@ -22,5 +24,6 @@ public class UpgradeUI : MonoBehaviour
     private void OnPlayerSelectUpgrade()
     {
         GameManager.Instance.AddPlayerUpgrade(data);
+        OnUpgradeSelected?.Invoke();
     }
 }

@@ -52,7 +52,10 @@ public class Character : PausableMonoBehaviour
 
         if (ShouldAttack) ChangeToNextWeapon();
 
-        foreach (ValueBase valueBase in valuesBase) valueBase.ApplyUpgrades();
+        foreach (ValueBase valueBase in valuesBase)
+        {
+            valueBase.ApplyUpgrades();
+        }
     }
 
 
