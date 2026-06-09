@@ -49,7 +49,7 @@ public class PlayerLightMeleeAttack : Ability
         axeParticles.Stop();
 
         List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
-            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.Axe)
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.AxeDamage)
             .ToList();
 
         foreach (UpgradeData upgrade in upgrades)

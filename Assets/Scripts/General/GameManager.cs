@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
 
     public void AddAvailableUpgrade() => availableUpgrades++;
 
+    public void SaveGame()
+    {
+
+    }
+
     #region Game State - Pause
 
     /// <summary>

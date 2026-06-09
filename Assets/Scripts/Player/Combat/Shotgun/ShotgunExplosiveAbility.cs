@@ -40,7 +40,7 @@ public class ShotgunExplosiveAbility : Ability
         shotgunAttack = GetComponent<ShotgunAttack>();
 
         List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
-            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.ShotgunCooldown)
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.ShotgunAbilityCooldown)
             .ToList();
 
         foreach (UpgradeData upgrade in upgrades)

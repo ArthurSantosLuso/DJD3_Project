@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UpgradeData", menuName = "Scriptable Objects/UpgradeData")]
 public class UpgradeData : ScriptableObject
 {
-    public enum UpgradeTypes { Life, Shotgun, Axe, AxeCooldown, ShotgunCooldown, }
+    public enum UpgradeTypes { Life, ShotgunDamage, AxeDamage, AxeAbilityCooldown, ShotgunAbilityCooldown, AxeAbilityDamage, ShotgunAbilityDamage }
 
     [SerializeField] private string         upgradeName;
     [SerializeField] private int            amountToChange;

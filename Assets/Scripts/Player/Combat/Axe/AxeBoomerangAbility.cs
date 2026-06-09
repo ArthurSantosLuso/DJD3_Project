@@ -40,7 +40,7 @@ public class AxeBoomerangAbility : Ability
         }
 
         List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
-            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.AxeCooldown)
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.AxeAbilityCooldown)
             .ToList();
 
         foreach (UpgradeData upgrade in upgrades)

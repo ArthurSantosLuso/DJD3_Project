@@ -49,7 +49,7 @@ public class ShotgunAttack : Ability, IAmmoProvider
         }
 
         List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
-            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.Shotgun)
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.ShotgunDamage)
             .ToList();
 
         foreach (UpgradeData upgrade in upgrades)
