@@ -146,6 +146,16 @@ public class PlayerLightMeleeAttack : Ability
         owner.ChangeState(Character.State.Normal);
         axeParticles.Stop();
     }
+    private void OnEnable()
+    {
+        axeParticles.Stop();
+    }
+
+    private void OnDisable()
+    {
+        axeParticles.Stop();
+        owner.ChangeState(Character.State.Normal);
+    }
 
     protected override void IdentifyEnemyInRange(List<IDamageable> entitiesHit)
     {
