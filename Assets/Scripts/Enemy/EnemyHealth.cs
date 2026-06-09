@@ -140,4 +140,11 @@ public class EnemyHealth : ValueBase, IDamageable
     {
         return currentValue > 0;
     }
+    public void DamageNoStagger(float damageValue)
+    {
+        base.ReduceValue(damageValue);
+        hitFlash?.Flash();
+        HandleHealthBar();
+        VerifyLife();
+    }
 }
