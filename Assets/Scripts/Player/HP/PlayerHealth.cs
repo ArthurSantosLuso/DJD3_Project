@@ -58,6 +58,10 @@ public class PlayerHealth : ValueBase, IDamageable, IHealable
     {
         return currentValue > 0;
     }
+    public void DamageNoStagger(float damageValue)
+    {
+        Damage(damageValue);
+    }
 
     public void Heal(float amount)
     {

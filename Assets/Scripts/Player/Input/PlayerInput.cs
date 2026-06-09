@@ -38,15 +38,14 @@ public class PlayerInput : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         interactor = GetComponent<Interactor>();
     }
-
     public void OnWeaponChangeInput(InputAction.CallbackContext context)
     {
         if (!VerifyIfPlayerCanAct()) return;
 
         if (context.phase == InputActionPhase.Performed)
         {
-            character.ChangeToNextWeapon();
-            OnWeaponChange?.Invoke();
+            bool changed = character.ChangeToNextWeapon();
+            if (changed) OnWeaponChange?.Invoke();
         }
     }
 

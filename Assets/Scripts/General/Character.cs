@@ -34,6 +34,7 @@ public class Character : PausableMonoBehaviour
         Normal,
         Attacking,
         Dodging,
+        UsingAbility,
     }
 
     public State CharacterState { get; private set; }
@@ -61,15 +62,17 @@ public class Character : PausableMonoBehaviour
     //    if (ShouldAttack) ChangeToNextWeapon();
     //}
 
-    public void ChangeToNextWeapon()
+    public bool ChangeToNextWeapon()
     {
         /// Go to the next weapon
         /// Example: if current weapon idx is 2 out of 4, go to 3
         /// Example: if current weapon idx is 1 out of 2, go to 0 again
-        if (CharacterState != State.Normal) return;
+        Debug.Log($"Trying to change weapon, state: {CharacterState}");
+        if (CharacterState != State.Normal) return false;
 
         currentWeapon = (currentWeapon + 1) % weapons.Count;
         ChangeAbilities();
+        return true;
     }
 
     // Change entity current ability

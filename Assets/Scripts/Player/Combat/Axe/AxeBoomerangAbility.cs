@@ -45,6 +45,8 @@ public class AxeBoomerangAbility : Ability
 
         lastUseTime = Time.time;
         axeOut = true;
+        owner.ChangeState(Character.State.UsingAbility);
+        Debug.Log($"State changed to: {owner.CharacterState}");
         playerStamina.UseStamina(staminaCost);
         meleeAttack.enabled = false;
         axeMeshRenderer.enabled = false;
@@ -85,6 +87,7 @@ public class AxeBoomerangAbility : Ability
         axeOut = false;
         meleeAttack.enabled = true;
         axeMeshRenderer.enabled = true;
+        owner.ChangeState(Character.State.Normal);
     }
 
     protected override bool CanAttack()
