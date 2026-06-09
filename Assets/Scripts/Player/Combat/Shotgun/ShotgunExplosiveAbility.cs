@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShotgunExplosiveAbility : Ability
@@ -27,9 +28,25 @@ public class ShotgunExplosiveAbility : Ability
 
     private void Start()
     {
-        owner = GetComponentInParent<Character>();
-        animator = owner.GetComponent<Animator>();
+        // owner = GetComponentInParent<Character>();
+        // animator = owner.GetComponent<Animator>();
+        // shotgunAttack = GetComponent<ShotgunAttack>();
+    }
+
+    public override void Initialize(Character owner, Animator animator)
+    {
+        base.Initialize(owner, animator);
+
         shotgunAttack = GetComponent<ShotgunAttack>();
+
+        List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.ShotgunCooldown)
+            .ToList();
+
+        foreach (UpgradeData upgrade in upgrades)
+        {
+            cooldown += upgrade.AmountToChange;
+        }
     }
 
     public override void Perform()

@@ -2806,6 +2806,7 @@ MonoBehaviour:
   shouldAttack: 1
   shouldUseStamina: 1
   shouldUseHealth: 1
+  shouldUseUpgrades: 1
   weapons:
   - {fileID: 7370183687060323135}
   - {fileID: 2674703153491739659}

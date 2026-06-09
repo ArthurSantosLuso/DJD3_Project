@@ -8,8 +8,6 @@ public abstract class ValueBase : PausableMonoBehaviour
 
     [SerializeField]
     protected float maxValue = 100;
-    [SerializeField, Min(0)]
-    private int startsWith = 1;
 
     protected float currentValue;
 
@@ -20,7 +18,7 @@ public abstract class ValueBase : PausableMonoBehaviour
 
     protected virtual void Awake()
     {
-        currentValue = startsWith;
+        currentValue = maxValue;
     }
 
     protected virtual void ReduceValue(float amount)
@@ -52,5 +50,6 @@ public abstract class ValueBase : PausableMonoBehaviour
         maxValue += amount;
     }
 
+    public virtual void ApplyUpgrades() { }
 }
 

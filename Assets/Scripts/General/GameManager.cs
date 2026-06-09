@@ -1,5 +1,5 @@
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using System.Collections.Generic;
 
 /*
 This script handles:
@@ -41,12 +41,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int teddyBearCount;
     [SerializeField] private int avaliableUpgrades;
 
+    private List<UpgradeData> playerUpgrades = new();
+
+    public List<UpgradeData> PlayerUpgrades => playerUpgrades;
     public int TeddyBearCount => teddyBearCount;
     public bool HasUpgradeAvaliable => avaliableUpgrades > 0;
     public int AvaliableUpgrades => avaliableUpgrades;
     public bool CanPlayerAct { get; private set; }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) Debug.Log(playerUpgrades.Count);
+    }
+
+
     public void IncreaseTeddyBear() => teddyBearCount++;
+
+    public void AddPlayerUpgrade(UpgradeData upgrade) => playerUpgrades.Add(upgrade);
 
     #region Game State - Pause
 

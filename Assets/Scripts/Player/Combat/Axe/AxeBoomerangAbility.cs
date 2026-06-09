@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AxeBoomerangAbility : Ability
@@ -36,6 +37,15 @@ public class AxeBoomerangAbility : Ability
                 playerStamina = stamina;
                 break;
             }
+        }
+
+        List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.AxeCooldown)
+            .ToList();
+
+        foreach (UpgradeData upgrade in upgrades)
+        {
+            cooldown += upgrade.AmountToChange;
         }
     }
 

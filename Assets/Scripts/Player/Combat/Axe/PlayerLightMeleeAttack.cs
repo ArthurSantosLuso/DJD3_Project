@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Hierarchy;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerLightMeleeAttack : Ability
@@ -45,6 +47,15 @@ public class PlayerLightMeleeAttack : Ability
         hitboxCollider = GetComponent<Collider>();
         hitboxCollider.enabled = false;
         axeParticles.Stop();
+
+        List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.Axe)
+            .ToList();
+
+        foreach (UpgradeData upgrade in upgrades)
+        {
+            damageAmount += upgrade.AmountToChange;
+        }
     }
 
     public override void EnableHitbox()
