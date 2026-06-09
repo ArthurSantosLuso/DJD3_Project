@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3033978431693628261}
   - component: {fileID: 8260765259774158848}
   m_Layer: 0
-  m_Name: CampingTent
+  m_Name: Camping Tent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
