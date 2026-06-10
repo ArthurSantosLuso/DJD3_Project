@@ -34,13 +34,13 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private IsometricFollowCamera      followCamera;
-    [SerializeField] private UIHandler                  uiHandler;
-    [SerializeField] private LevelGenerator             levelGenerator;
-    [SerializeField] private NavMeshSurface             navMeshSurface;
+    [SerializeField] private IsometricFollowCamera  followCamera;
+    [SerializeField] private UIHandler              uiHandler;
+    [SerializeField] private LevelGenerator         levelGenerator;
+    [SerializeField] private NavMeshSurface         navMeshSurface;
     [SceneDropdown]
-    [SerializeField] private string                     sceneToOpenWhenLevelFinished;
-    [SerializeField] private ScreenFader                screenFader;   
+    [SerializeField] private string                 sceneToOpenWhenLevelFinished;
+    [SerializeField] private ScreenFader            screenFader;   
 
     private int                     currentTeddyBearValue;
     private GameObject              playerGameObject;
@@ -95,6 +95,7 @@ public class LevelManager : MonoBehaviour
 
     public void FinishLevel()
     {
+        GameManager.Instance.AddAvailableUpgrade();
         GameManager.Instance.IncreaseTeddyBear();
         screenFader?.FadeAndLoad(sceneToOpenWhenLevelFinished, 1f);
     }

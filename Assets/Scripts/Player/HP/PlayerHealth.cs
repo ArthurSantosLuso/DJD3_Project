@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerHealth : ValueBase, IDamageable, IHealable
@@ -5,6 +7,18 @@ public class PlayerHealth : ValueBase, IDamageable, IHealable
     [Header("Screen Shake Settings")]
     [SerializeField] private float shakeIntensityMultiplier = 0.5f;
     [SerializeField] private float shakeDuration = 0.2f;
+
+    public override void ApplyUpgrades()
+    {
+        List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.Life)
+            .ToList();
+
+        foreach (UpgradeData upgrade in upgrades)
+        {
+            maxValue += upgrade.AmountToChange;
+        }
+    }
 
     // Reduce player hp
     public void Damage(float damageValue)

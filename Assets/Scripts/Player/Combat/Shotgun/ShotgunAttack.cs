@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -45,6 +46,15 @@ public class ShotgunAttack : Ability, IAmmoProvider
                 playerStamina = stamina;
                 break;
             }
+        }
+
+        List<UpgradeData> upgrades = GameManager.Instance.PlayerUpgrades
+            .Where(s => s.UpgradeType == UpgradeData.UpgradeTypes.ShotgunDamage)
+            .ToList();
+
+        foreach (UpgradeData upgrade in upgrades)
+        {
+            damageAmount += upgrade.AmountToChange;
         }
 
         currentAmmo = maxAmmo;

@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class Character : PausableMonoBehaviour
 {
-    [SerializeField]
-    private bool shouldConsiderInteractable;
-    [SerializeField]
-    private bool shouldAttack;
-    [SerializeField]
-    private bool shouldUseStamina;
-    [SerializeField]
-    private bool shouldUseHealth;
+    [SerializeField] private bool shouldConsiderInteractable;
+    [SerializeField] private bool shouldAttack;
+    [SerializeField] private bool shouldUseStamina;
+    [SerializeField] private bool shouldUseHealth;
+    [SerializeField] private bool shouldUseUpgrades = false;
+
     [SerializeField]
     private List<Weapon> weapons;
     [SerializeField]
@@ -53,16 +51,15 @@ public class Character : PausableMonoBehaviour
         }
 
         if (ShouldAttack) ChangeToNextWeapon();
+
+        foreach (ValueBase valueBase in valuesBase)
+        {
+            valueBase.ApplyUpgrades();
+        }
     }
 
-    //private void Start()
-    //{
-    //    animator = GetComponent<Animator>();
-    //    currentWeapon = -1;
-    //    if (ShouldAttack) ChangeToNextWeapon();
-    //}
 
-    public bool ChangeToNextWeapon()
+public bool ChangeToNextWeapon()
     {
         /// Go to the next weapon
         /// Example: if current weapon idx is 2 out of 4, go to 3
