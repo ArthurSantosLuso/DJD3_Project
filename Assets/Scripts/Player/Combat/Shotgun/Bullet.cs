@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float lifetime = 3f;
+    [SerializeField] private AudioClip hitObject;
+    [SerializeField] private AudioClip hitEnemy;
 
     private Vector3 direction;
     private float speed;
@@ -41,10 +43,20 @@ public class Bullet : MonoBehaviour
         if (other.GetComponent<Bullet>() != null) return;
 
         IDamageable damageable = other.GetComponent<IDamageable>();
-        damageable?.Damage(damage);
-        if (damageable != null && bloodEffectPrefab != null)
+        
+        if(damageable != null)
         {
-            Instantiate(bloodEffectPrefab, other.ClosestPoint(transform.position), Quaternion.identity);
+            AudioManager.Instance.PlaySound(hitEnemy);
+            damageable.Damage(damage);
+
+            if (damageable != null && bloodEffectPrefab != null)
+            {
+                Instantiate(bloodEffectPrefab, other.ClosestPoint(transform.position), Quaternion.identity);
+            }
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound(hitObject, 0.5f);
         }
 
         hasHit = true;
