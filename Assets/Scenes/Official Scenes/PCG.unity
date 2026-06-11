@@ -1919,6 +1919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   sceneMusic: {fileID: 8300000, guid: 8a6e98f2fd52a774e9b29d44410e46d1, type: 3}
   musicVolume: 0.09
+  sfxVolume: 0.25
 --- !u!4 &1765794710
 Transform:
   m_ObjectHideFlags: 0

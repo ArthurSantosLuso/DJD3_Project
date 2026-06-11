@@ -86,6 +86,7 @@ MonoBehaviour:
   isAutomatic: 1
   interactionHint: {fileID: 0}
   data: {fileID: 11400000, guid: 3753aad8c964cba488d83f856cf236ab, type: 2}
+  collectSound: {fileID: 8300000, guid: 2a394547722998e47aaf702cb57357dd, type: 3}
 --- !u!1 &3567362989970495914
 GameObject:
   m_ObjectHideFlags: 0
