@@ -21,6 +21,9 @@ public class ShotgunExplosiveAbility : Ability
     [SerializeField] private float cooldown = 5f;
     private const int ammoCost = 2;
 
+    public float CooldownProgress => Mathf.Clamp01((Time.time - lastUseTime) / cooldown);
+    public bool IsReady => Time.time - lastUseTime >= cooldown;
+
     public override float AbilityRange => 30f;
 
     private float lastUseTime = -999f;
@@ -52,8 +55,8 @@ public class ShotgunExplosiveAbility : Ability
     public override void Perform()
     {
         if (!CanAttack()) return;
-
         lastUseTime = Time.time;
+        Debug.Log($"ShotgunExplosiveAbility used at {lastUseTime}");
         animator.SetTrigger("Shot");
     }
 

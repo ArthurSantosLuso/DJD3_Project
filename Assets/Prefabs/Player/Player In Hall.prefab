@@ -2673,6 +2673,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  footstepSounds:
+  - {fileID: 8300000, guid: 3af069c33c142a54d9b06a711b59e6b8, type: 3}
+  - {fileID: 8300000, guid: 4907bb82c0aaf894a873c6449be255de, type: 3}
+  footstepPitchRange: {x: 0.8, y: 1.05}
+  footstepInterval: 0.35
+  sprintFootstepInterval: 0.33
 --- !u!114 &4129168095492781203
 MonoBehaviour:
   m_ObjectHideFlags: 0

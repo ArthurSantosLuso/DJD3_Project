@@ -30,6 +30,8 @@ public class AxeBoomerangAbility : Ability
     private bool axeOut = false;
     private PlayerLightMeleeAttack meleeAttack;
     private PlayerStamina playerStamina;
+    public float CooldownProgress => Mathf.Clamp01((Time.time - lastUseTime) / cooldown);
+    public bool IsReady => !axeOut && Time.time - lastUseTime >= cooldown;
 
     public override void Initialize(Character owner, Animator animator)
     {

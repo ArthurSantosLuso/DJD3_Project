@@ -149,5 +149,6 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+
     private bool VerifyIfPlayerCanAct() => GameManager.Instance.CanPlayerAct;
 }
