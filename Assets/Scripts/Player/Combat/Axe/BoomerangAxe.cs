@@ -15,13 +15,16 @@ public class BoomerangAxe : MonoBehaviour
     private Action onReturned;
     private Vector3 startPosition;
 
+    private AudioClip hitSound;
+    private Vector2 hitPitchRange;
+
     private enum Phase { GoingOut, Returning }
     private Phase phase = Phase.GoingOut;
 
     private float returnDistance = 0.5f;
     private List<IDamageable> alreadyHit = new List<IDamageable>();
 
-    public void Initialize(GameObject shooter, Transform returnTarget, Transform homingTarget, Vector3 direction, float speed, float damage, Action onReturned)
+    public void Initialize(GameObject shooter, Transform returnTarget, Transform homingTarget, Vector3 direction, float speed, float damage, Action onReturned, AudioClip hitSound, Vector2 hitPitchRange)
     {
         this.shooter = shooter;
         this.returnTarget = returnTarget;
@@ -30,6 +33,8 @@ public class BoomerangAxe : MonoBehaviour
         this.speed = speed;
         this.damage = damage;
         this.onReturned = onReturned;
+        this.hitSound = hitSound;
+        this.hitPitchRange = hitPitchRange;
         startPosition = transform.position;
     }
 
@@ -83,5 +88,8 @@ public class BoomerangAxe : MonoBehaviour
 
         damageable.Damage(damage);
         alreadyHit.Add(damageable);
+
+        if (hitSound && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySound(hitSound, UnityEngine.Random.Range(hitPitchRange.x, hitPitchRange.y));
     }
 }

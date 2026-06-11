@@ -8,6 +8,9 @@ public class BurningZone : MonoBehaviour
     private float duration;
     private float tickRate;
     private GameObject shooter;
+    [SerializeField] private AudioClip startAudio;
+    [SerializeField] private AudioClip endAudio;
+    private AudioSource burningLoopSource;
 
     public void Initialize(float damage, float radius, float duration, float tickRate, GameObject shooter)
     {
@@ -16,6 +19,9 @@ public class BurningZone : MonoBehaviour
         this.duration = duration;
         this.tickRate = tickRate;
         this.shooter = shooter;
+
+        if(startAudio && AudioManager.Instance != null)
+        burningLoopSource = AudioManager.Instance.PlayLoopingSound(startAudio);
 
         StartCoroutine(BurnRoutine());
     }
@@ -35,6 +41,15 @@ public class BurningZone : MonoBehaviour
             yield return new WaitForSeconds(tickRate);
             elapsed += tickRate;
         }
+
+        if (burningLoopSource != null)
+        {
+            burningLoopSource.Stop();
+            burningLoopSource = null;
+        }
+
+        if (endAudio && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySound(endAudio);
 
         Destroy(gameObject);
     }

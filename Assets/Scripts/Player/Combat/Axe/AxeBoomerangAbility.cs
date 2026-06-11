@@ -18,12 +18,20 @@ public class AxeBoomerangAbility : Ability
     [Header("Enemy Detection")]
     [SerializeField] private LayerMask enemyLayer;
 
+    [Header("Audio")]
+    private AudioSource boomerangLoopSource;
+    [SerializeField] private AudioClip returnAudio;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private Vector2 hitPitchRange = new Vector2(0.9f, 1.1f);
+
     public override float AbilityRange => enemyDetectionRadius;
 
     private float lastUseTime = -999f;
     private bool axeOut = false;
     private PlayerLightMeleeAttack meleeAttack;
     private PlayerStamina playerStamina;
+    public float CooldownProgress => Mathf.Clamp01((Time.time - lastUseTime) / cooldown);
+    public bool IsReady => !axeOut && Time.time - lastUseTime >= cooldown;
 
     public override void Initialize(Character owner, Animator animator)
     {
@@ -60,11 +68,13 @@ public class AxeBoomerangAbility : Ability
         playerStamina.UseStamina(staminaCost);
         meleeAttack.enabled = false;
         axeMeshRenderer.enabled = false;
+        if (actionAudio && AudioManager.Instance != null)
+            boomerangLoopSource = AudioManager.Instance.PlayLoopingSound(actionAudio);
 
         Transform target = FindTarget();
 
         GameObject axe = Instantiate(axePrefab, firePoint.position, axePrefab.transform.rotation);
-        axe.GetComponent<BoomerangAxe>().Initialize(owner.gameObject, owner.transform, target, firePoint.forward, projectileSpeed, damageAmount, OnAxeReturned);
+        axe.GetComponent<BoomerangAxe>().Initialize(owner.gameObject, owner.transform, target, firePoint.forward, projectileSpeed, damageAmount, OnAxeReturned, hitSound, hitPitchRange);
     }
 
     private Transform FindTarget()
@@ -98,6 +108,13 @@ public class AxeBoomerangAbility : Ability
         meleeAttack.enabled = true;
         axeMeshRenderer.enabled = true;
         owner.ChangeState(Character.State.Normal);
+        if (boomerangLoopSource != null)
+        {
+            boomerangLoopSource.Stop();
+            boomerangLoopSource = null;
+        }
+        if (returnAudio && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySound(returnAudio);
     }
 
     protected override bool CanAttack()

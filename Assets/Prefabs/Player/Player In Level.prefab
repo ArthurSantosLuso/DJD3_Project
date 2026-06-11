@@ -2758,6 +2758,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  footstepSounds:
+  - {fileID: 8300000, guid: 3af069c33c142a54d9b06a711b59e6b8, type: 3}
+  - {fileID: 8300000, guid: 4907bb82c0aaf894a873c6449be255de, type: 3}
+  footstepPitchRange: {x: 0.8, y: 1.05}
+  footstepInterval: 0.35
+  sprintFootstepInterval: 0.33
 --- !u!114 &2906243175527941112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2771,7 +2777,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxValue: 100
-  startsWith: 100
   shakeIntensityMultiplier: 0.5
   shakeDuration: 0.2
 --- !u!114 &6904288365995020383
@@ -2787,7 +2792,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
   maxValue: 100
-  startsWith: 100
   regenRate: 15
   regenDelay: 1
 --- !u!114 &4129168095492781203
@@ -3445,6 +3449,10 @@ PrefabInstance:
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 5978441138906920022}
+    - target: {fileID: 1745206599359463008, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
+      propertyPath: actionAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: b641aafd47d472e4f91302bc86c9e183, type: 3}
     - target: {fileID: 4369279339833206687, guid: cc3cf7dc4a948804aae520d0ca474049, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.212
@@ -3541,7 +3549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4ee201f489f3a4dab95f00b1e2659f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShotgunExplosiveAbility
-  actionAudio: {fileID: 0}
+  actionAudio: {fileID: 8300000, guid: 07b810ed34e50064dba52d635b9b1c8a, type: 3}
   staminaCost: 0
   explosiveProjectilePrefab: {fileID: 2324027806226887061, guid: b81106bb31151354db0edae71b13ccc1, type: 3}
   firePoint: {fileID: 5978441138906920022}
@@ -3561,6 +3569,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 151519921195948051}
     m_Modifications:
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 25873459a787f82429a48f8e15bbb8fa, type: 3}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: actionAudio
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: pitchRange.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: pitchRange.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: attackSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: 'attackSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 31b501243d7622b478daca710acbd966, type: 3}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: 'attackSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 13a950409fe4f2f4591dcdc7c88641bd, type: 3}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: 'attackSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 467fab13bfd6a954b9f8d7faa0f44618, type: 3}
     - target: {fileID: 3538283374338222689, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1619925
@@ -3642,7 +3682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d423621d20216441952c298e0e71ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AxeBoomerangAbility
-  actionAudio: {fileID: 0}
+  actionAudio: {fileID: 8300000, guid: b8ac2208b07457346af955206bb74d88, type: 3}
   staminaCost: 30
   axePrefab: {fileID: 4202229365186621659, guid: 732dfba5637c76545bba61c0f7abfeb8, type: 3}
   firePoint: {fileID: 5978441138906920022}
@@ -3654,6 +3694,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  returnAudio: {fileID: 8300000, guid: e4d657817d8060a41ba033f4f6a9b862, type: 3}
+  hitSound: {fileID: 8300000, guid: 25873459a787f82429a48f8e15bbb8fa, type: 3}
+  hitPitchRange: {x: 0.4, y: 1.4}
 --- !u!4 &1086206736200247836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3538283374338222689, guid: aa1835d221f71e949a49aca614910c58, type: 3}

@@ -5,6 +5,7 @@ using Unity.Hierarchy;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class PlayerLightMeleeAttack : Ability
 {
 
@@ -20,6 +21,10 @@ public class PlayerLightMeleeAttack : Ability
     [Tooltip("Layer that contain enemies.")]
     [SerializeField] private LayerMask enemyLayer;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip[] attackSounds;
+    [SerializeField] private Vector2 pitchRange = new Vector2(0.9f, 1.1f);
+    [SerializeField] private AudioClip hitSound;
 
     private float               lastAttackTime;
     private PlayerStamina       playerStamina;
@@ -136,6 +141,9 @@ public class PlayerLightMeleeAttack : Ability
 
         Vector3 hitPoint = (transform.position + other.bounds.center) * 0.5f;
         SpawnBloodEffect(hitPoint);
+
+        if (hitSound && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySound(hitSound, Random.Range(pitchRange.x, pitchRange.y));
     }
 
     private void SpawnBloodEffect(Vector3 position)
@@ -150,6 +158,12 @@ public class PlayerLightMeleeAttack : Ability
         playerStamina.UseStamina(staminaCost);
         animator.SetBool("ComboSuccess", false);
         axeParticles.Play();
+        if (attackSounds.Length > 0)
+            AudioManager.Instance.PlaySound(
+                attackSounds[Random.Range(0, attackSounds.Length)],
+                Random.Range(pitchRange.x, pitchRange.y)
+            );
+        Debug.Log($"attackSounds length: {attackSounds.Length}");
     }
 
     public void ResetComboState()

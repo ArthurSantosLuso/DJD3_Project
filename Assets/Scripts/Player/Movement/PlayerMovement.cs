@@ -24,6 +24,12 @@ public class PlayerMovement : PausableMonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Footsteps")]
+    [SerializeField] private AudioClip[] footstepSounds;
+    [SerializeField] private Vector2 footstepPitchRange = new Vector2(0.9f, 1.1f);
+    [SerializeField] private float footstepInterval = 0.4f;
+    [SerializeField] private float sprintFootstepInterval = 0.25f;
+
     private CharacterController controller;
     private Character character;
     private Animator animator;
@@ -33,6 +39,8 @@ public class PlayerMovement : PausableMonoBehaviour
     private float lastDashTime = -999f;
     private bool isDashing = false;
     private float verticalVelocity = 0f;
+    private float footstepTimer = 0f;
+
 
     private void Start()
     {
@@ -119,6 +127,25 @@ public class PlayerMovement : PausableMonoBehaviour
         animator.SetFloat("VelocityX", localMove.x, 0.1f, Time.deltaTime);
         animator.SetFloat("VelocityZ", localMove.z, 0.1f, Time.deltaTime);
         animator.SetFloat("MoveMagnitude", moveDirection.magnitude);
+
+        if (moveDirection.magnitude >= 0.1f)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                float interval = isSprinting ? sprintFootstepInterval : footstepInterval;
+                footstepTimer = interval;
+                if (footstepSounds.Length > 0 && AudioManager.Instance != null)
+                    AudioManager.Instance.PlaySound(
+                        footstepSounds[UnityEngine.Random.Range(0, footstepSounds.Length)],
+                        UnityEngine.Random.Range(footstepPitchRange.x, footstepPitchRange.y)
+                    );
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
     }
 
     public bool UseDash()

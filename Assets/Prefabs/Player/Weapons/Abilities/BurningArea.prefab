@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9079a80af425414b8eeb6335db5237e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BurningZone
+  startAudio: {fileID: 8300000, guid: 0ccc02bb9accf784c8871ab4005c41a9, type: 3}
+  endAudio: {fileID: 8300000, guid: cfc7c05d7d636ea4e974283ae8ac8bba, type: 3}
 --- !u!1 &5482013954512227431
 GameObject:
   m_ObjectHideFlags: 0
