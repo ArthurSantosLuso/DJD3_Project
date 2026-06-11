@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON, Sprite whosTalkingImage = null)
     {
-        GameManager.Instance.StopPlayerActions();
+        GameManager.Instance.StopPlayerActions(false);
         if (profileImage)
         {
             profileImage.gameObject.SetActive(true);

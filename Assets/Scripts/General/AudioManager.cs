@@ -95,7 +95,11 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource PlayLoopingSound(AudioClip audio)
     {
-        AudioSource audioSource = CreateNewAudioSource();
+        AudioSource audioSource;
+        CheckForFreeAudioSource(out audioSource);
+        if (audioSource == null)
+            audioSource = CreateNewAudioSource();
+
         audioSource.clip = audio;
         audioSource.loop = true;
         audioSource.volume = sfxVolume;

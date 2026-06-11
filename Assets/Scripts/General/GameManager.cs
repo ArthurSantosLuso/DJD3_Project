@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             teddyBearCount = teddyBearCount,
             availableUpgrades = availableUpgrades,
             playerUpgradesIDs = playerUpgrades.ConvertAll(s => s.ID)
-        
+
         };
 
         string json = JsonUtility.ToJson(save);
@@ -102,13 +102,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-#region Game State - Pause
+    #region Game State - Pause
 
-/// <summary>
-/// Disables all player controlled components and pauses the game.
-/// Look for game object via FindGameObjectWithTag("Player").
-/// </summary>
-public void StopPlayerActions()
+    /// <summary>
+    /// Disables all player controlled components and pauses the game.
+    /// Look for game object via FindGameObjectWithTag("Player").
+    /// </summary>
+    public void StopPlayerActions(bool shouldStopTime = true)
     {
         CanPlayerAct = false;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -116,20 +116,20 @@ public void StopPlayerActions()
         foreach (var pausable in player.GetComponents<PausableMonoBehaviour>())
             pausable.Pause();
 
-        Time.timeScale = 0f;
+        if (shouldStopTime) Time.timeScale = 0f;
     }
 
     /// <summary>
     /// Disables all player controlled components and pauses the game.
     /// </summary>
-    public void StopPlayerActions(GameObject player)
+    public void StopPlayerActions(GameObject player, bool shouldStopTime = true)
     {
         CanPlayerAct = false;
 
         foreach (var pausable in player.GetComponents<PausableMonoBehaviour>())
             pausable.Pause();
 
-        Time.timeScale = 0f;
+        if (shouldStopTime) Time.timeScale = 0f;
     }
 
     /// <summary>
