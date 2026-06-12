@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Official Scenes/Main Hall - Main Menu.unity
     guid: 3bb9e511dcb45e64782a259b232134af
   - enabled: 1
-    path: Assets/Scenes/Official Scenes/RegularLevel.unity
-    guid: 656fe7b5cae4f8d43819b7402b221358
+    path: Assets/Scenes/Official Scenes/PCG.unity
+    guid: 86c22f90390de144099c6f0f1c03b6a8
   - enabled: 1
     path: Assets/Scenes/Official Scenes/Main Hall - Returning.unity
     guid: bcd03559453e26c49aaef2f9137777d6
