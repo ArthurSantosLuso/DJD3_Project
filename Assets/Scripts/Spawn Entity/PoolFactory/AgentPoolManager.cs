@@ -13,15 +13,10 @@ public class AgentPoolManager : MonoBehaviour
 {
     [Header("Pool Settings")]
     [Tooltip("Total number of agents to pre-warm into the pool.")]
-    [SerializeField] private int totalAgentsToSpawn = 100;
-
-    [Tooltip("Fraction of total agents that will be Melee (0.0 to 1.0). The rest will be Ranged.")]
-    [Range(0f, 1f)]
-    [SerializeField] private float meleeRatio = 0.7f;
+    [SerializeField] private int agentsPerTypeToSpawn = 100;
 
     private AgentFactory factory;
-    private ObjectPool<EnemyBaseAI> meleePool;
-    private ObjectPool<EnemyBaseAI> rangedPool;
+    private Dictionary<EnemyType, ObjectPool<EnemyBaseAI>> pools = new Dictionary<EnemyType, ObjectPool<EnemyBaseAI>>();
 
     private List<EnemyBaseAI> activeAgents = new List<EnemyBaseAI>();
 
@@ -37,18 +32,35 @@ public class AgentPoolManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Builds one Object Pool per enemy type registered in Agent Factory.
+    /// </summary>
+    private void InitializePools()
+    {
+        foreach (EnemyType type in factory.GetRegisteredTypes())
+        {
+            EnemyType capturedType = type;
+
+            pools[capturedType] = new ObjectPool<EnemyBaseAI>(
+                createFunc: () => factory.CreateAgent(capturedType),
+                actionOnGet: (agent) => { },
+                actionOnRelease: (agent) => agent.gameObject.SetActive(false),
+                actionOnDestroy: (agent) => Destroy(agent.gameObject),
+                collectionCheck: false,
+                defaultCapacity: agentsPerTypeToSpawn,
+                maxSize: agentsPerTypeToSpawn * 2);
+        }
+    }
+
+    /// <summary>
     /// Instantiates all agents at startup and parks them as inactive in the pool.
     /// </summary>
     private void PreWarmPool()
     {
-        int meleeCount = Mathf.RoundToInt(totalAgentsToSpawn * meleeRatio);
-        int rangedCount = totalAgentsToSpawn - meleeCount;
-
-        for (int i = 0; i < meleeCount; i++)
-            MakeAgentInactive(meleePool.Get());
-
-        for (int i = 0; i < rangedCount; i++)
-            MakeAgentInactive(rangedPool.Get());
+        foreach (ObjectPool<EnemyBaseAI> pool in pools.Values)
+        {
+            for (int i = 0; i < agentsPerTypeToSpawn; i++)
+                MakeAgentInactive(pool.Get());
+        }
     }
 
     private void MakeAgentInactive(EnemyBaseAI agent)
@@ -64,10 +76,14 @@ public class AgentPoolManager : MonoBehaviour
     {
         activeAgents.Remove(agent);
 
-        if (type == EnemyType.Melee)
-            meleePool.Release(agent);
+        if (pools.TryGetValue(type, out ObjectPool<EnemyBaseAI> pool))
+        {
+            pool.Release(agent);
+        }
         else
-            rangedPool.Release(agent);
+        {
+            Destroy(agent.gameObject);
+        }
     }
 
     /// <summary>
@@ -75,11 +91,15 @@ public class AgentPoolManager : MonoBehaviour
     /// </summary>
     public EnemyBaseAI RequestAgent(EnemyType type, Vector3 position, Quaternion rotation)
     {
-        EnemyBaseAI agent = type == EnemyType.Melee ? meleePool.Get() : rangedPool.Get();
+        if (!pools.TryGetValue(type, out ObjectPool<EnemyBaseAI> pool))
+        {
+            return null;
+        }
+
+        EnemyBaseAI agent = pool.Get();
 
         if (agent == null)
         {
-            Debug.LogWarning($"AgentPoolManager: no available agent of type {type}.");
             return null;
         }
 
@@ -88,26 +108,5 @@ public class AgentPoolManager : MonoBehaviour
 
         activeAgents.Add(agent);
         return agent;
-    }
-
-    private void InitializePools()
-    {
-        meleePool = new ObjectPool<EnemyBaseAI>(
-            createFunc: () => factory.CreateAgent(EnemyType.Melee),
-            actionOnGet: (agent) => { },
-            actionOnRelease: (agent) => agent.gameObject.SetActive(false),
-            actionOnDestroy: (agent) => Destroy(agent.gameObject),
-            collectionCheck: false,
-            defaultCapacity: totalAgentsToSpawn,
-            maxSize: totalAgentsToSpawn * 2);
-
-        rangedPool = new ObjectPool<EnemyBaseAI>(
-            createFunc: () => factory.CreateAgent(EnemyType.Ranged),
-            actionOnGet: (agent) => { },
-            actionOnRelease: (agent) => agent.gameObject.SetActive(false),
-            actionOnDestroy: (agent) => Destroy(agent.gameObject),
-            collectionCheck: false,
-            defaultCapacity: totalAgentsToSpawn,
-            maxSize: totalAgentsToSpawn * 2);
     }
 }

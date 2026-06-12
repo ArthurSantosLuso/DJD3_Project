@@ -1065,7 +1065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 560688444}
   m_Layer: 0
-  m_Name: Melee Container
+  m_Name: Enemies Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1280,37 +1280,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1105290641277049087, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
   m_PrefabInstance: {fileID: 133841909}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &954150611
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 954150612}
-  m_Layer: 0
-  m_Name: Ranged Container
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &954150612
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 954150611}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.63289, y: 3.15323, z: 46.6785}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &973700593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,8 +1895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a620e210fcb4a34f99ce6d2c6e33def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AgentPoolManager
-  totalAgentsToSpawn: 100
-  meleeRatio: 0.7
+  agentsPerTypeToSpawn: 100
 --- !u!114 &1648965744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1940,12 +1908,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc67948c314548e42878e05f56d07b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AgentFactory
-  meleePrefab: {fileID: 7766764688459057093, guid: 668147ddeacf93b4e84a4d6e0694c518, type: 3}
-  rangedPrefab: {fileID: 5170264807099088803, guid: a91c8d75887fe904fac3197ea10ef456, type: 3}
-  buffedPrefab: {fileID: 0}
-  meleeContainer: {fileID: 560688444}
-  rangedContainer: {fileID: 954150612}
-  buffedContainer: {fileID: 0}
+  enemies:
+  - type: 0
+    prefab: {fileID: 8169184059174036625, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+  - type: 1
+    prefab: {fileID: 3176238772281411113, guid: 1bbe520f72c5c274b8faed231acb44ae, type: 3}
+  - type: 2
+    prefab: {fileID: 8338868407640153338, guid: 203a2780ad3431548a46b06b71e17c25, type: 3}
+  - type: 3
+    prefab: {fileID: 7766764688459057093, guid: 668147ddeacf93b4e84a4d6e0694c518, type: 3}
+  - type: 4
+    prefab: {fileID: 5170264807099088803, guid: a91c8d75887fe904fac3197ea10ef456, type: 3}
+  enemiesContainer: {fileID: 560688444}
 --- !u!114 &1648965745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2441,5 +2415,4 @@ SceneRoots:
   - {fileID: 133841909}
   - {fileID: 1507831768}
   - {fileID: 560688444}
-  - {fileID: 954150612}
   - {fileID: 1212352820}

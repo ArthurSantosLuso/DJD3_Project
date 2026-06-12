@@ -2,7 +2,10 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Melee,
-    Ranged,
+    LowerDefault,
+    LowerSpeed,
+    LowerTank,
+    LowerDamage,
+    UpperDefault,
     Buffed,
 }
