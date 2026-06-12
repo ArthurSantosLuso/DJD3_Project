@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2970851842306607831}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.34299946, y: 0.67306113, z: 0.060001373}
+  m_LocalPosition: {x: -0.34299946, y: 1.5630611, z: 0.060001373}
   m_LocalScale: {x: 0.31469232, y: 0.57757944, z: 0.39971447}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41,8 +41,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3528023066363179564}
-  - component: {fileID: 50067906046248925}
-  - component: {fileID: 5371699807297937580}
   m_Layer: 0
   m_Name: Standing Torch Lighted
   m_TagString: Untagged
@@ -63,24 +61,58 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6926844228094998336}
   - {fileID: 1099567634432598516}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &50067906046248925
+--- !u!1 &4873593161792316992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6926844228094998336}
+  - component: {fileID: 5672974847568797280}
+  - component: {fileID: 6456086515148928830}
+  m_Layer: 0
+  m_Name: model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6926844228094998336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4873593161792316992}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3528023066363179564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5672974847568797280
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4666779450699996257}
+  m_GameObject: {fileID: 4873593161792316992}
   m_Mesh: {fileID: 136066257815819608, guid: eb20c3ab63666d242b1d2ca6238cd6ff, type: 3}
---- !u!23 &5371699807297937580
+--- !u!23 &6456086515148928830
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4666779450699996257}
+  m_GameObject: {fileID: 4873593161792316992}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

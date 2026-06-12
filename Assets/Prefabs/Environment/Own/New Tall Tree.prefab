@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 8177625310938644967}
   - component: {fileID: 1545287131516388383}
   - component: {fileID: 7059607755816998136}
+  - component: {fileID: 7276814154358368378}
   m_Layer: 7
   m_Name: fooliage
   m_TagString: Untagged
@@ -263,3 +264,17 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7276814154358368378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064484677840119538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43005b896c002dc49bae72e5cdc4288e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeObstacle
+  fadeDuration: 0.3
+  fadeOutAlpha: 0.2

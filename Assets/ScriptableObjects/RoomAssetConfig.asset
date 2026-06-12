@@ -17,7 +17,7 @@ MonoBehaviour:
     prefabs:
     - prefab: {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
       chanceToSpawn: 0.6
-    - prefab: {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+    - prefab: {fileID: 8931314456831509043, guid: f4967d9e3fc7a2f4abb74f2556adf702, type: 3}
       chanceToSpawn: 0.5
     - prefab: {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
       chanceToSpawn: 0.4
@@ -37,15 +37,15 @@ MonoBehaviour:
       chanceToSpawn: 0.6
     - prefab: {fileID: 3852049943946708908, guid: 167702b70f9818542bf917bdf23f8f6d, type: 3}
       chanceToSpawn: 0.6
-    - prefab: {fileID: 4579098500924100712, guid: 11ce7ae62de75f84fb33024b0cf69dbe, type: 3}
+    - prefab: {fileID: 5191374222771883908, guid: 456f19041494ca74c8d9b755254430d0, type: 3}
       chanceToSpawn: 0.5
-    - prefab: {fileID: 6691400623961090714, guid: 9cc2505f08c947a4f9c68880f3118d73, type: 3}
+    - prefab: {fileID: 8748097707255547931, guid: 60f5626e8266fb046bcd8f0654abc83c, type: 3}
       chanceToSpawn: 0.5
     minCount: 100
     maxCount: 120
   - type: 2
     prefabs:
-    - prefab: {fileID: 5295474234164754524, guid: 316325ef7c645ed4da7d9104452af847, type: 3}
+    - prefab: {fileID: 4666779450699996257, guid: e881a7107400eda4981de5b5b2531991, type: 3}
       chanceToSpawn: 1
     minCount: 2
     maxCount: 2
