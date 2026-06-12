@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8749839795340938346}
   - component: {fileID: 2173497540016877950}
   m_Layer: 7
-  m_Name: New Medium Tree
+  m_Name: Medium Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
