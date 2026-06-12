@@ -41,10 +41,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    private void OnEnable()
-    {
-    }
-
     [SerializeField] private int teddyBearCount;
     [SerializeField] private int availableUpgrades;
     [SerializeField] private List<UpgradeData> allUpgrades;

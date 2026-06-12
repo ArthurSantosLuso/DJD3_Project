@@ -275,8 +275,6 @@ public class RoomManager : MonoBehaviour
         spawnedEnemies.Remove(enemy.GetComponent<EnemyBaseAI>());
         remainingEnemies--;
 
-        Debug.Log($"{gameObject.name}: enemy died. Remaining: {remainingEnemies}");
-
         if (remainingEnemies <= 0)
             OnAllEnemiesDefeated();
     }
@@ -286,8 +284,6 @@ public class RoomManager : MonoBehaviour
     /// </summary>
     private void OnAllEnemiesDefeated()
     {
-        Debug.Log($"{gameObject.name}: all enemies defeated — room type: {roomType}");
-
         switch (roomType)
         {
             case RoomType.CombatRegular:

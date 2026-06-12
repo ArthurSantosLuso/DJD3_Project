@@ -130,7 +130,6 @@ public class PlayerLightMeleeAttack : Ability
     private void OnTriggerEnter(Collider other)
     {
         IDamageable target = other.GetComponent<IDamageable>();
-        Debug.Log(other.gameObject.name);
         IDamageable self = owner.gameObject.GetComponent<IDamageable>();
 
         if (target == null || target == self || alreadyGotHit.Contains(target)) return;
@@ -163,7 +162,6 @@ public class PlayerLightMeleeAttack : Ability
                 attackSounds[Random.Range(0, attackSounds.Length)],
                 Random.Range(pitchRange.x, pitchRange.y)
             );
-        Debug.Log($"attackSounds length: {attackSounds.Length}");
     }
 
     public void ResetComboState()
