@@ -1022,7 +1022,7 @@ MonoBehaviour:
   armUnplugged: {fileID: 6854454460494872473}
   originalArm: {fileID: 2145761938592329925}
   drops:
-  - {fileID: 108572911108775204, guid: 9f059f2292891604e89f64f0155654ef, type: 3}
+  - {fileID: 8572035285612916469, guid: 974da86b9173acf4c8cc77034e253705, type: 3}
   - {fileID: 7640812142838261244, guid: 89bb3d23ebf9b65439025d088d0ccfa3, type: 3}
   dropRate: 0.3
   healthBarPrefab: {fileID: 4301800778830223153, guid: 2f3f93173029127488756de0ae059da6, type: 3}
