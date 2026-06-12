@@ -1940,7 +1940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc67948c314548e42878e05f56d07b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AgentFactory
-  meleePrefab: {fileID: 8169184059174036625, guid: 415966e83cb6ed349a9133ca1e1c7346, type: 3}
+  meleePrefab: {fileID: 7766764688459057093, guid: 668147ddeacf93b4e84a4d6e0694c518, type: 3}
   rangedPrefab: {fileID: 5170264807099088803, guid: a91c8d75887fe904fac3197ea10ef456, type: 3}
   buffedPrefab: {fileID: 0}
   meleeContainer: {fileID: 560688444}
@@ -1963,10 +1963,10 @@ MonoBehaviour:
   roomCorridorContainer: {fileID: 973700593}
   baseRoomCount: 3
   roomsPerScale: 1
-  baseMinWidth: 10
+  baseMinWidth: 20
   baseMinDepth: 20
   sizeIncreasePerScale: 5
-  maxRandomVariance: 10
+  maxRandomVariance: 5
   roomPrefab: {fileID: 5248342371859317136, guid: 429a46447df794f40a1c9771fec1b66e, type: 3}
   corridorPrefab: {fileID: 2390516315283327330, guid: 543ef0c9a61c01048ac9cc1ac36c1dd8, type: 3}
   minCorridorLength: 6

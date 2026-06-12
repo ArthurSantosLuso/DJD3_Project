@@ -78,7 +78,7 @@ public class EnemyHealth : ValueBase, IDamageable
         if (healthBarInstance == null)
             SpawnHealthBar();
 
-        healthBarInstance?.UpdateBar(currentValue, maxValue);
+        healthBarInstance?.UpdateHealthSegments(currentValue, maxValue);
     }
 
     private void SpawnHealthBar()
@@ -140,6 +140,7 @@ public class EnemyHealth : ValueBase, IDamageable
     {
         return currentValue > 0;
     }
+
     public void DamageNoStagger(float damageValue)
     {
         base.ReduceValue(damageValue);

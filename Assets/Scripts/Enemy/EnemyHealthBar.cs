@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    [Tooltip("The fill image of the health bar")]
-    [SerializeField] private Image fillImage;
+    [Header("Health")]
+    [SerializeField] private List<Image> healthSegments = new List<Image>();
+
+    [Tooltip("How many health each segment of life will have.")]
+    [SerializeField] private float segmentValue = 100f;
 
     [Tooltip("Offset above the enemy's pivot in world units")]
     [SerializeField] private Vector3 worldOffset = new Vector3(0f, 2.2f, 0f);
@@ -17,17 +21,7 @@ public class EnemyHealthBar : MonoBehaviour
 
     private RawImage renderImage;
 
-    // ── Initialisation ──────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Call this right after Instantiate to bind the bar to its enemy.
-    /// </summary>
-    /// <param name="target">The enemy Transform to follow.</param>
-    /// <param name="parentCanvas">The overlay canvas this bar lives in.</param>
-    /// <param name="renderTexImage">
-    ///     The RawImage that displays the render texture. 
-    ///     Pass null if the image fills the entire screen.
-    /// </param>
     public void Initialize(Transform target, Canvas parentCanvas, RawImage renderTexImage = null)
     {
         targetTransform = target;
@@ -102,14 +96,41 @@ public class EnemyHealthBar : MonoBehaviour
         );
     }
 
-    
+
     /// <summary>
-    /// Updates the fill amount of the bar.
+    /// Updates a segmented health bar. Each entry in healthSegments represents up to
+    /// 'segmentValue' HP (index 0 = lowest segment, last index = highest segment).
     /// </summary>
-    public void UpdateBar(float currentValue, float maxValue)
+    public void UpdateHealthSegments(float currentValue, float maxValue)
     {
-        if (fillImage == null) return;
-        fillImage.fillAmount = Mathf.Clamp01(currentValue / maxValue);
+        if (healthSegments == null || healthSegments.Count == 0 || segmentValue <= 0f) return;
+
+        int segmentsNeeded = Mathf.CeilToInt(maxValue / segmentValue);
+
+        for (int i = 0; i < healthSegments.Count; i++)
+        {
+            Image segment = healthSegments[i];
+            if (segment == null) continue;
+
+            if (i >= segmentsNeeded)
+            {
+                // This enemy's maxValue doesn't reach this segment, hide it
+                segment.gameObject.SetActive(false);
+                continue;
+            }
+
+            segment.gameObject.SetActive(true);
+
+            float segmentMin = i * segmentValue;
+            float segmentMax = segmentMin + segmentValue;
+
+            if (currentValue >= segmentMax)
+                segment.fillAmount = 1f;
+            else if (currentValue <= segmentMin)
+                segment.fillAmount = 0f;
+            else
+                segment.fillAmount = (currentValue - segmentMin) / segmentValue;
+        }
     }
 
     /// <summary>

@@ -1461,6 +1461,7 @@ MonoBehaviour:
   shouldAttack: 1
   shouldUseStamina: 1
   shouldUseHealth: 1
+  shouldUseUpgrades: 0
   weapons:
   - {fileID: 3924676849034621009}
   valuesBase: []
@@ -1477,13 +1478,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxValue: 100
-  startsWith: 100
   shouldArmUnplug: 0
   armUnplugged: {fileID: 0}
   originalArm: {fileID: 0}
   drops: []
   dropRate: 0
-  healthBarPrefab: {fileID: 0}
+  healthBarPrefab: {fileID: 4301800778830223153, guid: 2f3f93173029127488756de0ae059da6, type: 3}
   renderImage: {fileID: 0}
   healthBarCanvasTag: EnemyHealthBarCanvas
 --- !u!114 &6582839512138918776
