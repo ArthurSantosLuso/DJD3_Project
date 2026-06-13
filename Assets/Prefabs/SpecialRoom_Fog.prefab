@@ -5009,7 +5009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BorderTreeSpawner
   treePrefabs:
   - {fileID: 4079277761284186498, guid: 18219cee42b9a1b43b1d8b591a04cfd2, type: 3}
-  - {fileID: 8857174314718810356, guid: 5bb12810ee8ef55449041ba295867034, type: 3}
+  - {fileID: 8931314456831509043, guid: f4967d9e3fc7a2f4abb74f2556adf702, type: 3}
   - {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
   roomWidth: 20
   roomDepth: 20
