@@ -41,6 +41,8 @@ public class LevelManager : MonoBehaviour
     [SceneDropdown]
     [SerializeField] private string                 sceneToOpenWhenLevelFinished;
     [SerializeField] private ScreenFader            screenFader;   
+    [SerializeField] private bool                   shoudGenerateLevel = true;
+    [SerializeField] private bool                   shoudGeneratePlayerReferences = true;
 
     private int                     currentTeddyBearValue;
     private GameObject              playerGameObject;
@@ -52,19 +54,29 @@ public class LevelManager : MonoBehaviour
     {
         if (levelGenerator == null) levelGenerator = GetComponent<LevelGenerator>();
         currentTeddyBearValue = GameManager.Instance.TeddyBearCount;
-        levelGenerator.GenerateLevel();
+        if (shoudGenerateLevel)
+        {
+            levelGenerator.GenerateLevel();
+        }
+        else
+        {
+            LevelGenerationFinished();
+        }
     }
 
     public void LevelGenerationFinished()
     {
         playerGameObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerGameObject == null) return;
-
-        followCamera.SetCameraTarget(playerGameObject.transform);
-        playerGameObject.GetComponent<ObstacleDetector>().SetCameraTransform(followCamera.transform);
-
         navMeshSurface?.BuildNavMesh();
-        InitializePlayer();
+
+        if (shoudGeneratePlayerReferences)
+        {
+            if (playerGameObject == null) return;
+
+            followCamera.SetCameraTarget(playerGameObject.transform);
+            playerGameObject.GetComponent<ObstacleDetector>().SetCameraTransform(followCamera.transform);
+            InitializePlayer();
+        }
     }
 
     /// <summary>

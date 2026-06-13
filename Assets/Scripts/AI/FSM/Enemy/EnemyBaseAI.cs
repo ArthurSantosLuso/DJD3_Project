@@ -60,9 +60,6 @@ public abstract class EnemyBaseAI : MonoBehaviour
     {
         State staggerState = CreateStaggerState();
 
-        // FIX: Validate that avoindanceRange makes sense relative to attackRange.
-        // If avoidance >= attack range the enemy would immediately flee the moment
-        // it could attack, and never actually attack. Clamp it or disable it.
         if (avoindanceRange > 0f && avoindanceRange >= attackRange)
         {
             Debug.LogWarning($"[{gameObject.name}] avoindanceRange ({avoindanceRange}) must be " +
@@ -70,12 +67,6 @@ public abstract class EnemyBaseAI : MonoBehaviour
             avoindanceRange = 0f;
         }
 
-        // FIX: Transition priority matters — the FSM takes the FIRST transition
-        // whose condition is true. Previous order put stagger at the top so it
-        // shadowed everything else in the same frame. New order:
-        //   1. Attack / avoidance  (gameplay-critical)
-        //   2. Stagger             (reaction, lower priority)
-        //
         // Chase state transitions
         chaseState.AddTransition(new Transition(IsInRange, null, attackState));
 
@@ -284,7 +275,6 @@ public abstract class EnemyBaseAI : MonoBehaviour
         return !stateInfo.IsName("Attack") && !stateInfo.IsName("Hit");
     }
 
-    // ==== Debug =================================
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1f, 0.2f, 0.2f, 0.4f);
