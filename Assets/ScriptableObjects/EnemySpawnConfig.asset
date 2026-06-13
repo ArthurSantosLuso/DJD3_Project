@@ -39,33 +39,48 @@ MonoBehaviour:
       maxCount: 1
   - teddyBearThreshold: 3
     entries:
-    - type: 4
-      minCount: 0
+    - type: 2
+      minCount: 1
       maxCount: 2
     - type: 0
-      minCount: 3
-      maxCount: 5
+      minCount: 2
+      maxCount: 3
+    - type: 1
+      minCount: 1
+      maxCount: 2
   - teddyBearThreshold: 4
     entries:
-    - type: 4
-      minCount: 0
-      maxCount: 2
     - type: 0
-      minCount: 3
-      maxCount: 5
+      minCount: 4
+      maxCount: 6
+    - type: 3
+      minCount: 2
+      maxCount: 3
   - teddyBearThreshold: 5
     entries:
     - type: 4
-      minCount: 0
-      maxCount: 2
+      minCount: 2
+      maxCount: 3
+    - type: 2
+      minCount: 2
+      maxCount: 3
     - type: 0
-      minCount: 3
-      maxCount: 5
+      minCount: 2
+      maxCount: 3
   - teddyBearThreshold: 6
     entries:
-    - type: 4
-      minCount: 0
+    - type: 1
+      minCount: 1
       maxCount: 2
     - type: 0
-      minCount: 3
-      maxCount: 5
+      minCount: 2
+      maxCount: 2
+    - type: 2
+      minCount: 1
+      maxCount: 1
+    - type: 3
+      minCount: 2
+      maxCount: 2
+    - type: 4
+      minCount: 0
+      maxCount: 1
