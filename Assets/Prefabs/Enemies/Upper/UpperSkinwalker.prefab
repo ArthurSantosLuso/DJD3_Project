@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c01159d2d855e7429c0faac50db4a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemyLightAttack
-  actionAudio: {fileID: 0}
+  actionAudio: {fileID: 8300000, guid: 31b501243d7622b478daca710acbd966, type: 3}
   staminaCost: 0
   bulletPrefab: {fileID: 3578186228901806580, guid: 7efab60bb156f4440a5d45cafeee6f6a, type: 3}
   firePoint: {fileID: 453367342399248595}

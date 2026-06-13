@@ -156,3 +156,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   lifetime: 3
+  hitObject: {fileID: 8300000, guid: 9216c30d8c1d67a4db9fbddad445d03b, type: 3}
+  hitEnemy: {fileID: 8300000, guid: 2c18668dcd70cd24c95a53988153b71a, type: 3}

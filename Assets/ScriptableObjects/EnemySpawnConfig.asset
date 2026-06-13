@@ -15,7 +15,7 @@ MonoBehaviour:
   tiers:
   - teddyBearThreshold: 0
     entries:
-    - type: 0
+    - type: 4
       minCount: 3
       maxCount: 5
   - teddyBearThreshold: 1

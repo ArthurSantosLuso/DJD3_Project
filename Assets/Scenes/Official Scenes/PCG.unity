@@ -431,6 +431,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 4690896754135797007, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5078753555644340177, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -466,9 +470,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1865411547061574407, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1744259619}
     - targetCorrespondingSourceObject: {fileID: 1865411547061574407, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 157841957}
@@ -1072,8 +1073,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StaminaVisualFeedback
   playerStamina: {fileID: 0}
   globalVolume: {fileID: 1414692538}
-  lowStaminaThreshold: 0.3
+  lowStaminaValueThreshold: 0.45
   maxDesaturation: -40
+  drainSpeed: 25
   shiftSpeed: 5
 --- !u!1 &541283681 stripped
 GameObject:
@@ -2011,41 +2013,8 @@ MonoBehaviour:
   navMeshSurface: {fileID: 1212352819}
   sceneToOpenWhenLevelFinished: Main Hall - Returning
   screenFader: {fileID: 538324897}
---- !u!1 &1744259618
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1744259619}
-  m_Layer: 5
-  m_Name: Player Stats
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1744259619
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744259618}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1607261961}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  shoudGenerateLevel: 1
+  shoudGeneratePlayerReferences: 1
 --- !u!1 &1765794708
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class Matriarch : MonoBehaviour
+public class Matriarch : MonoBehaviour, IDamageable
 {
     [Header("Slam Attack")]
     [SerializeField] private GameObject tentaclePrefab;
@@ -15,6 +16,9 @@ public class Matriarch : MonoBehaviour
     [SerializeField] private Transform[] enemySpawnPoints;
     [SerializeField] private List<EnemyType> spawnableEnemyTypes;
     [SerializeField] private Vector2Int enemiesPerWaveRange = new Vector2Int(2, 4);
+
+    [Header("Health")]
+    [SerializeField] private float health;
 
     private int slamAttacksToHappen;
     private int tentaclesRemaining;
@@ -86,6 +90,10 @@ public class Matriarch : MonoBehaviour
                 }
             }
         }
+
+        Vector3 lookPos = player.position;
+        lookPos.y = transform.position.y;
+        transform.LookAt(lookPos);
     }
 
     private void TriggerSlamAttack()
@@ -214,5 +222,25 @@ public class Matriarch : MonoBehaviour
         hasAttackedBefore = false;
         spawnedEnemies.Clear();
         timer = 0f;
+    }
+
+    public bool HasBlood()
+    {
+        return true;
+    }
+
+    public bool CanDamage()
+    {
+        return !isShieldUp;
+    }
+
+    public void Damage(float damageValue)
+    {
+        health -= damageValue;
+    }
+
+    public void DamageNoStagger(float damageValue)
+    {
+        throw new System.NotImplementedException();
     }
 }
