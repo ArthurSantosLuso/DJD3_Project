@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class Matriarch : MonoBehaviour, IDamageable
+public class Matriarch : MonoBehaviour/*, IDamageable*/
 {
     [Header("Slam Attack")]
     [SerializeField] private GameObject tentaclePrefab;
@@ -17,8 +17,8 @@ public class Matriarch : MonoBehaviour, IDamageable
     [SerializeField] private List<EnemyType> spawnableEnemyTypes;
     [SerializeField] private Vector2Int enemiesPerWaveRange = new Vector2Int(2, 4);
 
-    [Header("Health")]
-    [SerializeField] private float health;
+    //[Header("Health")]
+    //[SerializeField] private float health;
 
     private int slamAttacksToHappen;
     private int tentaclesRemaining;
@@ -224,23 +224,23 @@ public class Matriarch : MonoBehaviour, IDamageable
         timer = 0f;
     }
 
-    public bool HasBlood()
-    {
-        return true;
-    }
+    //public bool HasBlood()
+    //{
+    //    return true;
+    //}
 
-    public bool CanDamage()
-    {
-        return !isShieldUp;
-    }
+    //public bool CanDamage()
+    //{
+    //    return !isShieldUp;
+    //}
 
-    public void Damage(float damageValue)
-    {
-        health -= damageValue;
-    }
+    //public void Damage(float damageValue)
+    //{
+    //    health -= damageValue;
+    //}
 
-    public void DamageNoStagger(float damageValue)
-    {
-        throw new System.NotImplementedException();
-    }
+    //public void DamageNoStagger(float damageValue)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }

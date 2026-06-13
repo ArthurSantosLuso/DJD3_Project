@@ -62,7 +62,7 @@ public class EnemyHealth : ValueBase, IDamageable
         base.ReduceValue(damageValue);
 
         hitFlash?.Flash();
-        enemyAI.TriggerStagger();
+        enemyAI?.TriggerStagger();
 
         // Show the health bar after the first hit
         // Update it on every subsequent hit
