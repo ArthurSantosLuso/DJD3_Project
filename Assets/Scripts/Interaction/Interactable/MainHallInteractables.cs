@@ -26,6 +26,12 @@ public class MainHallInteractables : Interactable
 
     protected override void Interact(Character entity = null)
     {
+        if (type == InteractionType.Save)
+        {
+            SavaGame();
+            return;
+        }
+
         OpenMenu();
     }
 
@@ -44,7 +50,7 @@ public class MainHallInteractables : Interactable
         SceneManager.LoadScene(sceneToOpen);
     }
 
-    private void SavaGame()
+    public void SavaGame()
     {
         GameManager.Instance.SaveGame();
     }
