@@ -1589,6 +1589,7 @@ MonoBehaviour:
   defaultEnemySpawnConfig: {fileID: 11400000, guid: 52444ced4dda72449b8c38a079c79f06, type: 2}
   specialRoomPrefabs:
   - {fileID: 5248342371859317136, guid: 48a4c4ceeb4dbda448f114f8fd441675, type: 3}
+  - {fileID: 5248342371859317136, guid: 5ac04327dc2ecb74eb8a5e19900ee89d, type: 3}
   specialRoomOffset: 1000
 --- !u!4 &1648965746
 Transform:
