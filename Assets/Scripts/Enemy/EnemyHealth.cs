@@ -208,4 +208,9 @@ public class EnemyHealth : ValueBase, IDamageable
         HandleHealthBar();
         VerifyLife();
     }
+
+    public bool HasBlood()
+    {
+        return true;
+    }
 }

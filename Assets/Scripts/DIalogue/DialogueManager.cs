@@ -89,7 +89,7 @@ public class DialogueManager : MonoBehaviour
         displayLineCoroutine = null;
     }
 
-    private void ExitDialogueMode()
+    public void ExitDialogueMode()
     {
         profileImage.gameObject.SetActive(false);
         IsDialoguePlaying = false;

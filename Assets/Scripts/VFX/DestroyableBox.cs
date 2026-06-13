@@ -30,6 +30,10 @@ public class DestroyableBox : MonoBehaviour, IDamageable
         BreakBox();
     }
 
+    public bool HasBlood()
+    {
+        return false;
+    }
 
     private void BreakBox()
     {

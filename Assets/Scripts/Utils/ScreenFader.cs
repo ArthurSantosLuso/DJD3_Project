@@ -16,6 +16,7 @@ public class ScreenFader : MonoBehaviour
 
     public void FadeAndLoad(string sceneName, float duration)
     {
+        fadeImage.gameObject.SetActive(true);
         StartCoroutine(Fader(sceneName, duration));
     }
 
@@ -47,5 +48,7 @@ public class ScreenFader : MonoBehaviour
             fadeImage.color = c;
             yield return null;
         }
+
+        fadeImage.gameObject.SetActive(false);
     }
 }

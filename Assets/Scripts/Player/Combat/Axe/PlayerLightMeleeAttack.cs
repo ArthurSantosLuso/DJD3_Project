@@ -139,7 +139,7 @@ public class PlayerLightMeleeAttack : Ability
         alreadyGotHit.Add(target);
 
         Vector3 hitPoint = (transform.position + other.bounds.center) * 0.5f;
-        SpawnBloodEffect(hitPoint);
+        if(target.HasBlood()) SpawnBloodEffect(hitPoint);
 
         if (hitSound && AudioManager.Instance != null)
             AudioManager.Instance.PlaySound(hitSound, Random.Range(pitchRange.x, pitchRange.y));

@@ -131,6 +131,18 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    public void OnSkipDialogue(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            if (DialogueManager.Instance.IsDialoguePlaying)
+            {
+                DialogueManager.Instance.ExitDialogueMode();
+                return;
+            }
+        }
+    }
+
     //// >>>>>>>>>>>>>>> Temporary <<<<<<<<<<<<<<<<<<
     //public void OnInfiniteStamina(InputAction.CallbackContext context)
     //{

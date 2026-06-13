@@ -89,4 +89,9 @@ public class PlayerHealth : ValueBase, IDamageable, IHealable
         IncreaseMaximumValue(100000);
         IncreaseValue(100000);
     }
+
+    public bool HasBlood()
+    {
+        return true;
+    }
 }
