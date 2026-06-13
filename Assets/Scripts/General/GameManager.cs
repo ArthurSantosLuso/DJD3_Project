@@ -99,11 +99,10 @@ public class GameManager : MonoBehaviour
 
     public void DeleteSaveData()
     {
-        // 1. Delete the data from PlayerPrefs
         if (PlayerPrefs.HasKey(SAVE_KEY))
         {
             PlayerPrefs.DeleteKey(SAVE_KEY);
-            PlayerPrefs.Save(); // Ensure the deletion is written to disk
+            PlayerPrefs.Save();
             Debug.Log("Save data deleted successfully.");
         }
         else
@@ -111,18 +110,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("No save data found to delete.");
         }
 
-        // 2. Reset the active game variables
         teddyBearCount = 0;
         availableUpgrades = 0;
         playerUpgrades.Clear();
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        // Load the scene using that index
+        // ----------------- Fred aqui --------------
         SceneManager.LoadScene(currentSceneIndex);
-
-        // Note: You may also want to trigger an event here if other scripts 
-        // need to know that the game has been reset (e.g., updating UI).
     }
 
     #region Game State - Pause

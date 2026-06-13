@@ -85,8 +85,14 @@ public class UIMenuManager : MonoBehaviour
 
     }
 
-    public void StartGame()
+    public void ContinueGame()
     {
+        if (GameManager.Instance.TeddyBearCount == 0)
+        {
+            // Tocar cutscene
+            // return; ?
+        }
+
         // Cameras
         currentCamera.Priority = 0;
         gameplayCamera.Priority = 100;
