@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 
 /*
 This script handles:
 Instantiating enemies by type and placing them in their designated containers.
-Acts as the creation layer for the pool — AgentPoolManager asks for agents,
+Acts as the creation layer for the pool ï¿½ AgentPoolManager asks for agents,
 AgentFactory builds them.
 */
 

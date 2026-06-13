@@ -19,7 +19,6 @@ public class AgentPoolManager : MonoBehaviour
     private Dictionary<EnemyType, ObjectPool<EnemyBaseAI>> pools = new Dictionary<EnemyType, ObjectPool<EnemyBaseAI>>();
 
     private List<EnemyBaseAI> activeAgents = new List<EnemyBaseAI>();
-    private Dictionary<EnemyBaseAI, EnemyType> activeAgentTypes = new Dictionary<EnemyBaseAI, EnemyType>();
 
     private void Awake()
     {
@@ -59,19 +58,8 @@ public class AgentPoolManager : MonoBehaviour
     {
         foreach (ObjectPool<EnemyBaseAI> pool in pools.Values)
         {
-            List<EnemyBaseAI> warmedAgents = new List<EnemyBaseAI>();
-
             for (int i = 0; i < agentsPerTypeToSpawn; i++)
-            {
-                EnemyBaseAI agent = pool.Get();
-                agent.Initialize();
-                warmedAgents.Add(agent);
-            }
-
-            foreach (EnemyBaseAI agent in warmedAgents)
-            {
-                pool.Release(agent);
-            }
+                MakeAgentInactive(pool.Get());
         }
     }
 
@@ -115,35 +103,10 @@ public class AgentPoolManager : MonoBehaviour
             return null;
         }
 
+        agent.transform.SetPositionAndRotation(position, rotation);
         agent.gameObject.SetActive(true);
-        agent.Warp(position, rotation);
 
         activeAgents.Add(agent);
-        activeAgentTypes[agent] = type;
-
-        EnemyHealth health = agent.GetComponent<EnemyHealth>();
-        if (health != null)
-        {
-            health.OnDeath += HandleAgentDeath;
-        }
-
         return agent;
-    }
-
-    /// <summary>
-    /// Called when a spawned agent's death sequence finishes. Returns it to its
-    /// pool instead of letting it be destroyed.
-    /// </summary>
-    private void HandleAgentDeath(EnemyHealth health)
-    {
-        health.OnDeath -= HandleAgentDeath;
-
-        EnemyBaseAI agent = health.GetComponent<EnemyBaseAI>();
-
-        if (activeAgentTypes.TryGetValue(agent, out EnemyType type))
-        {
-            activeAgentTypes.Remove(agent);
-            ReturnAgentToPool(agent, type);
-        }
     }
 }

@@ -105,4 +105,9 @@ public class UIMenuManager : MonoBehaviour
             obj.SetActive(false);
         }
     }
+
+    public void NewGame()
+    {
+        GameManager.Instance.DeleteSaveData();
+    }
 }

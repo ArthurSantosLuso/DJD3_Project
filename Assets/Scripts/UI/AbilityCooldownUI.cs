@@ -17,18 +17,28 @@ public class AbilityCooldownUI : MonoBehaviour
     private ShotgunExplosiveAbility shotgunAbility;
     private PlayerInput playerInput;
 
-    private void Start()
-    {
-        Character player = GameObject.FindWithTag("Player").GetComponent<Character>();
-        axeAbility = player.GetComponentInChildren<AxeBoomerangAbility>();
-        shotgunAbility = player.GetComponentInChildren<ShotgunExplosiveAbility>(true);
-        playerInput = FindFirstObjectByType<global::PlayerInput>();
-        playerInput.OnWeaponChange += UpdateActiveIcon;
-        UpdateActiveIcon();
-    }
+    //private void Start()
+    //{
+    //    Character player = GameObject.FindWithTag("Player").GetComponent<Character>();
+    //    axeAbility = player.GetComponentInChildren<AxeBoomerangAbility>();
+    //    shotgunAbility = player.GetComponentInChildren<ShotgunExplosiveAbility>(true);
+    //    playerInput = FindFirstObjectByType<global::PlayerInput>();
+    //    playerInput.OnWeaponChange += UpdateActiveIcon;
+    //    UpdateActiveIcon();
+    //}
 
     private void Update()
     {
+        if (axeAbility == null)
+        {
+            Character player = GameObject.FindWithTag("Player").GetComponent<Character>();
+            axeAbility = player.GetComponentInChildren<AxeBoomerangAbility>();
+            shotgunAbility = player.GetComponentInChildren<ShotgunExplosiveAbility>(true);
+            playerInput = FindFirstObjectByType<global::PlayerInput>();
+            playerInput.OnWeaponChange += UpdateActiveIcon;
+            UpdateActiveIcon();
+        }
+
         if (axeAbility != null)
         {
             axeFill.fillAmount = axeAbility.CooldownProgress;

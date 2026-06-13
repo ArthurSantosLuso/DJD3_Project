@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Mono.Cecil.Cil;
 
 public class ScreenFader : MonoBehaviour
 {

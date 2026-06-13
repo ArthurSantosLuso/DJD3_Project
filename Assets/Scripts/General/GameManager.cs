@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine.SceneManagement;
 
 /*
@@ -96,6 +95,34 @@ public class GameManager : MonoBehaviour
             UpgradeData match = allUpgrades.Find(s => s.ID == id);
             if (match != null) playerUpgrades.Add(match);
         }
+    }
+
+    public void DeleteSaveData()
+    {
+        // 1. Delete the data from PlayerPrefs
+        if (PlayerPrefs.HasKey(SAVE_KEY))
+        {
+            PlayerPrefs.DeleteKey(SAVE_KEY);
+            PlayerPrefs.Save(); // Ensure the deletion is written to disk
+            Debug.Log("Save data deleted successfully.");
+        }
+        else
+        {
+            Debug.Log("No save data found to delete.");
+        }
+
+        // 2. Reset the active game variables
+        teddyBearCount = 0;
+        availableUpgrades = 0;
+        playerUpgrades.Clear();
+
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Load the scene using that index
+        SceneManager.LoadScene(currentSceneIndex);
+
+        // Note: You may also want to trigger an event here if other scripts 
+        // need to know that the game has been reset (e.g., updating UI).
     }
 
     #region Game State - Pause

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,11 @@ public class EnemyHealth : ValueBase, IDamageable
     private HitFlash hitFlash;
     private EnemyBaseAI enemyAI;
     private bool isArmUnplugged = false;
+    private bool isDead = false;
+
+    // Tracks the original materials per mesh object so we can restore them on reuse
+    private List<Material> originalMaterials = new List<Material>();
+    private Coroutine disintegrationCoroutine;
 
     [SerializeField] private bool shouldArmUnplug = false;
     [SerializeField] private GameObject armUnplugged;
@@ -44,41 +50,55 @@ public class EnemyHealth : ValueBase, IDamageable
             originalArm.SetActive(true);
         }
 
-        hitFlash = GetComponent<HitFlash>();
         enemyAI = GetComponent<EnemyBaseAI>();
-
         renderImage = GameObject.FindWithTag("Render Texture").GetComponent<RawImage>();
 
-        // Cache the overlay canvas
         GameObject canvasObj = GameObject.FindWithTag(healthBarCanvasTag);
         if (canvasObj != null)
             healthBarCanvas = canvasObj.GetComponent<Canvas>();
         else
             Debug.LogWarning($"[EnemyHealth] No GameObject found with tag '{healthBarCanvasTag}'");
+
+        CacheOriginalMaterials();
+    }
+
+    /// <summary>
+    /// Stores each mesh object's original material so PrepareForReuse can restore them.
+    /// </summary>
+    private void CacheOriginalMaterials()
+    {
+        originalMaterials.Clear();
+
+        if (enemyMeshObjects == null) return;
+
+        foreach (GameObject meshObj in enemyMeshObjects)
+        {
+            if (meshObj == null)
+            {
+                originalMaterials.Add(null);
+                continue;
+            }
+
+            Renderer rend = meshObj.GetComponent<Renderer>();
+            originalMaterials.Add(rend != null ? rend.sharedMaterial : null);
+        }
     }
 
     public void Damage(float damageValue)
     {
+        if (isDead) return;
+
         base.ReduceValue(damageValue);
 
         hitFlash?.Flash();
         enemyAI?.TriggerStagger();
 
-        // Show the health bar after the first hit
-        // Update it on every subsequent hit
         HandleHealthBar();
-
         VerifyLife();
     }
 
-
-    /// <summary>
-    /// Instantiates the health bar if it doesn't exist yet,
-    /// then refreshes its fill value.
-    /// </summary>
     private void HandleHealthBar()
     {
-        // Only show the bar when health is below maximum
         if (currentValue >= maxValue) return;
 
         if (healthBarInstance == null)
@@ -123,28 +143,29 @@ public class EnemyHealth : ValueBase, IDamageable
 
     private void Kill()
     {
-        // Destroy the health bar before destroying the enemy
+        isDead = true;
+
         if (healthBarInstance != null)
+        {
             Destroy(healthBarInstance.gameObject);
+            healthBarInstance = null;
+        }
 
         if (dropRate >= Random.value)
         {
             float drop = Random.value;
-
-            if (drop > 0.5f)
-                Instantiate(drops[1], transform.position, Quaternion.identity);
-            else
-                Instantiate(drops[0], transform.position, Quaternion.identity);
+            Instantiate(drop > 0.5f ? drops[1] : drops[0], transform.position, Quaternion.identity);
         }
 
-        // OnDeath?.Invoke(this);
-       
-        StartCoroutine(StartDisintegration());
+        // Stop any previously running coroutine before starting a new one
+        if (disintegrationCoroutine != null)
+            StopCoroutine(disintegrationCoroutine);
+
+        disintegrationCoroutine = StartCoroutine(StartDisintegration());
     }
 
-    private System.Collections.IEnumerator StartDisintegration()
+    private IEnumerator StartDisintegration()
     {
-
         if (enemyAI != null) enemyAI.enabled = false;
 
         Collider mainCollider = GetComponent<Collider>();
@@ -153,26 +174,21 @@ public class EnemyHealth : ValueBase, IDamageable
         Animator enemyAnimator = GetComponentInChildren<Animator>();
         if (enemyAnimator != null) enemyAnimator.enabled = false;
 
-        List<Material> materialsToDissolve = new List<Material>();
-
         if (disintegrationMaterial != null && enemyMeshObjects != null)
         {
+            List<Material> materialsToDissolve = new List<Material>();
+
             foreach (GameObject meshObj in enemyMeshObjects)
             {
                 if (meshObj == null) continue;
 
                 Renderer rend = meshObj.GetComponent<Renderer>();
-
                 if (rend != null)
                 {
-                    // material change
                     rend.material = disintegrationMaterial;
 
-
                     if (rend.material.HasProperty("_Dissolve"))
-                    {
                         materialsToDissolve.Add(rend.material);
-                    }
                 }
             }
 
@@ -185,32 +201,89 @@ public class EnemyHealth : ValueBase, IDamageable
                 float newCutoff = Mathf.Lerp(0f, 0.8f, elapsedTime / dissolveDuration);
 
                 foreach (Material mat in materialsToDissolve)
-                {
                     mat.SetFloat("_Dissolve", newCutoff);
-                }
 
                 yield return null;
             }
-
         }
+
+        disintegrationCoroutine = null;
+
         OnDeath?.Invoke(this);
+        Destroy(gameObject);
     }
 
-    public bool CanDamage()
+    /// <summary>
+    /// Resets this enemy to a clean alive state so it can be reused from the pool.
+    /// Called by AgentPoolManager before handing the agent out again.
+    /// </summary>
+    public void PrepareForReuse()
     {
-        return currentValue > 0;
+        // Stop dissolve if it's somehow still running
+        if (disintegrationCoroutine != null)
+        {
+            StopCoroutine(disintegrationCoroutine);
+            disintegrationCoroutine = null;
+        }
+
+        isDead = false;
+        isArmUnplugged = false;
+
+        // Restore original materials
+        if (enemyMeshObjects != null)
+        {
+            for (int i = 0; i < enemyMeshObjects.Count; i++)
+            {
+                if (enemyMeshObjects[i] == null) continue;
+
+                Renderer rend = enemyMeshObjects[i].GetComponent<Renderer>();
+                if (rend != null && i < originalMaterials.Count && originalMaterials[i] != null)
+                    rend.material = originalMaterials[i];
+            }
+        }
+
+        // Re-enable components disabled during death
+        if (enemyAI != null) enemyAI.enabled = true;
+
+        Collider mainCollider = GetComponent<Collider>();
+        if (mainCollider != null) mainCollider.enabled = true;
+
+        Animator enemyAnimator = GetComponentInChildren<Animator>();
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.enabled = true;
+            enemyAnimator.Rebind();  // resets animation state to defaults
+            enemyAnimator.Update(0f);
+        }
+
+        // Reset arm state
+        if (shouldArmUnplug && originalArm != null && armUnplugged != null)
+        {
+            armUnplugged.SetActive(false);
+            originalArm.SetActive(true);
+        }
+
+        // Destroy any leftover health bar
+        if (healthBarInstance != null)
+        {
+            Destroy(healthBarInstance.gameObject);
+            healthBarInstance = null;
+        }
+
+        // TODO: reset currentValue to maxValue once ValueBase is available
+        // e.g. ResetValue(); or SetValue(maxValue);
     }
+
+    public bool CanDamage() => currentValue > 0;
+    public bool HasBlood() => true;
 
     public void DamageNoStagger(float damageValue)
     {
+        if (isDead) return;
+
         base.ReduceValue(damageValue);
         hitFlash?.Flash();
         HandleHealthBar();
         VerifyLife();
-    }
-
-    public bool HasBlood()
-    {
-        return true;
     }
 }

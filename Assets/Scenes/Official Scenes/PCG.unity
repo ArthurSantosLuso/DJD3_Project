@@ -1574,8 +1574,8 @@ MonoBehaviour:
   roomCorridorContainer: {fileID: 973700593}
   baseRoomCount: 3
   roomsPerScale: 1
-  baseMinWidth: 20
-  baseMinDepth: 20
+  baseMinWidth: 15
+  baseMinDepth: 15
   sizeIncreasePerScale: 5
   maxRandomVariance: 5
   roomPrefab: {fileID: 5248342371859317136, guid: 429a46447df794f40a1c9771fec1b66e, type: 3}
