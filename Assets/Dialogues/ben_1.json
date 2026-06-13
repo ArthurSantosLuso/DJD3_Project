@@ -4,7 +4,7 @@
     [
       "^I'm glad you made it in your first time out there.",
       "\n",
-      "^Those monsters are know as \"Skinwalkers\".",
+      "^Those monsters are the \"Skinwalkers\" that i told you.",
       "\n",
       "^They are mindless killers that only seek to fullfil their mother's wishes, she's know as \"Matriarch\".",
       "\n",
@@ -12,7 +12,11 @@
       "\n",
       "^Be careful, the more you upset the Matriarch, the stronger the minions she will send after you.",
       "\n",
-      "^Have you already taken your upgrade?",
+      "^Oh! And for now try to follow the lights in the florest...",
+      "\n",
+      "^I don't know why... But something about those lights is connected to the \"Matriarch\".",
+      "\n",
+      "^Have you already taken your upgrade tho?",
       "\n",
       [
         "done",
