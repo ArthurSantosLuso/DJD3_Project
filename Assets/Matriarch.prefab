@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1193874444933993984}
+  - component: {fileID: 8217404713976119968}
   - component: {fileID: 5641605686593644993}
+  - component: {fileID: 3755517122602901827}
+  - component: {fileID: 5385302595762750488}
   m_Layer: 0
   m_Name: Matriarch
   m_TagString: Untagged
@@ -34,6 +37,27 @@ Transform:
   - {fileID: 5073872200593489738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!65 &8217404713976119968
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221960059708693480}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.7121973, y: 4.3888063, z: 4.4000206}
+  m_Center: {x: -0.16624546, y: 1.0473386, z: -0.5471554}
 --- !u!114 &5641605686593644993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,6 +74,55 @@ MonoBehaviour:
   tentacleShield: {fileID: 9187727248595694487}
   timeBetweenAttacks: 4
   timeBetweenTentaclesInstantiation: 2.5
+  agentPoolManager: {fileID: 0}
+  enemySpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnableEnemyTypes: 0000000001000000020000000300000004000000
+  enemiesPerWaveRange: {x: 2, y: 4}
+--- !u!114 &3755517122602901827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221960059708693480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d619449df6452a140baf3adbbbcec5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxValue: 500
+  shouldArmUnplug: 0
+  armUnplugged: {fileID: 0}
+  originalArm: {fileID: 0}
+  drops: []
+  dropRate: 0
+  healthBarPrefab: {fileID: 4301800778830223153, guid: 2f3f93173029127488756de0ae059da6, type: 3}
+  disintegrationMaterial: {fileID: 2100000, guid: f3d0e4b8aced48d4d9b850a1996028ab, type: 2}
+  enemyMeshObjects:
+  - {fileID: 2920131319905450508}
+  - {fileID: 6015284487603233401}
+  - {fileID: 6522974144219561921}
+  - {fileID: 4555876249587442359}
+  - {fileID: 5810849879525177669}
+  renderImage: {fileID: 0}
+  healthBarCanvasTag: EnemyHealthBarCanvas
+--- !u!114 &5385302595762750488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221960059708693480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f1360bcda01e6408e6604db87b9f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.15
 --- !u!1 &2920131319905450508
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +189,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 835421f7b3d5ece4c8de21273f0a45b9, type: 2}
+  - {fileID: 2100000, guid: 93a4286bb45cb24428696aece8a538c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,7 +279,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd8fa827ba3e8674cb2d812c31327bfc, type: 2}
+  - {fileID: 2100000, guid: 0f30fa85b97f826408bd79b24a482605, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -330,7 +403,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd8fa827ba3e8674cb2d812c31327bfc, type: 2}
+  - {fileID: 2100000, guid: 0f30fa85b97f826408bd79b24a482605, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -420,7 +493,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 835421f7b3d5ece4c8de21273f0a45b9, type: 2}
+  - {fileID: 2100000, guid: 93a4286bb45cb24428696aece8a538c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -510,7 +583,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 835421f7b3d5ece4c8de21273f0a45b9, type: 2}
+  - {fileID: 2100000, guid: 93a4286bb45cb24428696aece8a538c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class Matriarch : MonoBehaviour/*, IDamageable*/
+public class Matriarch : MonoBehaviour
 {
+    [Header("Game End")]
+    [SerializeField] private GameObject GameOverPanel;
+
+
     [Header("Slam Attack")]
     [SerializeField] private GameObject tentaclePrefab;
     [SerializeField] private GameObject tentacleShield;
@@ -17,9 +21,6 @@ public class Matriarch : MonoBehaviour/*, IDamageable*/
     [SerializeField] private List<EnemyType> spawnableEnemyTypes;
     [SerializeField] private Vector2Int enemiesPerWaveRange = new Vector2Int(2, 4);
 
-    //[Header("Health")]
-    //[SerializeField] private float health;
-
     private int slamAttacksToHappen;
     private int tentaclesRemaining;
     private float timer;
@@ -31,6 +32,11 @@ public class Matriarch : MonoBehaviour/*, IDamageable*/
     private int shieldTentaclesRemaining;
     private bool enemiesSpawned = false;
     private List<EnemyBaseAI> spawnedEnemies = new List<EnemyBaseAI>();
+
+    private void Start()
+    {
+        GetComponent<EnemyHealth>().OnDeath += MatriarchDied;
+    }
 
     private void Update()
     {
@@ -224,23 +230,10 @@ public class Matriarch : MonoBehaviour/*, IDamageable*/
         timer = 0f;
     }
 
-    //public bool HasBlood()
-    //{
-    //    return true;
-    //}
-
-    //public bool CanDamage()
-    //{
-    //    return !isShieldUp;
-    //}
-
-    //public void Damage(float damageValue)
-    //{
-    //    health -= damageValue;
-    //}
-
-    //public void DamageNoStagger(float damageValue)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
+    private void MatriarchDied(EnemyHealth health)
+    {
+        GameOverPanel.SetActive(true);
+        GameManager.Instance.StopPlayerActions();
+        gameObject.SetActive(false);
+    }
 }
