@@ -2,36 +2,36 @@
   "inkVersion": 21,
   "root": [
     [
-      "^You were lucky I found you in the forest unconscious.",
-      "\n",
-      "^Even though you were missing an arm...",
-      "\n",
-      "^I restored your arm with one of those monster arms.",
-      "\n",
-      "^You can now use it in you favour.",
-      "\n",
-      "^But I ask you to help me in return.",
-      "\n",
-      "^Kill those monsters and I will help you find your daughter.",
-      "\n",
-      "^You can look at the Wooden Board to see preferences.",
-      "\n",
-      "^Use the Campfire to rest and write down your exploration to save your progress.",
-      "\n",
-      "^And you can catch some rest and leave reality for some time in the Tent.",
-      "\n",
-      "^Oh! and each time you prove yourself in that forest I will give you some upgrades.",
-      "\n",
-      "^Just pass by the the table with some syringes.",
-      "\n",
-      [
-        "done",
-        {
-          "#f": 5,
-          "#n": "g-0"
-        }
-      ],
-      null
+        "^Go kill those monsters and I will help you find your daughter.",
+        "\n",
+        "^Normally, the matriarch chooses something close to the victim...",
+        "\n",
+        "^To use it as the key to leave this realm",
+        "\n",
+        "^If you find something that your daughter was attacted too on the florest...",
+        "\n",
+        "^Grab it with no excuse!",
+        "\n",
+        "^You can look at the Wooden Board to see preferences.",
+        "\n",
+        "^If you use the Campfire to rest and write down your exploration to save your progress.",
+        "\n",
+        "^And you can catch some rest and leave reality for some time in the Tent.",
+        "\n",
+        "^Oh! and like i told you before...",
+        "\n",
+        "^When you here again after you prove yourself in that forest I will give you some upgrades",
+        "\n",
+        "^Just pass by the the table with some syringes.",
+        "\n",
+        [
+            "done",
+            {
+                "#f": 5,
+                "#n": "g-0"
+            }
+        ],
+        null
     ],
     "done",
     { "#f": 1 }
