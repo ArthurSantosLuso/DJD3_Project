@@ -1026,14 +1026,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4766470452135527863, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 538324899}
   m_SourcePrefab: {fileID: 100100000, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
 --- !u!114 &538324896 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
   m_PrefabInstance: {fileID: 538324895}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 538324898}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a543c4b53d73054098f92d1dba2ba44, type: 3}
@@ -1044,12 +1047,34 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6319525085236888158, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
   m_PrefabInstance: {fileID: 538324895}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 538324898}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f414b76b3be60048b14dcd8e99e5804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenFader
+--- !u!1 &538324898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4766470452135527863, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+  m_PrefabInstance: {fileID: 538324895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &538324899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538324898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97257852d0bc6c248a84cd30c251a8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StaminaVisualFeedback
+  playerStamina: {fileID: 0}
+  globalVolume: {fileID: 1414692538}
+  lowStaminaThreshold: 0.3
+  maxDesaturation: -40
+  shiftSpeed: 5
 --- !u!1 &541283681 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7499009053584308668, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
