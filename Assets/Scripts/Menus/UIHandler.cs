@@ -42,7 +42,7 @@ public class UIHandler : MonoBehaviour
         else if (barIdx == 1) // stamina bar
         {
             // remap values
-            float mappedValue = Mathf.Lerp(0.35f, 0.63f, percentage);
+            float mappedValue = Mathf.Lerp(0.13f, 0.63f, percentage);
             bars[barIdx].fillAmount = mappedValue;
         }
         else 
