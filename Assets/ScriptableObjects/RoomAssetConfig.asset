@@ -33,7 +33,7 @@ MonoBehaviour:
       chanceToSpawn: 0.1
     - prefab: {fileID: 4966690263958111881, guid: a6ecae04e59b9a444bfd94dae44f75fc, type: 3}
       chanceToSpawn: 0.1
-    minCount: 15
+    minCount: 10
     maxCount: 35
   - type: 1
     prefabs:

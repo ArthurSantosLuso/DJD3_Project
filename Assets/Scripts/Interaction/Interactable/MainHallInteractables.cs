@@ -46,7 +46,7 @@ public class MainHallInteractables : Interactable
 
     private void SavaGame()
     {
-        // Implement
+        GameManager.Instance.SaveGame();
     }
 
     private void UpdateUpgradeProps()

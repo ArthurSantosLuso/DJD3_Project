@@ -5,10 +5,11 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject quitConfirmation;
     [SerializeField] private GameObject configurations;
+    [SerializeField, SceneDropdown] private string sceneToOpen;
 
     private GameObject currentWindow;
 
-    public void OpenScene(int sceneIdx) => SceneManager.LoadScene(sceneIdx);
+    public void OpenScene() => SceneManager.LoadScene(sceneToOpen);
 
     public void QuitGame() => Application.Quit();
 
