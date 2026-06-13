@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Enemy.Matriarch
   tentaclePrefab: {fileID: 1446311747134768394, guid: 11f985e86b4f3234a94ed3c90e1d5e1f, type: 3}
-  timeBetweenAttacks: 2
-  timeBetweenTentaclesInstantiation: 1.5
+  tentacleShield: {fileID: 9187727248595694487}
+  timeBetweenAttacks: 4
+  timeBetweenTentaclesInstantiation: 2.5
 --- !u!1 &2920131319905450508
 GameObject:
   m_ObjectHideFlags: 0

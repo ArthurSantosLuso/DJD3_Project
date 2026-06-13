@@ -18,15 +18,6 @@ MonoBehaviour:
     - type: 0
       minCount: 3
       maxCount: 5
-    - type: 2
-      minCount: 3
-      maxCount: 5
-    - type: 3
-      minCount: 3
-      maxCount: 5
-    - type: 1
-      minCount: 3
-      maxCount: 5
   - teddyBearThreshold: 1
     entries:
     - type: 4

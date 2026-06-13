@@ -275,6 +275,14 @@ public abstract class EnemyBaseAI : MonoBehaviour
         return !stateInfo.IsName("Attack") && !stateInfo.IsName("Hit");
     }
 
+    public void Warp(Vector3 position, Quaternion rotation)
+    {
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
+
+        transform.rotation = rotation;
+        agent.Warp(position);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1f, 0.2f, 0.2f, 0.4f);

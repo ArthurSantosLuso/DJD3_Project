@@ -1615,8 +1615,8 @@ GameObject:
   - component: {fileID: 7563777002194784543}
   - component: {fileID: 8338868407640153338}
   - component: {fileID: 7297786968829479179}
-  - component: {fileID: 931575882342263743}
   - component: {fileID: 2221518139774189114}
+  - component: {fileID: 931575882342263743}
   m_Layer: 8
   m_Name: LowerSkinwalkerDamager
   m_TagString: Untagged
@@ -1774,6 +1774,20 @@ MonoBehaviour:
   weapons:
   - {fileID: 8102983095980468540}
   valuesBase: []
+--- !u!114 &2221518139774189114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318418939830195361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f1360bcda01e6408e6604db87b9f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.15
 --- !u!114 &931575882342263743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1800,20 +1814,6 @@ MonoBehaviour:
   - {fileID: 2850201364912180241}
   renderImage: {fileID: 0}
   healthBarCanvasTag: EnemyHealthBarCanvas
---- !u!114 &2221518139774189114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8318418939830195361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f1360bcda01e6408e6604db87b9f1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.15
 --- !u!1 &8333667289130148754
 GameObject:
   m_ObjectHideFlags: 0

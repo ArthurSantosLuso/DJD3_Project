@@ -2714,6 +2714,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ce84ac8a-6548-44c0-a32b-9d6e26a81187
     m_ActionName: 'Player/Ability[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ddb2d25b-d0e5-4019-a707-2400d4911bcf
+    m_ActionName: 'Player/Skip Dialogue[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3474,6 +3478,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -9.694
       objectReference: {fileID: 0}
+    - target: {fileID: 1451109272611452829, guid: 3564996a2419bc54d82d7eda8d67113e, type: 3}
+      propertyPath: maxAmmo
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451109272611452829, guid: 3564996a2419bc54d82d7eda8d67113e, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 5978441138906920022}
     - target: {fileID: 1568631653108419606, guid: 3564996a2419bc54d82d7eda8d67113e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.77372986
@@ -3554,11 +3566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018f5da77bccef94cba5260369de86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShotgunAttack
---- !u!4 &1367491637629799032 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 953175123592761447, guid: 3564996a2419bc54d82d7eda8d67113e, type: 3}
-  m_PrefabInstance: {fileID: 2287852660981864991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2713900966490708420 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -5014297131293015077, guid: 3564996a2419bc54d82d7eda8d67113e, type: 3}
@@ -3590,7 +3597,7 @@ MonoBehaviour:
   actionAudio: {fileID: 8300000, guid: 07b810ed34e50064dba52d635b9b1c8a, type: 3}
   staminaCost: 0
   explosiveProjectilePrefab: {fileID: 2324027806226887061, guid: b81106bb31151354db0edae71b13ccc1, type: 3}
-  firePoint: {fileID: 1367491637629799032}
+  firePoint: {fileID: 5978441138906920022}
   projectileSpeed: 15
   impactDamage: 100
   burningZonePrefab: {fileID: 5089703853418238435, guid: ccbf2e4a20ae2774088f2c1a11bc5181, type: 3}

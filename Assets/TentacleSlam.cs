@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TentacleSlam : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class TentacleSlam : MonoBehaviour
     [SerializeField] private Renderer tentacleRenderer;
     [SerializeField] private Color normalColor;
     [SerializeField] private Color attackColor;
+
+    public event Action OnSlamComplete;
 
     private bool isAttacking = false;
     private bool canAct = false;
@@ -68,7 +71,7 @@ public class TentacleSlam : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (timer < aimTime && shouldFollowPlayer)
+            if (timer < aimTime)
             {
                 Vector3 lookPos = target.position;
                 lookPos.y = transform.position.y;
@@ -78,7 +81,7 @@ public class TentacleSlam : MonoBehaviour
                     mat.color = Color.Lerp(normalColor, attackColor, timer / aimTime);
                 }
 
-                transform.LookAt(lookPos);
+                if (shouldFollowPlayer) transform.LookAt(lookPos);
             }
             else
             {
@@ -125,6 +128,8 @@ public class TentacleSlam : MonoBehaviour
 
         if (!isAttacking)
         {
+            OnSlamComplete?.Invoke();
+
             if (!isShield)
             {
                 Destroy(gameObject);

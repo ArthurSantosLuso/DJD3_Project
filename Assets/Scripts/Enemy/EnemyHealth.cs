@@ -137,7 +137,7 @@ public class EnemyHealth : ValueBase, IDamageable
                 Instantiate(drops[0], transform.position, Quaternion.identity);
         }
 
-        OnDeath?.Invoke(this);
+        // OnDeath?.Invoke(this);
        
         StartCoroutine(StartDisintegration());
     }
@@ -192,8 +192,8 @@ public class EnemyHealth : ValueBase, IDamageable
                 yield return null;
             }
 
-            Destroy(gameObject);
         }
+        OnDeath?.Invoke(this);
     }
 
     public bool CanDamage()

@@ -1443,7 +1443,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &1714142773159441591
 MonoBehaviour:
@@ -1484,6 +1484,8 @@ MonoBehaviour:
   drops: []
   dropRate: 0
   healthBarPrefab: {fileID: 4301800778830223153, guid: 2f3f93173029127488756de0ae059da6, type: 3}
+  disintegrationMaterial: {fileID: 2100000, guid: a46ae602fbbf6114f8535ee88ecba467, type: 2}
+  enemyMeshObjects: []
   renderImage: {fileID: 0}
   healthBarCanvasTag: EnemyHealthBarCanvas
 --- !u!114 &6582839512138918776
@@ -1512,7 +1514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debb02b008306644b80457268ce00e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemyAI
-  moveSpeed: 1.2
+  moveSpeed: 2
   attackRange: 5
   avoindanceRange: 2
   timeToAttack: 2
