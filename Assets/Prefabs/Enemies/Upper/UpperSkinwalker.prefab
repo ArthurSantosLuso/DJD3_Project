@@ -1050,7 +1050,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -150658992086872121, guid: a27103917de052f439cfcb4921a29650, type: 3}
+  - {fileID: 2100000, guid: 2324267687b3df84b9760acf2326835a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1481,11 +1481,14 @@ MonoBehaviour:
   shouldArmUnplug: 0
   armUnplugged: {fileID: 0}
   originalArm: {fileID: 0}
-  drops: []
-  dropRate: 0
+  drops:
+  - {fileID: 7640812142838261244, guid: 89bb3d23ebf9b65439025d088d0ccfa3, type: 3}
+  - {fileID: 8572035285612916469, guid: 974da86b9173acf4c8cc77034e253705, type: 3}
+  dropRate: 0.3
   healthBarPrefab: {fileID: 4301800778830223153, guid: 2f3f93173029127488756de0ae059da6, type: 3}
-  disintegrationMaterial: {fileID: 2100000, guid: a46ae602fbbf6114f8535ee88ecba467, type: 2}
-  enemyMeshObjects: []
+  disintegrationMaterial: {fileID: 2100000, guid: 748d011084afb01428e19cc66a393efa, type: 2}
+  enemyMeshObjects:
+  - {fileID: 6919573224097473251}
   renderImage: {fileID: 0}
   healthBarCanvasTag: EnemyHealthBarCanvas
 --- !u!114 &6582839512138918776
