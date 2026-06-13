@@ -21,7 +21,7 @@ MonoBehaviour:
       chanceToSpawn: 0.5
     - prefab: {fileID: 2209569540379731030, guid: 7355b20182c042b4e8666dc7dd2253a8, type: 3}
       chanceToSpawn: 0.4
-    - prefab: {fileID: 6468775712958346101, guid: 589b5a21f05cd184eadbb907f08a1eff, type: 3}
+    - prefab: {fileID: 2317355277395883294, guid: 2f29d82b3a04c47478a8a6cb63bf5226, type: 3}
       chanceToSpawn: 0.2
     - prefab: {fileID: 2029199746149380044, guid: 8b457eb323d1465488a37831d1c8b8d2, type: 3}
       chanceToSpawn: 0.4
