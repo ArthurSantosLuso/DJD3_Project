@@ -28,20 +28,25 @@ public class UIHandler : MonoBehaviour
 
     public void SetBarValue(int barIdx, float currentValue, float maxValue)
     {
-        // Get normal values 0.0 - 1-0
+
+        if (maxValue <= 0) return;
+
         float percentage = currentValue / maxValue;
 
-        
-        if (barIdx != 3) //  Anything but 3
+        if (barIdx == 0) // health bar
         {
-            // change those value to 0.2 - 0.8 so it makes sense with the stamina bar sprite
-            float mappedValue = Mathf.Lerp(0.22f, 0.78f, percentage);
-
+            // remap values
+            float mappedValue = Mathf.Lerp(0.17f, 0.77f, percentage);
             bars[barIdx].fillAmount = mappedValue;
         }
-        else
+        else if (barIdx == 1) // stamina bar
         {
-            
+            // remap values
+            float mappedValue = Mathf.Lerp(0.35f, 0.63f, percentage);
+            bars[barIdx].fillAmount = mappedValue;
+        }
+        else 
+        {
             bars[barIdx].fillAmount = percentage;
         }
     }
