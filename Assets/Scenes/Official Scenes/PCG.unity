@@ -1008,6 +1008,18 @@ PrefabInstance:
       propertyPath: 'bars.Array.data[1]'
       value: 
       objectReference: {fileID: 133841920}
+    - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+      propertyPath: glowBars.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+      propertyPath: 'glowBars.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1886653719}
+    - target: {fileID: 7043063305825722367, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
+      propertyPath: 'glowBars.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1886653718}
     - target: {fileID: 8455044557764053419, guid: a2b8ca65f2322f94498fb46eb4d8db64, type: 3}
       propertyPath: continueIcon
       value: 
@@ -2062,6 +2074,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1886653718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7017170800751875742, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
+  m_PrefabInstance: {fileID: 133841909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &1886653719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 672751616891935975, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
+  m_PrefabInstance: {fileID: 133841909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &1920522646 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1676376802582227273, guid: 518c36fc40c7d50469217fddb85f7c1b, type: 3}
