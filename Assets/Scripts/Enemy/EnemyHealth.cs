@@ -21,6 +21,12 @@ public class EnemyHealth : ValueBase, IDamageable
     [Tooltip("Prefab that contains EnemyHealthBar component")]
     [SerializeField] private GameObject healthBarPrefab;
 
+    [Header("Death Effects")]
+    [SerializeField] private Material disintegrationMaterial;
+
+    [Tooltip("Child with mesh renderer")]
+    [SerializeField] private List<GameObject> enemyMeshObjects;
+
     [Tooltip("The RawImage that displays the render texture.")]
     [SerializeField] private UnityEngine.UI.RawImage renderImage;
 
@@ -132,8 +138,62 @@ public class EnemyHealth : ValueBase, IDamageable
         }
 
         OnDeath?.Invoke(this);
-        // GameManager.Instance.EnemyDeadCount++;
-        Destroy(gameObject);
+       
+        StartCoroutine(StartDisintegration());
+    }
+
+    private System.Collections.IEnumerator StartDisintegration()
+    {
+
+        if (enemyAI != null) enemyAI.enabled = false;
+
+        Collider mainCollider = GetComponent<Collider>();
+        if (mainCollider != null) mainCollider.enabled = false;
+
+        Animator enemyAnimator = GetComponentInChildren<Animator>();
+        if (enemyAnimator != null) enemyAnimator.enabled = false;
+
+        List<Material> materialsToDissolve = new List<Material>();
+
+        if (disintegrationMaterial != null && enemyMeshObjects != null)
+        {
+            foreach (GameObject meshObj in enemyMeshObjects)
+            {
+                if (meshObj == null) continue;
+
+                Renderer rend = meshObj.GetComponent<Renderer>();
+
+                if (rend != null)
+                {
+                    // material change
+                    rend.material = disintegrationMaterial;
+
+
+                    if (rend.material.HasProperty("_Dissolve"))
+                    {
+                        materialsToDissolve.Add(rend.material);
+                    }
+                }
+            }
+
+            float dissolveDuration = 2.0f;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < dissolveDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float newCutoff = Mathf.Lerp(0f, 0.8f, elapsedTime / dissolveDuration);
+
+                foreach (Material mat in materialsToDissolve)
+                {
+                    mat.SetFloat("_Dissolve", newCutoff);
+                }
+
+                yield return null;
+            }
+
+            Destroy(gameObject);
+        }
     }
 
     public bool CanDamage()
