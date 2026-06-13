@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class UIMenuManager : MonoBehaviour
 {
@@ -89,10 +90,22 @@ public class UIMenuManager : MonoBehaviour
     {
         if (GameManager.Instance.TeddyBearCount == 0)
         {
-            // Tocar cutscene
-            // return; ?
+            SceneManager.LoadScene(1);
+            return;
         }
 
+        // Cameras
+        currentCamera.Priority = 0;
+        gameplayCamera.Priority = 100;
+        cinemachineBrain.LensModeOverride.Enabled = true;
+        mainCamera.targetTexture = pixelRenderTexture;
+
+        gameplayRaycaster.enabled = true;
+
+        foreach (var obj in objs)
+        {
+            obj.SetActive(true);
+        }
         // Cameras
         currentCamera.Priority = 0;
         gameplayCamera.Priority = 100;
@@ -115,5 +128,10 @@ public class UIMenuManager : MonoBehaviour
     public void NewGame()
     {
         GameManager.Instance.DeleteSaveData();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

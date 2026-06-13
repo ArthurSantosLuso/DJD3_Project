@@ -114,10 +114,7 @@ public class GameManager : MonoBehaviour
         availableUpgrades = 0;
         playerUpgrades.Clear();
 
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        // ----------------- Fred aqui --------------
-        SceneManager.LoadScene(currentSceneIndex);
+        SceneManager.LoadScene(1);
     }
 
     #region Game State - Pause
