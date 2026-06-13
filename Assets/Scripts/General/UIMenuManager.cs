@@ -21,6 +21,9 @@ public class UIMenuManager : MonoBehaviour
     [SerializeField] private CinemachineCamera optionsCamera;
     [SerializeField] private RenderTexture pixelRenderTexture;
 
+    [Header("First Run")]
+    [SerializeField] private DialogueInteractable uncleBenDialogueInteractable;
+
     private CinemachineBrain cameraBrain;
 
     void Awake()
@@ -60,8 +63,15 @@ public class UIMenuManager : MonoBehaviour
 
                 if (blendPercent >= 0.92f)
                 {
-                    GameManager.Instance.ActivatePlayerActions();
-                    gameObject.SetActive(false);
+                    if (GameManager.Instance.TeddyBearCount == 0)
+                    {
+                        uncleBenDialogueInteractable.TryInteract();
+                    }
+                    else
+                    {
+                        GameManager.Instance.ActivatePlayerActions();
+                        gameObject.SetActive(false);
+                    }
                 }
             }
         }

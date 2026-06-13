@@ -1,21 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+[Serializable]
+public struct DialogueConfig
+{
+    public int teddyBearCount;
+    public TextAsset inkJSON;
+}
 
 public class DialogueInteractable : Interactable
 {
+    [SerializeField] private bool isDialogueScalable = false;
+
     [Header("Dialogue Content")]
-    [SerializeField] private TextAsset inkJSON;
+    [SerializeField] private List<DialogueConfig> scalableDialogues;
+    [SerializeField] private TextAsset uniqueDialogue;
     [SerializeField] private Sprite profileImage;
 
     protected override void Interact(Character entity = null)
     {
-        if (inkJSON == null)
+        if (uniqueDialogue == null && scalableDialogues == null)
         {
             Debug.LogWarning("NPC has no Ink JSON assigned!");
             return;
         }
 
-        // Send notification to the manager to start
-        DialogueManager.Instance.EnterDialogueMode(inkJSON, profileImage);
+        if (isDialogueScalable)
+        {
+            int teddyBearCount = GameManager.Instance.TeddyBearCount;
+            TextAsset text = scalableDialogues.Where(s=> s.teddyBearCount == teddyBearCount).Select(s=> s.inkJSON).FirstOrDefault();
+            DialogueManager.Instance.EnterDialogueMode(text, profileImage);
+        }
+        else
+        {
+            // Send notification to the manager to start
+            DialogueManager.Instance.EnterDialogueMode(uniqueDialogue, profileImage);
+        }
     }
 
     public override void TryInteract(Character entity = null)

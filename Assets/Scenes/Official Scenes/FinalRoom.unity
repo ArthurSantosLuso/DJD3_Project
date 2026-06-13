@@ -3270,7 +3270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1122643750636757830
 Transform:
   m_ObjectHideFlags: 0
@@ -3467,8 +3467,21 @@ MonoBehaviour:
   slamHitWindow: 0.5
   damage: 20
   tentacleRenderer: {fileID: 7539741298583297228}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  idleColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  warningColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  player: {fileID: 0}
+  hitCollider: {fileID: 0}
+  animator: {fileID: 0}
+  mat: {fileID: 0}
+  isTracking: 0
 --- !u!114 &1500751003076372790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3486,8 +3499,21 @@ MonoBehaviour:
   slamHitWindow: 0.5
   damage: 20
   tentacleRenderer: {fileID: 7539741298631178330}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  idleColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  warningColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  player: {fileID: 0}
+  hitCollider: {fileID: 0}
+  animator: {fileID: 0}
+  mat: {fileID: 0}
+  isTracking: 0
 --- !u!114 &1500751003684949191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3505,8 +3531,21 @@ MonoBehaviour:
   slamHitWindow: 0.5
   damage: 20
   tentacleRenderer: {fileID: 7539741299232906667}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  idleColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  warningColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  player: {fileID: 0}
+  hitCollider: {fileID: 0}
+  animator: {fileID: 0}
+  mat: {fileID: 0}
+  isTracking: 0
 --- !u!114 &1500751003834388614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3524,8 +3563,21 @@ MonoBehaviour:
   slamHitWindow: 0.5
   damage: 20
   tentacleRenderer: {fileID: 7539741299083133418}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  idleColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  warningColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  player: {fileID: 0}
+  hitCollider: {fileID: 0}
+  animator: {fileID: 0}
+  mat: {fileID: 0}
+  isTracking: 0
 --- !u!114 &1500751004032421716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3543,8 +3595,21 @@ MonoBehaviour:
   slamHitWindow: 0.5
   damage: 20
   tentacleRenderer: {fileID: 7539741299285728824}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  idleColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  warningColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  player: {fileID: 0}
+  hitCollider: {fileID: 0}
+  animator: {fileID: 0}
+  mat: {fileID: 0}
+  isTracking: 0
 --- !u!114 &1500751004190074317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3562,8 +3627,21 @@ MonoBehaviour:
   slamHitWindow: 0.5
   damage: 20
   tentacleRenderer: {fileID: 7539741299732264097}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  idleColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  warningColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  player: {fileID: 0}
+  hitCollider: {fileID: 0}
+  animator: {fileID: 0}
+  mat: {fileID: 0}
+  isTracking: 0
 --- !u!114 &1500751005161509245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3581,8 +3659,21 @@ MonoBehaviour:
   slamHitWindow: 0.5
   damage: 20
   tentacleRenderer: {fileID: 7539741300440629265}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  idleColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  warningColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  player: {fileID: 0}
+  hitCollider: {fileID: 0}
+  animator: {fileID: 0}
+  mat: {fileID: 0}
+  isTracking: 0
 --- !u!114 &1500751005166251746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3600,8 +3691,21 @@ MonoBehaviour:
   slamHitWindow: 0.5
   damage: 20
   tentacleRenderer: {fileID: 7539741300435976078}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  idleColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  warningColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  player: {fileID: 0}
+  hitCollider: {fileID: 0}
+  animator: {fileID: 0}
+  mat: {fileID: 0}
+  isTracking: 0
 --- !u!4 &1963855482370474504
 Transform:
   m_ObjectHideFlags: 0
