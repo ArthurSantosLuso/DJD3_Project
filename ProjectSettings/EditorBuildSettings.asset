@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Official Scenes/Main Hall - Main Menu.unity
     guid: 3bb9e511dcb45e64782a259b232134af
   - enabled: 1
+    path: Assets/Scenes/Official Scenes/FirstCutscene.unity
+    guid: 39b306f07dc4d1143b2c8aa529022349
+  - enabled: 1
+    path: Assets/Scenes/Official Scenes/SecondCutscene.unity
+    guid: c0227c01324f6a843832631d93b7a715
+  - enabled: 1
+    path: Assets/Scenes/Official Scenes/ThirdCutscene.unity
+    guid: bd2afeb42067ad1419a5819b402fca31
+  - enabled: 1
     path: Assets/Scenes/Official Scenes/PCG.unity
     guid: 86c22f90390de144099c6f0f1c03b6a8
   - enabled: 1
