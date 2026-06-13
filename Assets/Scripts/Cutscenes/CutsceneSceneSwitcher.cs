@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class CutsceneSceneSwitcher : MonoBehaviour
 {
     [SerializeField] private PlayableDirector director;
-    [SerializeField] private string nextSceneName;
+    [SerializeField] private int nextSceneIndex;
 
     private void OnEnable()
     {
@@ -19,6 +19,6 @@ public class CutsceneSceneSwitcher : MonoBehaviour
 
     private void OnTimelineFinished(PlayableDirector pd)
     {
-        SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }

@@ -7,7 +7,7 @@ using TMPro;
 public class CutsceneSkip : MonoBehaviour
 {
     [SerializeField] private PlayableDirector director;
-    [SerializeField] private string nextSceneName;
+    [SerializeField] private int nextSceneIndex;
     [SerializeField] private float holdTimeToSkip = 1.5f;
 
     [SerializeField] private GameObject skipUI;
@@ -26,7 +26,7 @@ public class CutsceneSkip : MonoBehaviour
             if (holdTimer >= holdTimeToSkip)
             {
                 director.Stop();
-                SceneManager.LoadScene(nextSceneName);
+                SceneManager.LoadScene(nextSceneIndex);
             }
         }
         else
