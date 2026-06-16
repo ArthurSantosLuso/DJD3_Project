@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,6 +8,7 @@ public class EnemySpawnEntry
     [Min(0)] public int minCount;
     [Min(1)] public int maxCount;
 }
+
 [System.Serializable]
 public class EnemySpawnTier
 {
@@ -21,18 +23,10 @@ public class EnemySpawnConfig : ScriptableObject
     [SerializeField] private EnemySpawnTier[] tiers;
 
     /// <summary>
-    /// Returns the first tier whose threshold is <= teddyCount.
-    /// Tiers should be ordered highest threshold first in the Inspector.
-    /// Returns null if no tier matches.
+    /// Returns the enemies of current teddy bear tier.
     /// </summary>
     public EnemySpawnTier GetTierForTeddyCount(int teddyCount)
     {
-        foreach (EnemySpawnTier tier in tiers)
-        {
-            if (teddyCount >= tier.teddyBearThreshold)
-                return tier;
-        }
-
-        return null;
+        return tiers.Where(s => s.teddyBearThreshold == teddyCount).FirstOrDefault();
     }
 }

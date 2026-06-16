@@ -1586,7 +1586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a620e210fcb4a34f99ce6d2c6e33def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AgentPoolManager
-  agentsPerTypeToSpawn: 100
 --- !u!114 &1648965744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1605,9 +1604,9 @@ MonoBehaviour:
   - type: 1
     prefab: {fileID: 3176238772281411113, guid: 1bbe520f72c5c274b8faed231acb44ae, type: 3}
   - type: 2
-    prefab: {fileID: 8338868407640153338, guid: 203a2780ad3431548a46b06b71e17c25, type: 3}
-  - type: 3
     prefab: {fileID: 7766764688459057093, guid: 668147ddeacf93b4e84a4d6e0694c518, type: 3}
+  - type: 3
+    prefab: {fileID: 8338868407640153338, guid: 203a2780ad3431548a46b06b71e17c25, type: 3}
   - type: 4
     prefab: {fileID: 5170264807099088803, guid: a91c8d75887fe904fac3197ea10ef456, type: 3}
   enemiesContainer: {fileID: 560688444}

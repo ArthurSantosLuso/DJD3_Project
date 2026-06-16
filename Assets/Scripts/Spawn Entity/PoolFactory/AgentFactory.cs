@@ -1,13 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-/*
-This script handles:
-Instantiating enemies by type and placing them in their designated containers.
-Acts as the creation layer for the pool � AgentPoolManager asks for agents,
-AgentFactory builds them.
-*/
-
 public class AgentFactory : MonoBehaviour
 {
     [Header("Enemy Definitions")]
@@ -29,64 +22,27 @@ public class AgentFactory : MonoBehaviour
 
         foreach (EnemyDefinition enemy in enemies)
         {
-            // Enemy does not have a prefab
-            if (enemy.Prefab == null)
-            {
-                continue;
-            }
-
-            // Avoid duplications
-            if (enemyLookup.ContainsKey(enemy.Type))
-            {
-                continue;
-            }
+            if (enemy.Prefab == null) continue;
+            if (enemyLookup.ContainsKey(enemy.Type)) continue;
 
             enemyLookup.Add(enemy.Type, enemy);
         }
     }
 
     /// <summary>
-    /// Instantiates and returns a new enemy of the given type.
+    /// Instantiates and returns a new enemy of the given type, ready to use.
     /// </summary>
-    public EnemyBaseAI CreateAgent(EnemyType type)
+    public EnemyBaseAI CreateAgent(EnemyType type, Vector3 position, Quaternion rotation)
     {
         if (enemyLookup == null) BuildLookup();
 
-        if (enemyLookup.TryGetValue(type, out EnemyDefinition def))
-            return Instantiate(def.Prefab, enemiesContainer);
+        if (!enemyLookup.TryGetValue(type, out EnemyDefinition def))
+        {
+            Debug.LogWarning($"AgentFactory: no prefab registered for type {type}.");
+            return null;
+        }
 
-        return null;
+        EnemyBaseAI agent = Instantiate(def.Prefab, position, rotation, enemiesContainer);
+        return agent;
     }
-
-    /// <summary>
-    /// All enemy types currently registered with this factory.
-    /// </summary>
-    public IEnumerable<EnemyType> GetRegisteredTypes()
-    {
-        if (enemyLookup == null) BuildLookup();
-
-        return enemyLookup.Keys;
-    }
-
-    /// <summary>
-    /// Instantiates and returns a new enemy of the given type.
-    /// </summary>
-    //public EnemyBaseAI CreateAgent(EnemyType type)
-    //{
-    //    switch (type)
-    //    {
-    //        case EnemyType.Melee:
-    //            return Instantiate(meleePrefab, meleeContainer);
-
-    //        case EnemyType.Ranged:
-    //            return Instantiate(rangedPrefab, rangedContainer);
-
-    //        case EnemyType.Buffed:
-    //            return Instantiate(buffedPrefab, buffedContainer);
-
-    //        default:
-    //            Debug.LogError($"AgentFactory: unknown enemy type: {type}");
-    //            return null;
-    //    }
-    //}
 }
