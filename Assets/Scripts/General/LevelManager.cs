@@ -107,6 +107,7 @@ public class LevelManager : MonoBehaviour
 
     public void FinishLevel()
     {
+        GameManager.Instance.StopPlayerActions(false);
         GameManager.Instance.AddAvailableUpgrade();
         GameManager.Instance.IncreaseTeddyBear();
         screenFader?.FadeAndLoad(sceneToOpenWhenLevelFinished, 1f);
