@@ -12,6 +12,7 @@ public class CutsceneSkip : MonoBehaviour
 
     [SerializeField] private GameObject skipUI;
     [SerializeField] private Image fillCircle;
+    [SerializeField] private ScreenFader screenFader;
 
     private float holdTimer;
 
@@ -26,7 +27,7 @@ public class CutsceneSkip : MonoBehaviour
             if (holdTimer >= holdTimeToSkip)
             {
                 director.Stop();
-                SceneManager.LoadScene(nextSceneIndex);
+                screenFader.FadeAndLoad(SceneUtility.GetScenePathByBuildIndex(nextSceneIndex), 1f);
             }
         }
         else
