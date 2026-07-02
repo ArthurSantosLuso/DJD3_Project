@@ -49,7 +49,10 @@ public class DialogueManager : MonoBehaviour
         // If still typing, skip to the end of the line
         if (displayLineCoroutine != null)
         {
-            // skip logic
+            StopCoroutine(displayLineCoroutine);
+            displayLineCoroutine = null;
+            dialogueText.text = currentStory.currentText;
+            continueIcon.SetActive(true);
             return;
         }
 
