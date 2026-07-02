@@ -2309,7 +2309,9 @@ MonoBehaviour:
   interactionHint: {fileID: 4298545111696991446}
   type: 1
   canvasToOpen: {fileID: 0}
+  savedFeedback: {fileID: 0}
   sceneToOpen: 
+  upgradePropsContainer: {fileID: 0}
 --- !u!114 &8166794381604110907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2530,7 +2532,7 @@ VFXRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8838003790784393596}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

@@ -10,6 +10,7 @@ public class MainHallInteractablesEditor : Editor
     private SerializedProperty isAutomaticProp;
     private SerializedProperty interactionHintProp;
     private SerializedProperty upgradePropsContainerProp;
+    private SerializedProperty savedFeedbackProp;
 
     private void OnEnable()
     {
@@ -19,6 +20,7 @@ public class MainHallInteractablesEditor : Editor
         isAutomaticProp = serializedObject.FindProperty("isAutomatic");
         interactionHintProp = serializedObject.FindProperty("interactionHint");
         upgradePropsContainerProp = serializedObject.FindProperty("upgradePropsContainer");
+        savedFeedbackProp = serializedObject.FindProperty("savedFeedback");
     }
 
     public override void OnInspectorGUI()
@@ -28,7 +30,6 @@ public class MainHallInteractablesEditor : Editor
         EditorGUILayout.PropertyField(typeProp);
         EditorGUILayout.PropertyField(canvasToOpenProp);
         
-
         // Get current enum value
         MainHallInteractables.InteractionType currentType =
             (MainHallInteractables.InteractionType)typeProp.enumValueIndex;
@@ -41,6 +42,11 @@ public class MainHallInteractablesEditor : Editor
         if (currentType == MainHallInteractables.InteractionType.Upgrade)
         {
             EditorGUILayout.PropertyField(upgradePropsContainerProp);
+        }
+
+        if (currentType == MainHallInteractables.InteractionType.Save)
+        {
+            EditorGUILayout.PropertyField(savedFeedbackProp);
         }
 
         EditorGUILayout.PropertyField(isAutomaticProp);

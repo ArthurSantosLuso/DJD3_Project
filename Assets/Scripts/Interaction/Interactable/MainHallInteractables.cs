@@ -10,7 +10,12 @@ public class MainHallInteractables : Interactable
     [SerializeField] private GameObject canvasToOpen;
     [SerializeField, SceneDropdown] private string sceneToOpen;
     [SerializeField] private GameObject upgradePropsContainer;
- 
+    [SerializeField] private GameSavedFeedback savedFeedback;
+
+    //Cooldown for saving to prevent spamming
+    private float lastSaveTime = -999f;
+    [SerializeField] private float saveCooldown = 3f;
+
     private void Start()
     {
         if (type == InteractionType.Upgrade)
@@ -52,7 +57,10 @@ public class MainHallInteractables : Interactable
 
     public void SavaGame()
     {
+        if (Time.time - lastSaveTime < saveCooldown) return;
+        lastSaveTime = Time.time;
         GameManager.Instance.SaveGame();
+        savedFeedback.ShowFeedback();
     }
 
     private void UpdateUpgradeProps()
