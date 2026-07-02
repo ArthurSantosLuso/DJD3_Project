@@ -2735,9 +2735,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
   uiHandler: {fileID: 0}
-  shakeIntensity: 0.7
-  shakeDuration: 0.2
-  shakeDelay: 0.6
 --- !u!114 &8710365890412805747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3595,6 +3592,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShotgunExplosiveAbility
   actionAudio: {fileID: 8300000, guid: 07b810ed34e50064dba52d635b9b1c8a, type: 3}
   staminaCost: 0
+  shakeIntensity: 0.5
+  shakeDuration: 0.2
+  shakeDelay: 0.2
+  onHitTimeScale: 0.02
+  onHitTimeScaleDuration: 0.05
   explosiveProjectilePrefab: {fileID: 2324027806226887061, guid: b81106bb31151354db0edae71b13ccc1, type: 3}
   firePoint: {fileID: 5978441138906920022}
   projectileSpeed: 15
@@ -3618,6 +3620,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 25873459a787f82429a48f8e15bbb8fa, type: 3}
     - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: shakeDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: actionAudio
       value: 
       objectReference: {fileID: 0}
@@ -3628,6 +3634,18 @@ PrefabInstance:
     - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: pitchRange.y
       value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: onHitTimeScale
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: shakeIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
+      propertyPath: onHitTimeScaleDuration
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 390923958831104055, guid: aa1835d221f71e949a49aca614910c58, type: 3}
       propertyPath: attackSounds.Array.size
@@ -3728,6 +3746,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AxeBoomerangAbility
   actionAudio: {fileID: 8300000, guid: b8ac2208b07457346af955206bb74d88, type: 3}
   staminaCost: 30
+  shakeIntensity: 0.5
+  shakeDuration: 0.2
+  shakeDelay: 0.2
+  onHitTimeScale: 0.015
+  onHitTimeScaleDuration: 0.05
   axePrefab: {fileID: 4202229365186621659, guid: 732dfba5637c76545bba61c0f7abfeb8, type: 3}
   firePoint: {fileID: 5978441138906920022}
   projectileSpeed: 12

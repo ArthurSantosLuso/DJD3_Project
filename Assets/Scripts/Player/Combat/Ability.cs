@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public abstract class Ability : MonoBehaviour
     [SerializeField]
     protected float staminaCost;
 
-    [Header("On hit effects propreties")]
+    [Header("On Hit Effects Propreties")]
     [SerializeField]
     protected float shakeIntensity = 0.5f;
     [SerializeField]
@@ -42,9 +43,15 @@ public abstract class Ability : MonoBehaviour
 
     public abstract float AbilityRange { get; }
 
-    protected void ImpactFrame()
+    protected IEnumerator OnHitEffects()
     {
+        // Tiny time freeze on every hit
+        HitStopManager.Instance?.DoTimeEffect(onHitTimeScaleDuration, onHitTimeScale);
 
+        yield return new WaitForSecondsRealtime(onHitTimeScaleDuration);
+
+        // Screen Shake when attack lands
+        ScreenShake.Instance?.ShakeWithDelay(shakeIntensity * 2, shakeDuration, shakeDelay);
     }
 
     public abstract void Perform();
