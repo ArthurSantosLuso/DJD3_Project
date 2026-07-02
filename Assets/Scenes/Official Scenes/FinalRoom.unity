@@ -7860,7 +7860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3755517122602901827, guid: fa345ea5c2143ec41aba5e037075e20c, type: 3}
       propertyPath: maxValue
-      value: 500
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 5641605686593644993, guid: fa345ea5c2143ec41aba5e037075e20c, type: 3}
       propertyPath: GameOverPanel

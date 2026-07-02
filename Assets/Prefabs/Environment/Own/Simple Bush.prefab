@@ -99,6 +99,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430603707405756451}
+  - component: {fileID: 5166383472219342354}
+  - component: {fileID: 3614532247617144284}
   m_Layer: 0
   m_Name: Simple Bush
   m_TagString: Untagged
@@ -122,3 +124,38 @@ Transform:
   - {fileID: 6625619591464531271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5166383472219342354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392070753933472006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a808ebf3ef156ec42b1a02f3c43d60c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnterExitPlayAudio
+  enterAudio: {fileID: 8300000, guid: 967d858622b5dfc4e99a77a5a5675db7, type: 3}
+  exitAudio: {fileID: 0}
+--- !u!65 &3614532247617144284
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392070753933472006}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1698942, y: 0.98113763, z: 1.0118332}
+  m_Center: {x: -0.020487309, y: 0.5463715, z: -0.16959476}
