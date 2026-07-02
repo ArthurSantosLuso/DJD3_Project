@@ -138,6 +138,12 @@ public class PlayerLightMeleeAttack : Ability
         target.Damage(damageAmount);
         alreadyGotHit.Add(target);
 
+
+        // Tiny time freeze on every hit
+        HitStopManager.Instance?.DoTimeEffect(onHitTimeScaleDuration, onHitTimeScale);
+        // Screen Shake when attack lands
+        ScreenShake.Instance?.ShakeWithDelay(shakeIntensity * 2, shakeDuration, shakeDelay);
+
         Vector3 hitPoint = (transform.position + other.bounds.center) * 0.5f;
         if(target.HasBlood()) SpawnBloodEffect(hitPoint);
 

@@ -6,18 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    //[SerializeField]
-    //private PlayerStamina stamina;
-    //[SerializeField]
-    //private PlayerHealth health;
     [SerializeField]
     private UIHandler uiHandler;
-    [SerializeField] 
-    private float shakeIntensity = 0.5f;
-    [SerializeField] 
-    private float shakeDuration = 0.2f;
-    [SerializeField]
-    private float shakeDelay = 0.2f;
 
     private Character character;
     private PlayerMovement playerMovement;
@@ -33,11 +23,11 @@ public class PlayerInput : MonoBehaviour
     private void Start()
     {
         uiHandler = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIHandler>();
-        // stamina = GetComponent<PlayerStamina>();
         character = GetComponent<Character>();
         playerMovement = GetComponent<PlayerMovement>();
         interactor = GetComponent<Interactor>();
     }
+
     public void OnWeaponChangeInput(InputAction.CallbackContext context)
     {
         if (!VerifyIfPlayerCanAct()) return;
@@ -56,11 +46,6 @@ public class PlayerInput : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             character.UseAbility(0);
-            if (ScreenShake.Instance != null) //trigger camera shake
-            {
-                //not sure if its okay to put this here :C 
-                ScreenShake.Instance.ShakeWithDelay(shakeIntensity, shakeDuration, shakeDelay);
-            }
         }
     }
 
@@ -71,12 +56,6 @@ public class PlayerInput : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             character.UseAbility(1);
-
-            if (ScreenShake.Instance != null) //trigger camera shake
-            {
-                //not sure if its okay to put this here :C 
-                ScreenShake.Instance.ShakeWithDelay(shakeIntensity * 2, shakeDuration, shakeDelay);
-            }
         }
     }
 

@@ -1567,6 +1567,7 @@ GameObject:
   - component: {fileID: 1648965745}
   - component: {fileID: 1648965744}
   - component: {fileID: 1648965743}
+  - component: {fileID: 1648965748}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1679,6 +1680,18 @@ MonoBehaviour:
   screenFader: {fileID: 538324897}
   shoudGenerateLevel: 1
   shoudGeneratePlayerReferences: 1
+--- !u!114 &1648965748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648965742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2817cd72aba7d6547b07ad14a246ba05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitStopManager
 --- !u!1 &1765794708
 GameObject:
   m_ObjectHideFlags: 0

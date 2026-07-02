@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf0898cd8c3407409c042c4d5b3feb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Enemy.Matriarch
+  GameOverPanel: {fileID: 0}
   tentaclePrefab: {fileID: 1446311747134768394, guid: 11f985e86b4f3234a94ed3c90e1d5e1f, type: 3}
   tentacleShield: {fileID: 9187727248595694487}
   timeBetweenAttacks: 4

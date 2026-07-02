@@ -9,6 +9,18 @@ public abstract class Ability : MonoBehaviour
     [SerializeField]
     protected float staminaCost;
 
+    [Header("On hit effects propreties")]
+    [SerializeField]
+    protected float shakeIntensity = 0.5f;
+    [SerializeField]
+    protected float shakeDuration = 0.2f;
+    [SerializeField]
+    protected float shakeDelay = 0.2f;
+    [SerializeField]
+    protected float onHitTimeScale = 0.02f;
+    [SerializeField]
+    protected float onHitTimeScaleDuration = 0.05f;
+
     protected Character owner;
     protected Animator animator;
 
@@ -30,6 +42,10 @@ public abstract class Ability : MonoBehaviour
 
     public abstract float AbilityRange { get; }
 
+    protected void ImpactFrame()
+    {
+
+    }
 
     public abstract void Perform();
     protected abstract bool CanAttack();
