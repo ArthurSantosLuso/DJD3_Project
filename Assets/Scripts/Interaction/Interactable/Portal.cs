@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
@@ -34,24 +35,28 @@ public class Portal : MonoBehaviour
 
     private void TeleportPlayer(GameObject player)
     {
-        // CharacterController overrides transform position every frame, so it must be
-        // disabled before moving and re-enabled after, otherwise the teleport is ignored
-        CharacterController cc = player.GetComponent<CharacterController>();
-
-        if (cc != null)
+        PortalFader fader = FindFirstObjectByType<PortalFader>(FindObjectsInactive.Include);
+        fader.FadeInOut(() =>
         {
-            cc.enabled = false;
-            player.transform.SetPositionAndRotation(destination.position, destination.rotation);
-            cc.enabled = true;
-        }
-        else
-        {
-            player.transform.SetPositionAndRotation(destination.position, destination.rotation);
-        }
+            CharacterController cc = player.GetComponent<CharacterController>();
+            if (cc != null)
+            {
+                cc.enabled = false;
+                player.transform.SetPositionAndRotation(destination.position, destination.rotation);
+                cc.enabled = true;
+            }
+            else
+            {
+                player.transform.SetPositionAndRotation(destination.position, destination.rotation);
+            }
 
-        OnPlayerTeleport?.Invoke(true);
+            CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
+            if (cam != null)
+                cam.OnTargetObjectWarped(player.transform, destination.position - player.transform.position);
 
-        StartCoroutine(CooldownRoutine());
+            OnPlayerTeleport?.Invoke(true);
+            StartCoroutine(CooldownRoutine());
+        });
     }
 
     private System.Collections.IEnumerator CooldownRoutine()
